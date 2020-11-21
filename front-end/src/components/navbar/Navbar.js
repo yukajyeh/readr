@@ -12,7 +12,7 @@ export default class Navbar extends Component {
 
     render() {
         console.log(window.location.href)
-        if(){
+        if(this.props.loggedInUser){
             return(
             <nav className="nav-style">
                 <img src='' alt=''></img>
