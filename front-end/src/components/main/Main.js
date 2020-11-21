@@ -9,7 +9,7 @@ export default function Main() {
             <div></div>
             <div>
                 <h1>Book Your Next Date</h1>
-                <button>Sign up</button>
+                <button><a href='/signup'>Sign up</a></button>
             </div>
         </div>
     )

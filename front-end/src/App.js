@@ -4,6 +4,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import Main from '../src/components/main/Main'
 import NavBar from '../src/components/navbar/Navbar'
+import Signup from '../src/components/signup/Signup'
 import AuthService from '../src/services/auth/auth-services'
 
 
@@ -41,7 +42,8 @@ class App extends React.Component {
         <NavBar getTheUser={this.getTheUser} />
         
         <Switch>
-          {/* <Route exact path='/' component={Main} /> */}
+          <Route exact path='/' component={Main} />
+          <Route exact path='/signup' render={() => <Signup getTheUser={this.getTheUser} /> } />
         </Switch>
     
       </div>
