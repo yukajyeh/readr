@@ -5,7 +5,7 @@ import axios from 'axios'
 class AuthService {
     constructor(){
         let service = axios.create({
-            baseURL: process.env.BASE_URL,
+            baseURL: process.env.REACT_APP_BASEURL,
             withCredentials: true
         })
         this.service = service
