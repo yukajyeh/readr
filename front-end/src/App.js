@@ -2,11 +2,10 @@
 import React from 'react'
 import './App.css';
 import { Switch, Route } from 'react-router-dom'
-import Main from '../src/components/main/Main'
-import NavBar from '../src/components/navbar/Navbar'
-import Signup from '../src/components/signup/Signup'
-import AuthService from '../src/services/auth/auth-services'
-
+import Main from './components/main/Main'
+import NavBar from './components/navbar/Navbar'
+import AuthService from './services/auth/auth-services'
+import Login from './components/login/Login';
 
 class App extends React.Component {
 
@@ -43,7 +42,9 @@ class App extends React.Component {
         
         <Switch>
           <Route exact path='/' component={Main} />
+          <Route exact path='/login' render={() => <Login getTheUser={this.getTheUser} />}/>
           <Route exact path='/signup' render={() => <Signup getTheUser={this.getTheUser} /> } />
+
         </Switch>
     
       </div>
