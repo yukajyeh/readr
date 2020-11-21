@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-/* -- add Image upload funtion-- */
+/* -- addImage upload funtion-- */
 
 class AuthService {
     constructor(){

@@ -7,7 +7,6 @@ import NavBar from './components/navbar/Navbar'
 import AuthService from './services/auth/auth-services'
 import Login from './components/login/Login';
 
-
 class App extends React.Component {
 
   state= {
@@ -44,6 +43,8 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={Main} />
           <Route exact path='/login' render={() => <Login getTheUser={this.getTheUser} />}/>
+          <Route exact path='/signup' render={() => <Signup getTheUser={this.getTheUser} /> } />
+
         </Switch>
     
       </div>
