@@ -28,7 +28,7 @@ router.post('/signup', async(req, res) => {
 
         const user = await User.create({ 
             username: username, 
-            password: password, 
+            password: hashPass, 
             profileName: profileName, 
             gender: gender, 
             matchPreference: matchPreference, 
@@ -54,7 +54,7 @@ router.post('/login', async(req, res) => {
     if(!username || !password){
       res.status(400).json({ message: "Please fill in the information"})
       return
-    }
+    } 
 
     try {
       const user = await User.findOne({ username })
@@ -63,15 +63,17 @@ router.post('/login', async(req, res) => {
         const passwordCorrect = await bcrypt.compare(password, user.password)
         if(passwordCorrect){
           req.session.user = user
-          res.status(200).json({ message: 'Login Successful '})
+          res.status(200).json({ message: 'Login Successful'})
+        } else {
+          res.status(400).json({ message: 'Password Incorrect'})
         }
       } 
       else {
-        res.status(400).json({ message: 'Username/Password Incorrect'})
+        res.status(400).json({ message: 'User Does Not Exist'})
       } 
     } catch(err){
         console.log(err)
-        res.status(500).json({ message: "Something is wrong"})
+        res.status(500).json({ message: "Something is Wrong"})
       }
 
 })

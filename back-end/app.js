@@ -14,7 +14,7 @@ const cors         = require('cors')
 
 
 mongoose
-  .connect('mongodb://localhost/back-end', {useNewUrlParser: true})
+  .connect('mongodb://localhost/book-tinder-back', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -49,7 +49,7 @@ app.use(session({
 }))
 
 app.use(cors({
-  origin: ['http://localhost:3000'],
+  origin: [process.env.CORS_ORIGIN],
   credentials: true
 }))
       
