@@ -6,6 +6,7 @@ import Main from './components/main/Main'
 import NavBar from './components/navbar/Navbar'
 import AuthService from './services/auth/auth-services'
 import Login from './components/login/Login';
+import Signup from './components/signup/Signup'
 
 class App extends React.Component {
 
