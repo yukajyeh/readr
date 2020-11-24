@@ -40,13 +40,13 @@ class App extends React.Component {
     return (
       <div className="App">
   
-        <NavBar getTheUser={this.getTheUser} />
+        <NavBar userInSession={this.state.loggedInUser}/>
         
         <Switch>
           <Route exact path='/' component={Main} />
           <Route exact path='/login' render={() => <Login getTheUser={this.getTheUser} />}/>
           <Route exact path='/signup' render={() => <Signup getTheUser={this.getTheUser} /> } />
-          <Route exact path='find-my-match' render={() => <SwipeBookshelfs getTheUser={this.getTheUser}/>}/>
+          <Route exact path='find-my-match' render={() => <SwipeBookshelfs />}/>
 
         </Switch>
     

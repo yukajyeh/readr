@@ -8,11 +8,20 @@ import AuthService from '../../services/auth/auth-services';
 
 export default class Navbar extends Component {
 
+    state = {
+        loggedInUser: null
+    }
+
     service = new AuthService()
 
-    logout = () => {
+    componentWillReceiveProps(nextProps) {
+        this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
+      }
+
+    logoutUser = () => {
         this.service.logout()
-        .then(response => {
+        .then(() => {
+            this.setState({loggedInUser: null})
             this.props.getTheUser(null)
         })
         .catch(err => console.log(err))
@@ -20,15 +29,8 @@ export default class Navbar extends Component {
 
 
     render() {
-      
-        if(!this.props.loggedInUser) {
-            return <p>hello</p>
-        }
-       
-
-        console.log(this.props.loggedInUser)
-
-        if(this.props.loggedInUser){
+   
+        if(this.state.loggedInUser){
             return(
                 <nav className="nav-style">
                     <div> <Link to='/'><img src={LogoNavBarOrange} alt='Logo readr'/></Link></div>
@@ -41,7 +43,7 @@ export default class Navbar extends Component {
                     </div>
                     <div>
                         <ul>
-                            <li><NavLink to='/' onClick={this.logout}>Logout</NavLink></li>
+                            <li><NavLink to='/' onClick={this.logoutUser}>Logout</NavLink></li>
                         </ul>
                     </div>
                 </nav>
