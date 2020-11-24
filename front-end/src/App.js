@@ -5,8 +5,9 @@ import { Switch, Route } from 'react-router-dom'
 import Main from './components/main/Main'
 import NavBar from './components/navbar/Navbar'
 import AuthService from './services/auth/auth-services'
-import Login from './components/login/Login';
+import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
+import ErrorPage from './components/error-page/error-page'
 
 class App extends React.Component {
 
@@ -45,7 +46,7 @@ class App extends React.Component {
           <Route exact path='/' component={Main} />
           <Route exact path='/login' render={() => <Login getTheUser={this.getTheUser} />}/>
           <Route exact path='/signup' render={() => <Signup getTheUser={this.getTheUser} /> } />
-
+          <Route exact path='/404' component={ErrorPage} />
         </Switch>
     
       </div>
