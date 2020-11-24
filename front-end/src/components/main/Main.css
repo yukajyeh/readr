@@ -1,9 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
 
-h1 {
-font-family: 'Rozha One', serif;
+.main-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-a {
-    text-decoration:none;
+.first-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 50vh;
+    background-image: url('../../assets/background-img-home_skew.jpg');
+    background-size: cover;
+}
+
+.first-container img {
+    width: 80%;
+}
+
+.second-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 50vh;
+    background-color: #DC7364;
+    text-align: center;
+}
+
+h1 {
+    font-size: 8vw;
+    margin: 0 0 10% 0;
+}
+
+
+@media screen and (min-width: 800px) {
+    .first-container {
+        width: 50vw;
+        height: 100vh;
+    }
+
+    .first-container img {
+        margin-bottom: 100px;
+    }
+
+    .second-container {
+        width: 50vw;
+        height: 100vh;
+    }
+
+    h1 {
+        font-size: 4vw;
+    }
 }

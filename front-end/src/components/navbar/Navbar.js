@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import './Navbar.css'
+import LogoNavBarOrange from '../../assets/Logo_dark_background.png'
+import LogoNavBarDark from '../../assets/logo_light_background.png'
 
 
 export default class Navbar extends Component {
@@ -15,20 +18,25 @@ export default class Navbar extends Component {
         if(this.props.loggedInUser){
             return(
             <nav className="nav-style">
-                <img src='' alt=''></img>
-                <Link to='/profile' style={{ textDecoration: 'none' }}>Profile</Link>
-                <Link to='/matches' style={{ textDecoration: 'none' }}>Matches</Link>
+                <div> <img src='' alt=''></img></div>
+                <div>
+                    <Link to='/profile' >Profile</Link>
+                    <Link to='/matches' >Matches</Link>
+                </div>
             </nav>
             )
         } else {
             return (
                 <nav className="nav-style">
-                    <img src='' alt=''></img>
-                    <Link to='/login' style={{ textDecoration: 'none' }}>Login</Link>
-                    <Link to='/about' style={{ textDecoration: 'none' }}>About</Link>
+                    <div></div>
+                    <div>
+                        <ul>
+                            <li><Link to='/login' >Login</Link></li>
+                            <li><Link to='/about' >About</Link></li>
+                        </ul>
+                    </div>
                 </nav>
             )
-
         }
     }
 }
