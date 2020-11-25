@@ -1,7 +1,7 @@
 import React from "react"
 import "./Main.css"
 import AuthService from "../../services/auth/auth-services"
-import LogoDarkBackground from '../../assets/Logo_dark_background.png'
+import LogoDarkBackground from '../../assets/logo/Logo_dark_background.png'
 import TurnedCorner from "../stylingelements/turnedcorner/TurnedCorner"
 
 
