@@ -9,47 +9,57 @@
     opacity: 0.8;
 }
 
-.nav-style ul {
-    padding: 0;
-}
-
-.nav-style li {
-    list-style: none;
-    display: inline;
-    padding-right: 20px;
-}
+/* .shadow-nav {
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+} */
 
 .nav-style a {
-    color:  #F0D5C0;
+    color: #F0D5C0;
     font-size: 0.9rem;
-    font-weight: 300;
+    font-weight: 400;
+    white-space: pre;
+    text-wrap: none;
 }
 
 .nav-left {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    padding: 0 30px;
+}
+
+.nav-big-screen {
+    display: none;
 }
 
 .logo-icon {
-    visibility: hidden;
-}
-
-.nav-icon {
-    visibility: visible;
+    display: none;
 }
 
 .nav-icon img{
     height: 30px;
-    visibility: visible;
+    opacity: 0.8;
 }
 
-.nav-text-link {
-    visibility: hidden;
+.nav-right {
+    display: none;
+}
+
+.nav-right-no-user {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.nav-right-no-user a {
+    padding-left: 25px;
 }
 
 .selected {
-    color: #DC7364;
+    color: #DC7364 !important;
 }
 
 
@@ -58,23 +68,49 @@
         background-color: transparent;
     }
 
-    .selected {
-        color:#21619A; 
-    }
-
-    .nav-icon {
-        visibility: hidden;
-    }
-
-    .nav-text-link {
-        visibility: visible;
+    .nav-style a {
+        color: #094275;
     }
 
     .logo-icon {
-    
-        width: 80px;
-        padding-left: 10px;
+        display: inherit;
     }
 
-    
+    .logo-icon img {
+        width: 150px;
+    }
+
+    .nav-big-screen {
+        display: inherit;
+        width: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .nav-big-screen a {
+        padding-right: 25px;
+    }
+
+    .nav-icon {
+        display: none;
+    }
+
+    .nav-right {
+        display: inherit;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 30px;
+    }
+
+    .nav-right a {
+        padding-left: 25px;
+    }
+
+    .selected {
+        color: #DC7364 !important;
+    }
+
 }
