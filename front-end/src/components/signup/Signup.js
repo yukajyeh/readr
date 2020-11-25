@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import AuthService from "../../services/auth/auth-services"
+import'./Signup.css'
 
 export default class Signup extends Component {
 
@@ -61,8 +62,8 @@ export default class Signup extends Component {
         return (
             <div>
                 <div className='outercontainer'>
-                    <div>
                         <h1>Sign up</h1>
+                    <div className='sign-up-form'>
                         <form onSubmit={this.handleFormSubmit}>
                             <label htmlFor ='profileImage'>Profile Photo</label>
                             <input type='file' name='profileImage'/> 
@@ -76,7 +77,7 @@ export default class Signup extends Component {
                             <label>Profile Name</label>
                             <input type="profileName" name="profileName" value={this.state.profileName} onChange={this.handleChange} required/>
                             
-                            <label>Gender: 
+                            <label>Gender:   
                                 <select name="gender" value={this.state.gender} onChange={this.handleChange} required>
                                     <option value="">--Select One--</option>  
                                     <option value="female">Female</option>
@@ -85,7 +86,7 @@ export default class Signup extends Component {
                                 </select>
                             </label>
 
-                            <label>I want to match with: 
+                            <label>I want to match with:   
                                 <select name="matchPreference" value={this.state.matchPreference} onChange={this.handleChange} required>
                                     <option value="">--Select One--</option>
                                     <option value="female">Female</option>
