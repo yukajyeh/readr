@@ -1,0 +1,22 @@
+body{
+    background-color: #DC7364;
+    color:#F0D5C0;
+}
+
+.main-content{
+    width:80%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align:center;
+    padding-top:70px;
+
+}
+
+.main-content h2{
+    font-size:40px;
+}
+
+#Warning {
+    height: 150px;
+    width: 150px;
+}
