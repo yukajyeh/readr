@@ -1,0 +1,23 @@
+.outercontainer{
+    text-align:center;
+    padding-top:50px;
+}
+
+.outercontainer h1{
+    margin:0;
+}
+
+.sign-up-form form{
+    display:flex;
+    flex-direction:column;
+}
+
+.sign-up-form label{
+    margin: 5px auto;
+}
+
+.sign-up-form input{
+    display: block;
+    margin : 0 auto;
+    width:20vw;
+}

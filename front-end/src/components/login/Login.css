@@ -1,0 +1,23 @@
+.login-container{
+  text-align:center;
+  padding-top:50px;
+}
+
+.login-container h1{
+    margin:0;
+}
+
+.login-form form{
+    display:flex;
+    flex-direction:column;
+}
+
+.login-form label{
+    margin: 5px auto;
+}
+
+.login-form input{
+    display: block;
+    margin : 0 auto;
+    width:20vw;
+}

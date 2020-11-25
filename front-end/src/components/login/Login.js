@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import AuthService from '../../services/auth/auth-services'
+import './Login.css'
 
 export default class Login extends Component {
 
@@ -50,8 +51,9 @@ export default class Login extends Component {
 
         
             <div >
-                <div>
+                <div className='login-container'>
                     <h1>Log in</h1>
+                <div className='login-form'>
                     <form onSubmit={this.submitHandler}>
                         <label>Username</label>
                         <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onChangeHandler}></input>
@@ -59,6 +61,7 @@ export default class Login extends Component {
                         <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.onChangeHandler}></input>
                         <button id='one-button-on-page'>Log in</button>
                     </form> 
+                </div>
                     <span>{this.state.errorMessage}</span>
                     <p>No account yet? <Link to="/signup">Sign up</Link></p>
                 </div>
