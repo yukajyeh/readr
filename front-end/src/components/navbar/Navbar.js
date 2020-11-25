@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css'
-import LogoNavBarOrange from '../../assets/Logo_dark_background.png'
-import LogoNavBarDark from '../../assets/logo_light_background.png'
+import LogoIconLight from '../../assets/logo/icon_orange.png'
+import IconProfile from '../../assets/icons/profile_orangecolor.png'
+import IconMatches from '../../assets/icons/book_heart_orange.png'
+import IconRate from '../../assets/icons/swipe_orange.png'
 import AuthService from '../../services/auth/auth-services';
 
 
@@ -30,15 +32,20 @@ export default class Navbar extends Component {
 
     render() {
    
-        if(this.state.loggedInUser){
+        if(!this.state.loggedInUser){
             return(
                 <nav className="nav-style">
-                    <div> <Link to='/'><img src={LogoNavBarOrange} alt='Logo readr'/></Link></div>
-                    <div>
+                    <div className='nav-left'> 
+                        <Link to='/' ><img className='logo-icon' src={LogoIconLight} alt='Logo readr'/></Link>
                         <ul>
-                            <li> <NavLink to='/find-my-match' activeClassName='selected'>Find my match</NavLink></li>
-                            <li> <NavLink to='/profile' activeClassName='selected'>Profile</NavLink></li>
-                            <li> <NavLink to='/matches' activeClassName='selected'>Matches</NavLink></li>
+                            <li className='nav-icon'> <NavLink to='/find-my-match' activeClassName='selected'><img src={IconRate} alt='icon profile' /></NavLink></li>
+                            <li className='nav-icon'> <NavLink to='/find-my-match' activeClassName='selected' ><img src={IconProfile} alt='icon profile' /></NavLink></li>
+                            <li className='nav-icon'> <NavLink to='/find-my-match' activeClassName='selected' ><img src={IconMatches} alt='icon profile' /></NavLink></li>
+
+                            <li> <NavLink to='/find-my-match' activeClassName='selected' className='nav-text-link'>Find my match</NavLink></li>
+                            <li> <NavLink to='/profile' activeClassName='selected' className='nav-text-link'>Profile</NavLink></li>
+                            <li> <NavLink to='/matches' activeClassName='selected' className='nav-text-link'>Matches</NavLink></li>
+  
                         </ul>
                     </div>
                     <div>
@@ -52,7 +59,7 @@ export default class Navbar extends Component {
             if(window.location.href.includes('about') || window.location.href.includes('404')) {
                 return (
                     <nav className="nav-style">
-                        <div> <Link to='/'><img src={LogoNavBarOrange} alt='Logo readr'/></Link></div>
+                        <div> <Link to='/'><img className='logo-icon' src={LogoIconLight} alt='Logo readr'/></Link></div>
                         <div>
                             <ul>
                                 <li><NavLink to='/login' activeClassName='selected' >Log in</NavLink></li>
