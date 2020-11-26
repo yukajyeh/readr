@@ -50,7 +50,7 @@ export default class Login extends Component {
         return (
 
         
-            <div >
+            <div className='login-page'>
                 <div className='login-container'>
                     <h1>Log in</h1>
                 <div className='login-form'>

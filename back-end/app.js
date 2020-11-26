@@ -66,6 +66,9 @@ app.locals.title = 'Back-end for Storing Data';
 const auth = require('./routes/auth-route');
 app.use('/auth', auth);
 
+const imgUpload = require('./routes/file-upload-back');
+app.use('/api', imgUpload);
+
 
 
 module.exports = app;
