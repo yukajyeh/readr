@@ -5,14 +5,14 @@ const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 const profileImgUpload = require('../configs/cloudinary-setup')
 
-/* -- Install Cloudinary + Multer for Image upload -- */
+
 
 /* User Signup */
 router.post('/signup', profileImgUpload.single("profileImage"), async(req, res) => {
-    const { username, password, profileName, gender, matchPreference, contactInfo } = req.body
-    console.log(req.body) 
-    let profileImage
+    const { profileImage, username, password, profileName, gender, matchPreference, contactInfo } = req.body
 
+    console.log(req.body)
+    
     if(!username || !password || !profileName || !gender || !matchPreference || !contactInfo){
         res.status(400).json({message:"Please fill in all the fields"})
         return
@@ -28,10 +28,6 @@ router.post('/signup', profileImgUpload.single("profileImage"), async(req, res) 
         const salt = bcrypt.genSaltSync(bcryptSalt)
         const hashPass = bcrypt.hashSync(password,salt)
 
-        if(req.file){
-          profileImage = req.file.path
-          res.json({ secure_url: req.file.secure_url });
-         }
         
         const user = await User.create({ 
             username: username, 

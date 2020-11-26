@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-/* -- addImage upload funtion-- */
-
 class AuthService {
     constructor(){
         let service = axios.create({
@@ -12,8 +10,8 @@ class AuthService {
     }
 
 
-    signup = (username, password, profileName, profileImage, gender, matchPreference, contactInfo) => {
-        return this.service.post('/auth/signup', { username, password, profileName, profileImage, gender, matchPreference, contactInfo} )
+    signup = (username, password, profileName, gender, matchPreference, contactInfo, profileImage) => {
+        return this.service.post('/auth/signup', { username, password, profileName, gender, matchPreference, contactInfo, profileImage} )
         .then(response => {
             console.log(response.data)
             return response.data
@@ -34,13 +32,6 @@ class AuthService {
         return this.service.get('auth/loggedin')
         .then(response => response.data)
     }
-
-   /*  imageUpload = (image) => {
-       return this.service.post('auth/profile', image)
-     .then(response => response.data)
-    } */
-
-
 }
 
 

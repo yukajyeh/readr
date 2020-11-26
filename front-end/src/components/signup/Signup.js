@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import AuthService from "../../services/auth/auth-services"
+import FileUpload from "../../services/auth/file-upload"
 import'./Signup.css'
 
 export default class Signup extends Component {
@@ -14,10 +15,11 @@ export default class Signup extends Component {
         matchPreference: '', 
         contactInfo: '',
         errorMessage:'',
-        redirect: false
+        redirect: false,
     }
 
-    service = new AuthService()
+    fileUpload = new FileUpload()
+    authService = new AuthService()
 
     handleChange = (e) => {
         const { name, value } = e.target
@@ -26,23 +28,39 @@ export default class Signup extends Component {
         })
     }
 
+    handleFileUpload = e => {
+        //console.log("The file to be uploaded is: ", e.target.files[0]);
+ 
+        const uploadData = new FormData();
+        uploadData.append("profileImage", e.target.files[0]);
+
+        this.fileUpload.handleUpload(uploadData)
+        .then(response => {
+            this.setState({ profileImage: response.path });
+          })
+          .catch(err => {
+            console.log("Error while uploading the file: ", err);
+          });
+    }
+
     handleFormSubmit = (e) => {
         e.preventDefault()
 
-        this.service.signup(
+        this.authService.signup(
             this.state.username, 
             this.state.password, 
             this.state.profileName, 
-            this.state.profileImage, 
             this.state.gender, 
             this.state.matchPreference,
-            this.state.contactInfo )
+            this.state.contactInfo,
+            this.state.profileImage
+             )
 
         .then(user => {
             console.log(user)
             this.props.getTheUser(user)
             this.setState({
-                redirect: true
+                redirect:true
             })
         })
 
@@ -51,22 +69,25 @@ export default class Signup extends Component {
                 errorMessage: err.response.data.message
             })
         })
+
     }
 
+    
+
     render() {
-        
+
         if(this.state.redirect){
             return <Redirect to='/pick-my-books'></Redirect>
         }
 
         return (
-            <div>
+            <div className='sign-up-page'>
                 <div className='outercontainer'>
                         <h1>Sign up</h1>
                     <div className='sign-up-form'>
                         <form onSubmit={this.handleFormSubmit}>
                             <label htmlFor ='profileImage'>Profile Photo</label>
-                            <input type='file' name='profileImage'/> 
+                            <input type='file' name='profileImage' onChange={this.handleFileUpload} /> 
 
                             <label>Username</label>
                             <input type="text" name="username" value={this.state.username} onChange={this.handleChange} required/>

@@ -4,7 +4,7 @@ import Warning from '../../assets/warning.png'
 
 export default function ErrorPage() {
     return (
-        <div>
+        <div className='error-page'>
             <div className='main-content'>
                 <img src={Warning} id='Warning' alt='warning-icon'/>
                 <h2>Oops! Page Not Found</h2>
