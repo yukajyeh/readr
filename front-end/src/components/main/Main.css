@@ -1,8 +1,9 @@
 
 .main-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    flex-wrap: wrap;
+
 }
 
 .first-container {
@@ -55,5 +56,9 @@
 
     .main-container h1 {
         font-size: 4vw;
+    }
+
+    .main-container {
+        flex-direction: row;
     }
 }

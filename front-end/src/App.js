@@ -9,6 +9,8 @@ import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
 import SwipeBookshelfs from './components/swipebookshelfs/SwipeBookshelfs'
 import ErrorPage from './components/error-page/error-page'
+import Profile from './components/profile/Profile';
+
 
 
 class App extends React.Component {
@@ -48,8 +50,9 @@ class App extends React.Component {
           <Route exact path='/' component={Main} />
           <Route exact path='/login' render={() => <Login getTheUser={this.getTheUser} />}/>
           <Route exact path='/signup' render={() => <Signup getTheUser={this.getTheUser} /> } />
-          <Route exact path='find-my-match' render={() => <SwipeBookshelfs />}/>
+          <Route exact path='/find-my-match' render={() => <SwipeBookshelfs />}/>
           <Route exact path='/404' component={ErrorPage} />
+          <Route exact path='/profile' render={() => <Profile getTheUser={this.getTheUser} userInSession={this.state.loggedInUser} /> } />
 
         </Switch>
     
