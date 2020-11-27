@@ -8,10 +8,13 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session');
+const Mongostore   = require('connect-mongo')(session);
+const cors         = require('cors')
 
 
 mongoose
-  .connect('mongodb://localhost/back-end', {useNewUrlParser: true})
+  .connect('mongodb://localhost/book-tinder-back', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -37,8 +40,19 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  store: new Mongostore({
+    mongooseConnection: mongoose.connection
+  })
+}))
+
+app.use(cors({
+  origin: [process.env.CORS_ORIGIN],
+  credentials: true
+}))
+      
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -47,12 +61,14 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Back-end for Storing Data';
 
+const auth = require('./routes/auth-route');
+app.use('/auth', auth);
 
+const imgUpload = require('./routes/file-upload-back');
+app.use('/api', imgUpload);
 
-const index = require('./routes/index');
-app.use('/', index);
 
 
 module.exports = app;
