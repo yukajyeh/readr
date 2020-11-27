@@ -1,20 +1,21 @@
 .sign-up-page{
-    background-color:#094275;
-    height:100vh;
+    background-color: var(--dark-blue-color);
+    height: 100vh;
 }
 
 .outercontainer{
-    text-align:center;
-    padding-top:50px;
+    text-align: center;
+    padding-top: 50px;
 }
 
 .outercontainer h1{
-    margin:0;
+    color: var(--paper-color);
+    font-size: 8vw;
 }
 
 .sign-up-form form{
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
 }
 
 .sign-up-form label{
@@ -24,5 +25,12 @@
 .sign-up-form input{
     display: block;
     margin : 0 auto;
-    width:20vw;
+    width: 20vw;
+}
+
+
+@media screen and (min-width: 800px) {
+    .outercontainer h1 {
+        font-size: 5vw;
+    }
 }

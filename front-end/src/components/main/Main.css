@@ -12,7 +12,7 @@
     justify-content: center;
     width: 100vw;
     height: 50vh;
-    background-image: url('../../assets/logo/background-img-home_skew.jpg');
+    background-image: url('../../assets/background-img-home_skew.jpg');
     background-size: cover;
 }
 
@@ -27,14 +27,14 @@
     justify-content: center;
     width: 100vw;
     height: 50vh;
-    background-color: #DC7364;
+    background-color: var(--coral-color);
     text-align: center;
 }
 
-h1 {
+.main-container h1 {
     font-size: 8vw;
     margin: 0 0 10% 0;
-    color:#F0D5C0;
+    color: var(--paper-color);
 }
 
 
@@ -53,7 +53,7 @@ h1 {
         height: 100vh;
     }
 
-    h1 {
+    .main-container h1 {
         font-size: 4vw;
     }
 }
