@@ -20,15 +20,6 @@ export default class Navbar extends Component {
         this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
       }
 
-    logoutUser = () => {
-        this.service.logout()
-        .then(() => {
-            this.setState({loggedInUser: null})
-            this.props.getTheUser(null)
-        })
-        .catch(err => console.log(err))
-    }
-
 
     render() {
 
@@ -37,23 +28,20 @@ export default class Navbar extends Component {
                 <nav className="nav-style">
                     <div className='nav-left'> 
       
-                        <NavLink to='/profile' activeClassName='selected' className='nav-icon' ><img src={IconProfile} alt='icon profile' /></NavLink>
                         <NavLink to='/find-my-match' activeClassName='selected' className='nav-icon'><img src={IconRate} alt='icon profile' /></NavLink>
                         <NavLink to='/matches' activeClassName='selected' className='nav-icon'><img src={IconMatches} alt='icon profile' /></NavLink>
+                        <NavLink to='/profile' activeClassName='selected' className='nav-icon' ><img src={IconProfile} alt='icon profile' /></NavLink>
+
 
                         <div className='nav-big-screen'>
                             <Link to='/' className='logo-icon'><img  src={LogoBlue} alt='Logo readr'/></Link>
-                            
-                            <NavLink to='/find-my-match' activeClassName='selected'>Find my match</NavLink>
-                            <NavLink to='/profile' activeClassName='selected'>Profile</NavLink>
-                            <NavLink to='/matches' activeClassName='selected'>Matches</NavLink>
                         </div>
                        
                     </div>
                     <div className='nav-right'>
-                    
-                        <NavLink to='/' onClick={this.logoutUser}>Logout</NavLink>
-                  
+                        <NavLink to='/find-my-match' activeClassName='selected'>Find my match</NavLink>
+                        <NavLink to='/matches' activeClassName='selected'>Matches</NavLink>
+                        <NavLink to='/profile' activeClassName='selected'>Profile</NavLink>                  
                     </div>
                 </nav>
             )

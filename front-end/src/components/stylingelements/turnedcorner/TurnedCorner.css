@@ -1,7 +1,7 @@
 .triangle-topleft {
     width: 0;
     height: 0;
-    border-top: 50px solid #DC7364;
+    border-top: 50px solid var(--coral-color);
     border-right: 50px solid transparent;
     position: absolute;
     bottom: 50vh;
@@ -14,7 +14,7 @@
     .triangle-topleft {
         width: 0;
         height: 0;
-        border-top: 6vw solid #DC7364;
+        border-top: 6vw solid var(--coral-color);
         border-right: 6vw solid transparent;
         position: absolute;
         bottom: 0;
