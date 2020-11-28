@@ -91,13 +91,13 @@ router.get('/loggedin', (req, res) => {
     } else {
       res.status(400).json({ message: 'No user in session' })
     }
-  })
+})
   
 
 /* Logout */ 
-  router.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   req.session.destroy()
   res.status(200).json({ message: 'You have logged out' })
-  })
+})
   
-  module.exports = router;
+module.exports = router;

@@ -4,7 +4,8 @@ export default class SwipeBookshelfs extends Component {
     render() {
         return (
             <div>
-                hello
+                hello good bye
+                
             </div>
         )
     }

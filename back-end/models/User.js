@@ -19,7 +19,8 @@ const userSchema = new Schema({
     },
 
     profileImage:{
-        type: String
+        type: String,
+        default: '/images/default_avatar.jpg'
     },
 
     gender:{
