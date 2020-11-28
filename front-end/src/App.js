@@ -5,15 +5,15 @@ import { Switch, Route } from 'react-router-dom'
 import ProtectedRoute from './services/auth/protected-route'
 import AuthService from './services/auth/auth-services'
 
-import Main from './components/main/Main'
-import NavBar from './components/navbar/Navbar'
-import Login from './components/login/Login'
-import Signup from './components/signup/Signup'
-import SwipeBookshelfs from './components/swipebookshelfs/SwipeBookshelfs'
-import ErrorPage from './components/error-page/error-page'
-import Profile from './components/profile/Profile';
-import Matches from './components/matches/Matches';
-import StartUpFlow from './components/signup/startupflow/StartUpFlow';
+import Main from './components/pages/main/Main'
+import NavBar from './components/elements/navbar/Navbar'
+import Login from './components/pages/login/Login'
+import Signup from './components/pages/signup/Signup'
+import SwipeBookshelfs from './components/pages/swipebookshelfs/SwipeBookshelfs'
+import ErrorPage from './components/pages/error-page/error-page'
+import Profile from './components/pages/profile/Profile';
+import Matches from './components/pages/matches/Matches';
+import StartUpFlow from './components/pages/startupflow/StartUpFlow';
 
 
 
@@ -60,7 +60,7 @@ class App extends React.Component {
           <ProtectedRoute userInSession={this.state.loggedInUser} path='/profile' component={Profile} getTheUser={this.getTheUser} />
           <ProtectedRoute userInSession={this.state.loggedInUser} path='/matches' componet={Matches} />
           {/* <ProtectedRoute userInSession={this.state.loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
-          <Route exact path='/pick-my-books' component={StartUpFlow} />
+          <Route exact path='/pick-my-books' render={(props) => <StartUpFlow {...props} userInSession={this.state.loggedInUser} />} />
         </Switch>
     
       </div>

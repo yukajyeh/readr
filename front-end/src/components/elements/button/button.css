@@ -1,0 +1,26 @@
+.btn {
+    cursor: pointer;
+    padding: 12px 8px;
+    border: none;
+    border-radius: 2px;
+    transition: background-color ease-in 0.4s;
+    outline: none;
+    
+}
+
+.btn--default {
+    background-color: var(--old-pink-color);
+}
+
+.btn--default:hover {
+    background-color: var(--coral-color);
+}
+
+.btn--primary {
+    background-color: #f90;
+    color: white;
+}
+
+.btn--primary:hover {
+    background-color: orange;
+}

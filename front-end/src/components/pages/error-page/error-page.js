@@ -1,6 +1,6 @@
 import React from 'react'
 import "./error-page.css"
-import Warning from '../../assets/warning.png'
+import Warning from '../../../assets/warning.png'
 
 export default function ErrorPage() {
     return (

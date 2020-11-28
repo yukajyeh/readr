@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import SearchBar from '../../searchbar/SearchBar'
-import './startupflow.css'
-import DefaultBookCover from '../../../assets/defbookcover.jpg'
 import Axios from 'axios'
+
+import SearchBar from '../../elements/searchbar/SearchBar'
+import Button from '../../elements/button/Button';
+import DefaultBookCover from '../../../assets/defbookcover.jpg'
+import './startupflow.css'
 
 
 export default class StartUpFlow extends Component { 
     
     state = {
+        searchQuery: '',
         currentStep: 0,
         searchResults: [],
         selectedBooks:{
@@ -21,11 +24,10 @@ export default class StartUpFlow extends Component {
         redirect: false
     }
 
-    nextStepHandler = (e) => {
-        
-        if(e === 'next'){
+    nextStepHandler = (value) => {
+        if(value === 'next'){
             this.setState ({
-            currentStep:  this.state.currentStep+1
+                currentStep:  this.state.currentStep+1
             }) 
         } else {
             this.setState({
@@ -38,15 +40,17 @@ export default class StartUpFlow extends Component {
                 redirect:true
             })
         }
+
+        // clear search input and results array
+        this.setState({
+            searchQuery: '',
+            searchResults: []
+        })
     }
 
-    onChangeHandler = (e) => {
-        
+    onChangeHandler = (e) => { 
         let { name, value } = e.target
-        //console.log(name,value)
-        /* this.setState({
-            [name]:value
-        }) */
+
         this.setState(prevState => ({
             ...prevState,
             selectedBooks: {
@@ -56,24 +60,26 @@ export default class StartUpFlow extends Component {
           }))
     }
 
-    // submitHandler () => {
-
-    // }
-
     searchBook = (searchInput) => {
-        let searchTerm = searchInput.search
         const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API
 
         Axios
-        .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTerm}&printType=books&projection=lite&maxResults=5&key=${apiKey}`)
+        .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchInput}&printType=books&projection=lite&maxResults=5&key=${apiKey}`)
         .then(response => {
             this.setState({
                 searchResults: response.data.items
             })
         })
-        .catch(err => console.log(err))
-
+        .catch(err => console.error(err))
     }
+
+    searchHandler = (searchValue) => {
+        this.setState({
+            searchQuery: searchValue
+        });
+        this.searchBook(searchValue);
+    }
+
 
     displayTitle = () => {
         switch (this.state.currentStep) {
@@ -92,14 +98,14 @@ export default class StartUpFlow extends Component {
             default:
             return 
     }}
-
     
     render() {
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
         const bookStep = currentStep-1
         const currentBookStep = selectedBooksArr[bookStep]
-        console.log(this.state)
+
+        console.log(this.props)
     
         if(this.state.redirect){
             return <Redirect to='/find-my-match'/>
@@ -107,45 +113,48 @@ export default class StartUpFlow extends Component {
 
         if(currentStep === 7){
             return (
-                    <div className='startup-flow'>
-                        <h2>Your Bookshelf Is Created!</h2>
-                        <button onClick={this.nextStepHandler}>Meet Your Fellow Nerd</button>
-                    </div>
-                    )
+                <div className='startup-flow'>
+                    <h2>Your Bookshelf Is Created!</h2>
+                    <Button onClick={this.nextStepHandler}>Meet Your Fellow Nerd</Button>
+                </div>
+            )
         } 
         
         if (currentStep === 0){
             return(
                 <div className='startup-flow'>
-                    <h1>Let's Start Making Your Bookshelf</h1>
-                    <button onClick={() => this.nextStepHandler('next')}>Start</button>
+                    <h1>Hello {this.props.userInSession && this.props.userInSession.profileName}! Let's Start Making Your Bookshelf</h1>
+                    <Button onClick={() => this.nextStepHandler('next')}>Start</Button>
                 </div>
             )
         } 
+
         if(currentStep > 0 && currentStep < 7) {
             return (
                 <div className='startup-flow'>
-                {this.displayTitle()}
+                    {this.displayTitle()}
                     <p> Search by book title</p>
-                    <SearchBar searchTerm={this.searchBook} clearInput={this.nextStepHandler}/>
-                    <div>
-                    <form onChange={this.onChangeHandler}>
-                        {this.state.searchResults.map(book => {
+                    <SearchBar
+                        searchQuery={this.state.searchQuery}
+                        updateSearchQuery={this.searchHandler}
+                    />
+                     <div>
+                        <form onChange={this.onChangeHandler}>
+                            {this.state.searchResults.map(book => {
                                 return (
-                                <div key={book.id}>
-                                    <h3>{book.volumeInfo.title}</h3> 
-                                    <h3>{book.volumeInfo.authors}</h3> 
-                                    {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
-                                <input type='radio' value={book.id} name={currentBookStep} />
-                            </div>
+                                    <div key={book.id}>
+                                        <h3>{book.volumeInfo.title}</h3> 
+                                        <h3>{book.volumeInfo.authors}</h3> 
+                                        {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
+                                        <input type='radio' value={book.id} name={currentBookStep} />
+                                    </div>
                                 )
-                        })}
-                    </form>
-                        {currentStep > 0 && <button onClick={this.nextStepHandler}>Previous</button>}
-                        <button onClick={() =>this.nextStepHandler('next')}>Next</button>
+                            })}
+                        </form>
+                        {currentStep > 0 && <Button type="primary" onClick={this.nextStepHandler}>Previous</Button>}
+                        <Button onClick={() =>this.nextStepHandler('next')}>Next</Button>
                     </div>
                 </div>
-    )} 
-                    }
-    
+        )} 
+    }
 }
