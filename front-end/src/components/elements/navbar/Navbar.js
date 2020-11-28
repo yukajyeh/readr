@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css'
-import LogoBlue from '../../assets/logo/logo_light_background.png'
-import IconProfile from '../../assets/icons/profile_orangecolor.png'
-import IconMatches from '../../assets/icons/book_heart_orange.png'
-import IconRate from '../../assets/icons/swipe_orange.png'
-import AuthService from '../../services/auth/auth-services';
+import LogoBlue from '../../../assets/logo/logo_light_background.png'
+import IconProfile from '../../../assets/icons/profile_orangecolor.png'
+import IconMatches from '../../../assets/icons/book_heart_orange.png'
+import IconRate from '../../../assets/icons/swipe_orange.png'
+import AuthService from '../../../services/auth/auth-services';
 
 
 export default class Navbar extends Component {

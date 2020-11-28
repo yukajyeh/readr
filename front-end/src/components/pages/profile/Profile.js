@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import './Profile.css'
-import AuthService from '../../services/auth/auth-services';
+import AuthService from '../../../services/auth/auth-services';
+import Button from '../../elements/button/Button';
 
 
 export default class Profile extends Component {
@@ -39,7 +40,8 @@ export default class Profile extends Component {
         return (
             <div className='profile-page'>
                 <div className='outercontainer'>
-                    <button onClick={this.logoutUser}>Logout</button>
+                    <Button onClick={this.logoutUser}>Logout</Button>
+                  
                 </div>
         
                 

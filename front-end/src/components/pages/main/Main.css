@@ -13,7 +13,7 @@
     justify-content: center;
     width: 100vw;
     height: 50vh;
-    background-image: url('../../assets/background-img-home_skew.jpg');
+    background-image: url('../../../assets/background-img-home_skew.jpg');
     background-size: cover;
 }
 

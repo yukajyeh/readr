@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import AuthService from "../../services/auth/auth-services"
-import FileUpload from "../../services/auth/file-upload"
+import AuthService from "../../../services/auth/auth-services"
+import FileUpload from "../../../services/auth/file-upload"
+import Button from '../../elements/button/Button'
+
 import'./Signup.css'
+
 
 export default class Signup extends Component {
 
@@ -120,7 +123,7 @@ export default class Signup extends Component {
                             <label htmlFor ='contactInfo'>Preferred Contact Method</label>
                             <input type='text' name='contactInfo' onChange={this.handleChange} required/> 
 
-                            <button id='signup'>Create my account</button>
+                            <Button id='signup'>Create my account</Button>
                         </form>
                         <span>{this.state.errorMessage}</span> 
                     </div>
