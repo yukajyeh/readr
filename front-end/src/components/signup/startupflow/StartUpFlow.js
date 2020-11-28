@@ -3,14 +3,10 @@ import { Redirect } from 'react-router-dom'
 import SearchBar from '../../searchbar/SearchBar'
 import './startupflow.css'
 import DefaultBookCover from '../../../assets/defbookcover.jpg'
-
 import Axios from 'axios'
 
 
-
-
-export default class StartUpFlow extends Component {
-    
+export default class StartUpFlow extends Component { 
     
     state = {
         currentStep: 0,
@@ -24,6 +20,18 @@ export default class StartUpFlow extends Component {
         redirect: false
     }
 
+    nextStepHandler = () => {
+        this.setState ({
+           currentStep:  this.state.currentStep+1
+        }) 
+        
+        if (this.state.currentStep === 7) {
+            this.setState({
+                redirect:true
+            })
+        }
+    }
+
     // submitHandler () => {
 
     // }
@@ -33,7 +41,7 @@ export default class StartUpFlow extends Component {
         const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API
 
         Axios
-        .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTerm}&printType=books&projection=lite&key=${apiKey}`)
+        .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTerm}&printType=books&projection=lite&maxResults=5&key=${apiKey}`)
         .then(response => {
             this.setState({
                 searchResults: response.data.items
@@ -44,44 +52,66 @@ export default class StartUpFlow extends Component {
     }
 
     displayTitle = () => {
-        if(this.state.currentStep == 0){
-            return  <h2>What is your all time favorite book?</h2>
-        } 
-    }
+        switch (this.state.currentStep) {
+            default:
+               return 
+            case 1: 
+                return <h2>What Is Your All Time Favorite Book?</h2>
+            case 2:
+                return <h2>What Is Your Childhood Favorite Book?</h2>
+            case 3:
+                return <h2>What Book Would You Use As Your Go-To Weapon? </h2>
+            case 4:
+                return <h2>Which Book Is Your Guilty Pleasure Book?</h2>  
+            case 5:
+                return <h2>Which Book Do You Name Drop To Be Cool?</h2> 
+            case 6:
+                return <h2>What Is Your Next Read?</h2>
+    }}
 
     
     render() {
-        console.log(this.state.searchResults)
-
         if(this.state.redirect){
-            return <Redirect />
+            return <Redirect to='/find-my-match'/>
         }
 
-        // if(this.state.searchResults.length > 1 ) {
-        //     return <h1>Loading</h1>
-        // }
-        
-        return (
-            <div className='startup-flow'>
-               {this.displayTitle()}
-                <p> Search by book title</p>
-                <SearchBar searchTerm={this.searchBook}/>
-                <div>
-                    {this.state.searchResults.map(book => {
-                        {console.log(book)}
-                            return (
-                                <div key={book.id}>
-                            <h3>{book.volumeInfo.title}</h3> 
-                            <h3>{book.volumeInfo.authors}</h3> 
-                            {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
-                            
-                        </div>
-                            )
-                    })}
+        if(this.state.currentStep === 7){
+            return (
+                    <div className='startup-flow'>
+                        <h2>Your Bookshelf Is Created!</h2>
+                        <button onClick={this.nextStepHandler}>Meet Your Fellow Nerd</button>
+                    </div>
+                    )
+
+        } else if (this.state.currentStep === 0){
+            return(
+                <div className='startup-flow'>
+                    <h1>Let's Start Making Your Bookshelf</h1>
+                    <button onClick={this.nextStepHandler}>Start</button>
                 </div>
-            </div>
-
+            )
+        } 
+        else {
+            return (
+                <div className='startup-flow'>
+                {this.displayTitle()}
+                    <p> Search by book title</p>
+                    <SearchBar searchTerm={this.searchBook}/>
+                    <div>
+                        {this.state.searchResults.map(book => {
+                                return (
+                                    <div key={book.id}>
+                                <h3>{book.volumeInfo.title}</h3> 
+                                <h3>{book.volumeInfo.authors}</h3> 
+                                {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
+                            </div>
+                                )
+                        })}
+                        {this.state.currentStep > 0 && <button>Previous</button>}
+                        <button onClick={this.nextStepHandler}>Next</button>
+                    </div>
+                </div>
     )} 
-
+                    }
     
 }
