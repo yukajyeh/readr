@@ -13,6 +13,7 @@ import SwipeBookshelfs from './components/swipebookshelfs/SwipeBookshelfs'
 import ErrorPage from './components/error-page/error-page'
 import Profile from './components/profile/Profile';
 import Matches from './components/matches/Matches';
+import StartUpFlow from './components/signup/startupflow/StartUpFlow';
 
 
 
@@ -58,6 +59,8 @@ class App extends React.Component {
           <ProtectedRoute userInSession={this.state.loggedInUser} path='/find-my-match' component={SwipeBookshelfs} />
           <ProtectedRoute userInSession={this.state.loggedInUser} path='/profile' component={Profile} getTheUser={this.getTheUser} />
           <ProtectedRoute userInSession={this.state.loggedInUser} path='/matches' componet={Matches} />
+          {/* <ProtectedRoute userInSession={this.state.loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
+          <Route exact path='/pick-my-books' component={StartUpFlow} />
         </Switch>
     
       </div>
