@@ -1,23 +1,32 @@
-.triangle-topleft {
-    width: 0;
-    height: 0;
-    border-top: 50px solid var(--coral-color);
-    border-right: 50px solid transparent;
-    position: absolute;
-    bottom: 50vh;
-    right: 0;
-  }
+.tc {
+  width: 0;
+  height: 0;
+  border-top: 50px solid var(--coral-color);
+  border-right: 50px solid transparent;
+  position: absolute;
+}
+
+.tc--home {
+  bottom: 50vh;
+  right: 0;
+}
 
 
 
 @media screen and (min-width: 800px) {
-    .triangle-topleft {
-        width: 0;
-        height: 0;
-        border-top: 6vw solid var(--coral-color);
-        border-right: 6vw solid transparent;
-        position: absolute;
-        bottom: 0;
-        right: 50vw;
-      }
+  .tc {
+      width: 0;
+      height: 0;
+      border-top: 9vh solid var(--coral-color);
+      border-right: 9vh solid transparent;
+      position: absolute;
+    }
+
+    .tc--home {
+      top: 76vh;
+      right: 50vw;
+    }
 }
+
+
+

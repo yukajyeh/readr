@@ -12,7 +12,7 @@ export default function Main() {
         <div className='main-container'>
             <div className='first-container'>
                 <img src={LogoDarkBackground} alt='Logo readr' />
-                <TurnedCorner />
+                <TurnedCorner position='home'/>
             </div>
             <div className='second-container'>
                 <h1>Book <br/>Your Next  <br/> Date</h1>

@@ -60,7 +60,7 @@ export default class Login extends Component {
                         <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onChangeHandler}></input>
                         <label>Password</label>
                         <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.onChangeHandler}></input>
-                        <Button id='one-button-on-page'>Log in</Button>
+                        <Button>Log in</Button>
                     </form> 
                 </div>
                     <span>{this.state.errorMessage}</span>
