@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css'
 import LogoBlue from '../../../assets/logo/logo_light_background.png'
-import IconProfile from '../../../assets/icons/profile_orangecolor.png'
 import IconMatches from '../../../assets/icons/book_heart_orange.png'
 import IconRate from '../../../assets/icons/swipe_orange.png'
 import DefaultAvatar from '../../../assets/default_avatar.jpg'
@@ -36,7 +35,7 @@ export default class Navbar extends Component {
                         <NavLink to='/find-my-match' activeClassName='selected' className='nav-icon'><img src={IconRate} alt='icon profile' /></NavLink>
                         <NavLink to='/matches' activeClassName='selected' className='nav-icon'><img src={IconMatches} alt='icon profile' /></NavLink>
                         <Link to='/profile' >
-                            <img className='profile-img' src={userInSession.profileImage === '/images/default_avatar.jpg' ? DefaultAvatar : userInSession.profileImage} alt='user'/>
+                            <img className='profile-img nav-icon' src={userInSession.profileImage === '/images/default_avatar.jpg' ? DefaultAvatar : userInSession.profileImage} alt='user'/>
                         </Link>
 
                         <div className='nav-big-screen'>

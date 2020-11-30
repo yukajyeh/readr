@@ -27,7 +27,7 @@
 
 .profile-img {
     border-radius: 90px;
-    border: 0.5px solid lightgray;
+    border: 0.5px solid rgb(9, 66, 117, 0.3);
     object-fit: cover;
     width: 27px;
     height: 27px;
@@ -64,10 +64,11 @@
     padding-right: 15px;
 }
 
+
 .nav-big-screen-no-user img {
     padding-top: 4px;
     width: 110px; 
-}
+} 
 
 .selected {
     color: var(--coral-color) !important;
@@ -83,7 +84,7 @@
         padding: 0 10px;
     }
 
-    .nav-left img {
+    div.profile-img > img:first-child{
         display: none;
     }
 
@@ -129,6 +130,7 @@
     .nav-right-no-user a {
         padding: 0 20px;
     }
+
 
     .selected {
         color: var(--coral-color) !important;
