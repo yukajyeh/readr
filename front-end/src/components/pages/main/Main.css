@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .first-container {
@@ -18,6 +17,7 @@
 }
 
 .first-container img {
+    margin-top: 50px;
     width: 80%;
 }
 
@@ -34,7 +34,6 @@
 
 .main-container h1 {
     font-size: 8vw;
-    margin: 0 0 10% 0;
     color: var(--paper-color);
 }
 
@@ -42,7 +41,7 @@
 @media screen and (min-width: 800px) {
     .first-container {
         width: 50vw;
-        height: 100vh;
+        height: 85vh;
     }
 
     .first-container img {
@@ -51,7 +50,7 @@
 
     .second-container {
         width: 50vw;
-        height: 100vh;
+        height: 85vh;
     }
 
     .main-container h1 {

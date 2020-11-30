@@ -5,6 +5,7 @@ import LogoBlue from '../../../assets/logo/logo_light_background.png'
 import IconProfile from '../../../assets/icons/profile_orangecolor.png'
 import IconMatches from '../../../assets/icons/book_heart_orange.png'
 import IconRate from '../../../assets/icons/swipe_orange.png'
+import DefaultAvatar from '../../../assets/default_avatar.jpg'
 import AuthService from '../../../services/auth/auth-services';
 
 
@@ -23,25 +24,33 @@ export default class Navbar extends Component {
 
     render() {
 
-        if(this.state.loggedInUser){
+        console.log(this.state.loggedInUser)
+
+        const userInSession = this.state.loggedInUser
+
+        if(userInSession){
             return(
                 <nav className="nav-style">
                     <div className='nav-left'> 
       
                         <NavLink to='/find-my-match' activeClassName='selected' className='nav-icon'><img src={IconRate} alt='icon profile' /></NavLink>
                         <NavLink to='/matches' activeClassName='selected' className='nav-icon'><img src={IconMatches} alt='icon profile' /></NavLink>
-                        <NavLink to='/profile' activeClassName='selected' className='nav-icon' ><img src={IconProfile} alt='icon profile' /></NavLink>
-
+                        <Link to='/profile' >
+                            <img className='profile-img' src={userInSession.profileImage === '/images/default_avatar.jpg' ? DefaultAvatar : userInSession.profileImage} alt='user'/>
+                        </Link>
 
                         <div className='nav-big-screen'>
-                            <Link to='/' className='logo-icon'><img  src={LogoBlue} alt='Logo readr'/></Link>
+                            <Link to='/'><img  src={LogoBlue} alt='Logo readr'/></Link>
                         </div>
                        
                     </div>
                     <div className='nav-right'>
                         <NavLink to='/find-my-match' activeClassName='selected'>Find my match</NavLink>
                         <NavLink to='/matches' activeClassName='selected'>Matches</NavLink>
-                        <NavLink to='/profile' activeClassName='selected'>Profile</NavLink>                  
+                        <Link to='/profile' >
+                            <img className='profile-img' src={userInSession.profileImage === '/images/default_avatar.jpg' ? DefaultAvatar : userInSession.profileImage} alt='user'/>
+                        </Link>
+                
                     </div>
                 </nav>
             )
@@ -49,8 +58,8 @@ export default class Navbar extends Component {
                 return (
                     <nav className="nav-style">
                         <div className='nav-left'> 
-                            <div className='nav-big-screen'>
-                                <Link to='/' className='logo-icon'><img  src={LogoBlue} alt='Logo readr'/></Link>
+                            <div className='nav-big-screen-no-user'>
+                                <Link to='/'><img  src={LogoBlue} alt='Logo readr'/></Link>
                             </div>
                         </div>    
                         <div className='nav-right-no-user'>
