@@ -1,16 +1,16 @@
 .sign-up-page{
     background-color: var(--dark-blue-color);
-    height: 100vh;
 }
 
 .outercontainer{
     text-align: center;
-    padding-top: 50px;
 }
 
 .outercontainer h1{
     color: var(--paper-color);
     font-size: 8vw;
+    margin: 0 auto;
+    padding-top:100px;
 }
 
 .sign-up-form form{
@@ -19,14 +19,29 @@
 }
 
 .sign-up-form label{
-    margin: 5px auto;
+    margin: 10px auto;
+    color: var(--paper-color);
 }
 
 .sign-up-form input{
-    display: block;
     margin : 0 auto;
-    width: 20vw;
+    border-radius: 25px;
+    border: 1px solid #F0D5C0;
+    padding:10px; 
+    width: 200px;
+    height: 5px;
 }
+
+#signup-details {
+    color: var(--paper-color);
+    margin-bottom: 5px;
+}
+
+.custom-select select{
+    width:200px;
+    margin-top:5px;
+}
+
 
 
 @media screen and (min-width: 800px) {

@@ -4,12 +4,13 @@
 }
 .login-container{
   text-align: center;
-  padding-top: 50px;
 }
 
 .login-container h1{
   color: var(--paper-color);
   font-size: 8vw;
+  margin: 0 auto;
+  padding-top:100px;
 }
 
 .login-form form{
@@ -18,13 +19,17 @@
 }
 
 .login-form label{
-    margin: 5px auto;
+    margin: 10px auto;
+    color:#F0D5C0;
 }
 
 .login-form input{
-    display: block;
     margin : 0 auto;
-    width: 20vw;
+    border-radius: 25px;
+    border: 1px solid #F0D5C0;
+    padding:10px; 
+    width: 200px;
+    height: 5px;
 }
 
 @media screen and (min-width: 800px) {
