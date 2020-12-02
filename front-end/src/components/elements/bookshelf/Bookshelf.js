@@ -1,41 +1,52 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import Axios from 'axios'
 import './Bookshelf.css'
+import BookService from '../../../services/auth/bookshelf-services'
+
 
 export default class Bookshelf extends Component {
 
+    state= {
+        favBook: {},
+        childBook: {},
+        weaponBook: {},
+        pleasureBook: {},
+        showoffBook: {},
+        nextRead: {},
+        errorMessage: ''
+    }
 
-    getBook = () => {
-        const shelf = this.props.selectedBooks
-        const BookArr = Object.entries(shelf)
-        const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API
+    bookService = new BookService()
 
-        //console.log(BookArr)
-
-        for (const [question, title_id] of BookArr){
-            Axios
-            .get(`https://www.googleapis.com/books/v1/volumes/${title_id}?projection=lite&key=${apiKey}`)
-            .then(response => {
-                console.log(response.data)
-               /*  /* this.setState({
-                    [question]: {
-                        title: response.data
-                    } 
-                }) */
+    componentDidMount() {
+        // console.log(this.props.bookshelfId)
+        
+        this.bookService.showShelf(this.props.bookshelfId)
+        .then(bookshelf => {
+            console.log('hello')
+            this.setState({
+                favBook: bookshelf.favBook,
+                childBook: bookshelf.childBook,
+                weaponBook: bookshelf.weaponBook,
+                pleasureBook: bookshelf.pleasureBook,
+                showoffBook: bookshelf.showoffBook,
+                nextRead: bookshelf.nextBook,
+            })
         })
-             .catch(err => console.error(err))
-        }
-
+        .catch(err => {
+            this.setState({
+                errorMessage: err.response.data.message
+            })
+        }) 
         
     }
 
+
     render() {
-        this.getBook()
-       
+        console.log(this.state)
         return (
             <div>
-              
+                hello
+              <span>{this.state.errorMessage}</span> 
             </div>
         )
     }

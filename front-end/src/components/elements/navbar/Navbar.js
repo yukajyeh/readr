@@ -23,8 +23,6 @@ export default class Navbar extends Component {
 
     render() {
 
-        console.log(this.state.loggedInUser)
-
         const userInSession = this.state.loggedInUser
 
         if(userInSession){

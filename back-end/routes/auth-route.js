@@ -6,7 +6,6 @@ const bcryptSalt = 10
 const profileImgUpload = require('../configs/cloudinary-setup')
 
 
-
 /* User Signup */
 router.post('/signup', profileImgUpload.single("profileImage"), async(req, res) => {
     const { profileImage, username, password, profileName, gender, matchPreference, contactInfo } = req.body

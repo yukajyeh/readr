@@ -4,32 +4,32 @@ const Schema = mongoose.Schema
 const bookshelfSchema = new Schema({
 
     favBook:{
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     },
 
     childBook:{
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     },
 
     weaponBook:{
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     },
 
     pleasureBook:{
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     },
 
     showoffBook:{
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     },
 
     nextBook:{
-        type: String,
+        type: Schema.Types.Mixed,
         required: true
     },
 
