@@ -34,7 +34,7 @@ router.post('/pick-my-books', (req , res) => {
     }) 
 })
 
-router.post('/pick-my-books', (req, res) => {
+router.post('/bookshelf', (req, res) => {
     const { bookshelfId } = req.body
     console.log(req.body)
 
