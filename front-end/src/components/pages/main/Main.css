@@ -34,14 +34,25 @@
 
 .main-container h1 {
     font-size: 8vw;
-    color: var(--paper-color);
+    color: var(--dark-blue-color);
+    line-height: 2.3rem;
 }
 
+.about-section {
+    margin: 0 auto 50px auto;
+    width: 70vw; 
+}
+
+.about-section h2 {
+    text-align: center;
+    font-size: 7vw;
+    color: var(--light-blue-color)
+}
 
 @media screen and (min-width: 800px) {
     .first-container {
         width: 50vw;
-        height: 85vh;
+        height: 98vh;
     }
 
     .first-container img {
@@ -50,14 +61,24 @@
 
     .second-container {
         width: 50vw;
-        height: 85vh;
+        height: 98vh;
     }
 
     .main-container h1 {
-        font-size: 4vw;
+        font-size: 5vw;
+        line-height: 3.3rem;
     }
 
     .main-container {
         flex-direction: row;
     }
+
+    .about-section {
+        max-width: 60vw; 
+    }
+
+    .about-section h2 {
+        font-size: 5vw;
+    }
+
 }
