@@ -108,11 +108,16 @@ export default class StartUpFlow extends Component {
         .then(response => {
             console.log('bookshelf', response)
             this.setState({
-                bookshelfId: response.bookShelf[0],
+                bookshelfId: response.bookShelf[0]
+            })
+        })
+        .then(response => {
+            this.setState({
                 currentStep: this.state.currentStep+1
             })
         })
         .catch(err => {
+            console.log(err)
             this.setState({
                 errorMessage: err.response.data.message
             })
@@ -194,7 +199,7 @@ export default class StartUpFlow extends Component {
             return(
                 <div className='startup-flow'>
                     <h2>Your Bookshelf is Created!</h2>
-                    <BookshelfDisplay bookshelfId={this.state.bookshelfId} />
+                    {/* <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> */}
                     {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
                     <Button onClick={() =>this.stepHandler('next')}>Meet Your Fellow Nerds</Button>
                 </div>

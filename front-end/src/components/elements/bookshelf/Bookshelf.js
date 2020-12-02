@@ -17,10 +17,12 @@ export default class Bookshelf extends Component {
 
     bookService = new BookService()
 
+    
+
     componentDidMount() {
-        // console.log(this.props.bookshelfId)
-        
-        this.bookService.showShelf(this.props.bookshelfId)
+        const bookshelfId = this.props.bookshelfId
+      
+        this.bookService.showShelf(bookshelfId)
         .then(bookshelf => {
             console.log('hello')
             this.setState({
