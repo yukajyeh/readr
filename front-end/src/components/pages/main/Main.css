@@ -34,7 +34,7 @@
 
 .main-container h1 {
     font-size: 8vw;
-    color: var(--dark-blue-color);
+    color: var(--paper-color);
     line-height: 2.3rem;
 }
 
