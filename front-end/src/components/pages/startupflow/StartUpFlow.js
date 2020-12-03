@@ -5,7 +5,7 @@ import Axios from 'axios'
 import SearchBar from '../../elements/searchbar/SearchBar'
 import Button from '../../elements/button/Button';
 import DefaultBookCover from '../../../assets/defbookcover.jpg' 
-import BookShelf from '../../../services/auth/create-bookshelf'
+import BookService from '../../../services/auth/bookshelf-services'
 import BookshelfDisplay from '../../elements/bookshelf/Bookshelf'
 import './startupflow.css'
 
@@ -16,51 +16,21 @@ export default class StartUpFlow extends Component {
         searchQuery: '',
         currentStep: 0,
         searchResults: [],
-        selectedBooks:[],
-        redirect: false
+        selectedBooks:{
+            favBook: {},
+            childBook: {},
+            weaponBook: {},
+            pleasureBook: {},
+            showoffBook: {},
+            nextBook: {}},
+        bookshelfId: '',
+        errorMessage: '',
+        redirect: false,
+        lastStep: false,
     }
 
-    bookService = new BookShelf()
+    bookService = new BookService()
 
-    nextStepHandler = (value) => {
-        if(value === 'next'){
-            this.setState ({
-                currentStep:  this.state.currentStep+1
-            }) 
-        } else {
-            this.setState({
-                currentStep: this.state.currentStep-1
-            })
-        }
-        
-        if (this.state.currentStep === 7) {
-            this.setState({
-                redirect:true
-            })
-        }
-
-
-
-        // clear search input and results array
-        this.setState({
-            searchQuery: '',
-            searchResults: []
-        })
-    }
-
-    // michael's saturday RIP
-    /* onChangeHandler = (e) => { 
-        let { name, value } = e.target
-
-        this.setState(prevState => ({
-            ...prevState,
-            selectedBooks: {
-             ...prevState.selectedBooks,
-             [name]: value
-            }
-          }))
-    }
- */
     searchBook = (searchInput) => {
         const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API
 
@@ -81,6 +51,75 @@ export default class StartUpFlow extends Component {
         this.searchBook(searchValue);
     }
 
+    onChangeHandler = (e, book) => { 
+        let { name, value } = e.target
+        const bookTitle = book.volumeInfo.title
+        const bookAuthors = book.volumeInfo.authors
+        
+        let bookCover
+        book.volumeInfo.imageLinks ? bookCover = book.volumeInfo.imageLinks.thumbnail : bookCover = DefaultBookCover
+        
+        this.setState(prevState => ({
+            ...prevState,
+            selectedBooks: {
+                ...prevState.selectedBooks,
+                [name]: {
+                    id: value,
+                    title: bookTitle,
+                    author: bookAuthors,
+                    cover: bookCover,
+                }
+            }
+          }))
+    }
+
+    stepHandler = (value) => {
+        if(value === 'next'){
+            this.setState ({
+                currentStep:  this.state.currentStep+1
+            }) 
+        } else {
+            this.setState({
+                currentStep: this.state.currentStep-1
+            })
+        }
+    
+        if (this.state.lastStep) {
+            this.setState({
+                redirect:true
+            })
+        }
+
+        // clear search input and results array
+        this.setState({
+            searchQuery: '',
+            searchResults: []
+        })
+    }
+
+    saveBooks = () => {
+        this.bookService.createShelf(
+            this.state.selectedBooks.favBook,
+            this.state.selectedBooks.childBook,
+            this.state.selectedBooks.weaponBook,
+            this.state.selectedBooks.pleasureBook,
+            this.state.selectedBooks.showoffBook,
+            this.state.selectedBooks.nextBook
+        )
+        .then(response => {
+            console.log('bookshelf', response)
+            this.setState({
+                bookshelfId: response._id,
+                currentStep: this.state.currentStep+1,
+                lastStep: true
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        }) 
+        
+
+    }
 
     displayTitle = () => {
         switch (this.state.currentStep) {
@@ -99,51 +138,28 @@ export default class StartUpFlow extends Component {
             default:
             return 
     }}
-
-    addbookInfo = (book) => {
-        const newBook = {title:book.volumeInfo.title, cover:book.volumeInfo.imageLinks.thumbnail, author:book.volumeInfo.authors}
-        this.setState({
-            selectedBooks: [...this.state.selectedBooks, newBook]
-        })
-    }
     
     render() {
-       
+
+        console.log(this.state.bookshelfId)
+
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
         const bookStep = currentStep-1
-        //const currentBookStep = selectedBooksArr[bookStep]
+        const currentBookStep = selectedBooksArr[bookStep];
+        const proceedNextStep = !!currentBookStep && Object.values(this.state.selectedBooks[currentBookStep]).length <= 0;
 
-        console.log(this.state.selectedBooks)
-    
+
         if(this.state.redirect){
             return <Redirect to='/find-my-match'/>
         }
-
-        if(currentStep === 7){
-            return(
-                <div>
-                    <h2>Here's Your Overview</h2>
-                    <BookshelfDisplay />
-                    <Button>Confirm My Bookshelf</Button>
-                </div>
-            )
-        }
-
-        if(currentStep === 8){
-            return (
-                <div className='startup-flow'>
-                    <h2>Your Bookshelf Is Created!</h2>
-                    <Button onClick={this.nextStepHandler}>Meet Your Fellow Nerd</Button>
-                </div>
-            )
-        } 
+        
         
         if (currentStep === 0){
             return(
                 <div className='startup-flow'>
                     <h1>Hello {this.props.userInSession && this.props.userInSession.profileName}! Let's Start Making Your Bookshelf</h1>
-                    <Button onClick={() => this.nextStepHandler('next')}>Start</Button>
+                    <Button onClick={() => this.stepHandler('next')} >Start</Button>
                 </div>
             )
         } 
@@ -158,24 +174,33 @@ export default class StartUpFlow extends Component {
                         updateSearchQuery={this.searchHandler}
                     />
                      <div>
-                        <form onChange={this.onChangeHandler}>
                             {this.state.searchResults.map(book => {
                                 return (
-                                    <div key={book.id}>
-                                        <h3>{book.volumeInfo.title}</h3> 
-                                        <h3>{book.volumeInfo.authors}</h3> 
-                                        {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
-                                        <p onClick={()=>this.addbookInfo(book)}>Add</p>
-                                       
-                                    </div>
+                                    <form key={book.id} onChange={(e) => this.onChangeHandler(e, book)}>
+                                            <h3>{book.volumeInfo.title}</h3> 
+                                            <h3>{book.volumeInfo.authors}</h3> 
+                                            {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
+                                            <input type='radio' value={book.id} name={currentBookStep} />
+                                    </form>
                                 )
                             })}
-                        </form>
-                        {currentStep > 0 && <Button type="primary" onClick={this.nextStepHandler}>Previous</Button>}
-                        <Button onClick={() =>this.nextStepHandler('next')}>Next</Button>
+                            <span>{this.state.errorMessage}</span> 
+                            {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
+                            {currentStep < 6 && <Button onClick={() =>this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
+                            {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
                     </div>
                 </div>
         )} 
+
+        if(this.state.lastStep){
+            return(
+                <div className='startup-flow'>
+                    <h2>Your Bookshelf!</h2>
+                    <BookshelfDisplay bookshelfId={this.state.bookshelfId} />
+                    <Button onClick={() =>this.stepHandler('next')}>Meet Your Fellow Nerds</Button>
+                </div>
+            )
+        }
 
     }
 }

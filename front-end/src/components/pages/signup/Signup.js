@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import AuthService from "../../../services/auth/auth-services"
-import FileUpload from "../../../services/auth/file-upload"
+import FileUpload from "../../../services/auth/file-upload-services"
 import Button from '../../elements/button/Button'
 
 import'./Signup.css'

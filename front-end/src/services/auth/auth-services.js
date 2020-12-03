@@ -24,12 +24,12 @@ class AuthService {
     }
 
     logout = () => {
-        return this.service.get('auth/logout')
+        return this.service.get('/auth/logout')
         .then(response => response.data)
     }
 
     loggedin = () => {
-        return this.service.get('auth/loggedin')
+        return this.service.get('/auth/loggedin')
         .then(response => response.data)
     }
 }
