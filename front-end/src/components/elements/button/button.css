@@ -24,3 +24,8 @@
 .btn--primary:hover {
     background-color: orange;
 }
+
+.btn:disabled {
+    cursor: not-allowed;
+    background-color: gray;
+}

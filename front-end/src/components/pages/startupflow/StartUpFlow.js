@@ -25,7 +25,8 @@ export default class StartUpFlow extends Component {
             nextBook: {}},
         bookshelfId: '',
         errorMessage: '',
-        redirect: false
+        redirect: false,
+        lastStep: false,
     }
 
     bookService = new BookService()
@@ -83,7 +84,7 @@ export default class StartUpFlow extends Component {
             })
         }
     
-        if (this.state.currentStep === 7) {
+        if (this.state.lastStep) {
             this.setState({
                 redirect:true
             })
@@ -108,19 +109,13 @@ export default class StartUpFlow extends Component {
         .then(response => {
             console.log('bookshelf', response)
             this.setState({
-                bookshelfId: response.bookShelf[0]
-            })
-        })
-        .then(response => {
-            this.setState({
-                currentStep: this.state.currentStep+1
+                bookshelfId: response._id,
+                currentStep: this.state.currentStep+1,
+                lastStep: true
             })
         })
         .catch(err => {
             console.log(err)
-            this.setState({
-                errorMessage: err.response.data.message
-            })
         }) 
         
 
@@ -151,8 +146,10 @@ export default class StartUpFlow extends Component {
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
         const bookStep = currentStep-1
-        const currentBookStep = selectedBooksArr[bookStep]
-    
+        const currentBookStep = selectedBooksArr[bookStep];
+        const proceedNextStep = !!currentBookStep && Object.values(this.state.selectedBooks[currentBookStep]).length <= 0;
+
+
         if(this.state.redirect){
             return <Redirect to='/find-my-match'/>
         }
@@ -162,7 +159,7 @@ export default class StartUpFlow extends Component {
             return(
                 <div className='startup-flow'>
                     <h1>Hello {this.props.userInSession && this.props.userInSession.profileName}! Let's Start Making Your Bookshelf</h1>
-                    <Button onClick={() => this.stepHandler('next')}>Start</Button>
+                    <Button onClick={() => this.stepHandler('next')} >Start</Button>
                 </div>
             )
         } 
@@ -189,18 +186,17 @@ export default class StartUpFlow extends Component {
                             })}
                             <span>{this.state.errorMessage}</span> 
                             {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
-                            {currentStep < 6 && <Button onClick={() =>this.stepHandler('next')}>Next</Button>}
-                            {currentStep === 6 && <Button onClick={this.saveBooks}>Create Bookshelf</Button>}
+                            {currentStep < 6 && <Button onClick={() =>this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
+                            {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
                     </div>
                 </div>
         )} 
 
-        if(currentStep === 7){
+        if(this.state.lastStep){
             return(
                 <div className='startup-flow'>
-                    <h2>Your Bookshelf is Created!</h2>
-                    {/* <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> */}
-                    {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
+                    <h2>Your Bookshelf!</h2>
+                    <BookshelfDisplay bookshelfId={this.state.bookshelfId} />
                     <Button onClick={() =>this.stepHandler('next')}>Meet Your Fellow Nerds</Button>
                 </div>
             )

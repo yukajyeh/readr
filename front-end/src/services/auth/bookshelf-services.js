@@ -11,21 +11,20 @@ class BookShelf {
     }
 
     createShelf = (favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook) => {
-        return this.service.post('/api/pick-my-books', { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook })
+        return this.service.post('/book/pick-my-books', { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook })
         .then(res => {
-            console.log(res.data)
             return res.data
         })
     }
 
     showShelf = (bookshelfId) => {
-        return this.service.get('/api/pick-my-books', bookshelfId)
+        console.log(bookshelfId)
+        return this.service.get('/book/bookshelf/' + bookshelfId)
         .then(res => {
-            console.log(res.data)
             return res.data
         })
-
-        
+        .catch(err => console.log(err))
+   
     }
 }
 
