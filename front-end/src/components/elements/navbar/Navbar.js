@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom';
+import Scroll, { ScrollLink } from 'react-scroll'
 import './Navbar.css'
 import LogoBlue from '../../../assets/logo/logo_light_background.png'
 import IconMatches from '../../../assets/icons/book_heart_orange.png'

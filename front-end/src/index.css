@@ -26,10 +26,31 @@ code {
 }
 
 
-h1 {
+h1,
+h2 {
     font-family: 'Rozha One', serif;
+}
+
+p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.3rem;
 }
 
 a {
     text-decoration: none;
+}
+
+br {
+  display: block;
+  content: '';
+  margin: 0;
+}
+
+
+@media screen and (min-width: 800px) {
+  p{
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+  }
 }
