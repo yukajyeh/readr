@@ -102,15 +102,18 @@ export default class Signup extends Component {
                             <input type="profileName" name="profileName" value={this.state.profileName} onChange={this.handleChange} required/>
                             
                             <label>Gender:   
+                            <div className='custom-select'>
                                 <select name="gender" value={this.state.gender} onChange={this.handleChange} required>
                                     <option value="">--Select One--</option>  
                                     <option value="female">Female</option>
                                     <option value="male">Male</option>
                                     <option value="unicorn">Unicorn</option>
                                 </select>
+                            </div>
                             </label>
 
                             <label>I want to match with:   
+                            <div className='custom-select'>
                                 <select name="matchPreference" value={this.state.matchPreference} onChange={this.handleChange} required>
                                     <option value="">--Select One--</option>
                                     <option value="female">Female</option>
@@ -118,12 +121,14 @@ export default class Signup extends Component {
                                     <option value="unicorn">Unicorn</option>
                                     <option value="all">Everyone</option>
                                 </select>
+                            </div>
                             </label>
 
-                            <label htmlFor ='contactInfo'>Preferred Contact Method</label>
+                            <label htmlFor ='contactInfo'>Preferred Contact Method</label>  
+                            <details id='signup-details'>You can leave your <b>Instagram handle</b>, <b>Email address</b>, <b>Phone number</b> ..., whichever method you prefer your match to reach out to you!</details>
                             <input type='text' name='contactInfo' onChange={this.handleChange} required/> 
 
-                            <Button id='signup'>Create my account</Button>
+                            <Button>Create my account</Button>
                         </form>
                         <span>{this.state.errorMessage}</span> 
                     </div>

@@ -1,6 +1,7 @@
 .error-page{
     background-color: #DC7364;
     color:#F0D5C0;
+    height:100vh;
 }
 
 .main-content{
@@ -8,12 +9,12 @@
     margin-right: auto;
     margin-left: auto;
     text-align:center;
-    padding-top:70px;
+    padding-top:100px;
 
 }
 
 .main-content h2{
-    font-size:40px;
+    font-size:30px;
 }
 
 #Warning {

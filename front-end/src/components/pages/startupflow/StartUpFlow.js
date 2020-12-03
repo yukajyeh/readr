@@ -4,7 +4,9 @@ import Axios from 'axios'
 
 import SearchBar from '../../elements/searchbar/SearchBar'
 import Button from '../../elements/button/Button';
-import DefaultBookCover from '../../../assets/defbookcover.jpg'
+import DefaultBookCover from '../../../assets/defbookcover.jpg' 
+import BookShelf from '../../../services/auth/create-bookshelf'
+import BookshelfDisplay from '../../elements/bookshelf/Bookshelf'
 import './startupflow.css'
 
 
@@ -14,15 +16,11 @@ export default class StartUpFlow extends Component {
         searchQuery: '',
         currentStep: 0,
         searchResults: [],
-        selectedBooks:{
-            favBook: '',
-            childBook: '',
-            weaponBook: '',
-            pleasureBook: '',
-            showoffBook: '',
-            nextBook: ''},
+        selectedBooks:[],
         redirect: false
     }
+
+    bookService = new BookShelf()
 
     nextStepHandler = (value) => {
         if(value === 'next'){
@@ -41,6 +39,8 @@ export default class StartUpFlow extends Component {
             })
         }
 
+
+
         // clear search input and results array
         this.setState({
             searchQuery: '',
@@ -48,7 +48,8 @@ export default class StartUpFlow extends Component {
         })
     }
 
-    onChangeHandler = (e) => { 
+    // michael's saturday RIP
+    /* onChangeHandler = (e) => { 
         let { name, value } = e.target
 
         this.setState(prevState => ({
@@ -59,7 +60,7 @@ export default class StartUpFlow extends Component {
             }
           }))
     }
-
+ */
     searchBook = (searchInput) => {
         const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API
 
@@ -98,20 +99,38 @@ export default class StartUpFlow extends Component {
             default:
             return 
     }}
+
+    addbookInfo = (book) => {
+        const newBook = {title:book.volumeInfo.title, cover:book.volumeInfo.imageLinks.thumbnail, author:book.volumeInfo.authors}
+        this.setState({
+            selectedBooks: [...this.state.selectedBooks, newBook]
+        })
+    }
     
     render() {
+       
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
         const bookStep = currentStep-1
-        const currentBookStep = selectedBooksArr[bookStep]
+        //const currentBookStep = selectedBooksArr[bookStep]
 
-        console.log(this.props)
+        console.log(this.state.selectedBooks)
     
         if(this.state.redirect){
             return <Redirect to='/find-my-match'/>
         }
 
         if(currentStep === 7){
+            return(
+                <div>
+                    <h2>Here's Your Overview</h2>
+                    <BookshelfDisplay />
+                    <Button>Confirm My Bookshelf</Button>
+                </div>
+            )
+        }
+
+        if(currentStep === 8){
             return (
                 <div className='startup-flow'>
                     <h2>Your Bookshelf Is Created!</h2>
@@ -146,7 +165,8 @@ export default class StartUpFlow extends Component {
                                         <h3>{book.volumeInfo.title}</h3> 
                                         <h3>{book.volumeInfo.authors}</h3> 
                                         {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
-                                        <input type='radio' value={book.id} name={currentBookStep} />
+                                        <p onClick={()=>this.addbookInfo(book)}>Add</p>
+                                       
                                     </div>
                                 )
                             })}
@@ -156,5 +176,6 @@ export default class StartUpFlow extends Component {
                     </div>
                 </div>
         )} 
+
     }
 }
