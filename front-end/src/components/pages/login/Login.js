@@ -57,9 +57,9 @@ export default class Login extends Component {
                 <div className='login-form'>
                     <form onSubmit={this.submitHandler}>
                         <label>Username</label>
-                        <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.onChangeHandler}></input>
+                        <input type="text" name="username" value={this.state.username} onChange={this.onChangeHandler}></input>
                         <label>Password</label>
-                        <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.onChangeHandler}></input>
+                        <input type="password" name="password" value={this.state.password} onChange={this.onChangeHandler}></input>
                         <Button>Log in</Button>
                     </form> 
                 </div>
