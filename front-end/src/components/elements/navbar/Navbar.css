@@ -16,6 +16,10 @@
     white-space: pre;
 }
 
+.about-link {
+    cursor: pointer;
+}
+
 .nav-left {
     display: flex;
     justify-content: space-between;

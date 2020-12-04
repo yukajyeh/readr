@@ -71,9 +71,9 @@ export default class Navbar extends Component {
                         </div>    
                         <div className='nav-right-no-user'>
                             <NavLink to='/login' activeClassName='selected' >Log in</NavLink>
-                            <NavLink to='/signup' activeClassName='selected'>Sign up</NavLink>
+                            {/* <NavLink to='/signup' activeClassName='selected'>Sign up</NavLink> */}
                             <ScrollLink 
-                                activeClass='active'
+                                className='about-link'
                                 to='about-section'
                                 spy={true}
                                 smooth={true}

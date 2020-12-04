@@ -33,8 +33,29 @@
     height: 5px;
 }
 
+
+.closing-login {
+    color: var(--coral-color);
+    background-color: var(--paper-color);
+}
+  
+.closing-login:hover{
+    color: var(--dark-blue-color);
+    background-color: var(--paper-color);
+}
+
+
+
 @media screen and (min-width: 800px) {
     .login-container h1 {
         font-size: 5vw;
+    }
+
+    .closing-link {
+    position: absolute;
+    right: 25px;
+    font-size: 1.2rem;
+    padding: 6px 10px 9px 10px;
+    line-height: 1rem;
     }
 }

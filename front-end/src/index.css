@@ -56,11 +56,51 @@ a {
     text-decoration: none;
 }
 
+a:focus,
+button:focus,
+input:focus {
+  outline: none;
+}
+
+summary {
+  outline: none;
+}
+
 br {
   display: block;
   content: '';
   margin: 0;
 }
+
+input {
+  outline: none;
+}
+
+select {
+  outline: none;
+}
+
+
+.closing-link {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  color: var(--coral-color);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--paper-color);
+  border-radius: 90px;
+  padding: 2px 8px 4px 8px;
+  line-height: 1rem;
+}
+
+.closing-link:hover{
+  background-color: var(--light-blue-color);
+}
+
+
+
 
 
 @media screen and (min-width: 800px) {
@@ -68,4 +108,5 @@ br {
     font-size: 0.9rem;
     line-height: 1.4rem;
   }
+
 }

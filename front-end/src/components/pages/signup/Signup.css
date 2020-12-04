@@ -42,6 +42,31 @@
     margin-top:5px;
 }
 
+.closing-signup {
+    color: var(--dark-blue-color);
+    background-color: var(--paper-color);
+}
+  
+.closing-signup:hover{
+    color: var(--coral-color);
+    background-color: var(--paper-color);
+}
+
+summary {
+    outline: none;
+}
+
+details {
+    width: 200px;
+    margin: 0 auto;
+    outline: 0;
+    list-style: none;
+}
+
+details[open] {
+    outline: 0;
+}
+
 
 
 @media screen and (min-width: 800px) {
