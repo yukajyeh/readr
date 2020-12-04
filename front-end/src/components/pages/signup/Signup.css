@@ -1,5 +1,6 @@
 .sign-up-page{
     background-color: var(--dark-blue-color);
+    height: 100vh;
 }
 
 .outercontainer{
