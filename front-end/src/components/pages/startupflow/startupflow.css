@@ -1,4 +1,33 @@
+body{
+    background-color: var(--dark-blue-color);   
+}
+
 .startup-flow {
-    padding-top: 100px;
-    height: 100vh;
+    color: var(--dark-blue-color);
+    margin:50px auto;
+    padding-top:10px;
+    height: 70vh;
+    width:80vw;
+    background-color:var(--paper-color);
+    text-align:center;
+}
+
+
+.search-container{
+    text-align:center;
+    display:flex;
+    flex-direction:row;
+}
+
+.search-result form{
+    display:flex;
+    flex-direction:column;
+    width:15vw;
+    text-align:center;
+    justify-content:center;
+}
+
+.search-result img, input{
+    width:10vw;
+    margin-left:5vw;
 }
