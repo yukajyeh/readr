@@ -1,4 +1,3 @@
-
 .main-container{
     display: flex;
     flex-direction: column;
@@ -49,6 +48,66 @@
     color: var(--light-blue-color)
 }
 
+.social-icons-font1 {
+    font-family: 'socialico_plusplus';
+    font-size: 1.5rem;
+    color: var(--dark-blue-color);
+    margin-right: 25px;
+}
+
+.social-icons-font2 {
+    font-family: 'socialicoregular';
+    font-size: 1.5rem;
+    color: var(--dark-blue-color);
+    margin-right: 25px;
+}
+
+.mail {
+    font-family: 'socialico_plusplus';
+    font-size: 2rem;
+    color: var(--coral-color);
+    margin-right: 30px;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--paper-color);
+    padding: 20px 0;
+}
+
+.footer p {
+    font-size: 0.7rem;
+    padding: 0 25px;
+    line-height: 1rem;
+    display: inline;
+}
+
+.footer-left{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-right: 20px;
+}
+
+.footer-left div {
+    display: flex;
+    align-items: center;
+}
+
+.footer-right{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+
+
 @media screen and (min-width: 800px) {
     .first-container {
         width: 50vw;
@@ -75,10 +134,15 @@
 
     .about-section {
         max-width: 60vw; 
+        margin: 0 auto 100px auto;
     }
 
     .about-section h2 {
         font-size: 5vw;
+    }
+
+    .footer-left{
+        flex-direction: row;
     }
 
 }

@@ -52,6 +52,7 @@ export default class Login extends Component {
 
         
             <div className='login-page'>
+                <p>X</p>
                 <div className='login-container'>
                     <h1>Log in</h1>
                 <div className='login-form'>

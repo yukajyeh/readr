@@ -2,15 +2,16 @@
     background-color: var(--coral-color);
     height: 100vh;
 }
+
 .login-container{
-  text-align: center;
+    text-align: center;
 }
 
 .login-container h1{
-  color: var(--paper-color);
-  font-size: 8vw;
-  margin: 0 auto;
-  padding-top:100px;
+    color: var(--paper-color);
+    font-size: 8vw;
+    margin: 0 auto;
+    padding-top:100px;
 }
 
 .login-form form{
@@ -20,13 +21,13 @@
 
 .login-form label{
     margin: 10px auto;
-    color:#F0D5C0;
+    color: var(--paper-color);
 }
 
 .login-form input{
     margin : 0 auto;
     border-radius: 25px;
-    border: 1px solid #F0D5C0;
+    border: 1px solid var(--paper-color);
     padding:10px; 
     width: 200px;
     height: 5px;
