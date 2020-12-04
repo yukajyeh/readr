@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import AuthService from "../../../services/auth/auth-services"
 import FileUpload from "../../../services/auth/file-upload-services"
 import Button from '../../elements/button/Button'
@@ -32,8 +32,6 @@ export default class Signup extends Component {
     }
 
     handleFileUpload = e => {
-        //console.log("The file to be uploaded is: ", e.target.files[0]);
- 
         const uploadData = new FormData();
         uploadData.append("profileImage", e.target.files[0]);
 
@@ -75,7 +73,6 @@ export default class Signup extends Component {
 
     }
 
-    
 
     render() {
 
@@ -85,6 +82,7 @@ export default class Signup extends Component {
 
         return (
             <div className='sign-up-page'>
+                <Link className='closing-link closing-signup' to='/'>x</Link>
                 <div className='outercontainer'>
                         <h1>Sign up</h1>
                     <div className='sign-up-form'>
@@ -125,7 +123,7 @@ export default class Signup extends Component {
                             </label>
 
                             <label htmlFor ='contactInfo'>Preferred Contact Method</label>  
-                            <details id='signup-details'>You can leave your <b>Instagram handle</b>, <b>Email address</b>, <b>Phone number</b> ..., whichever method you prefer your match to reach out to you!</details>
+                            <details id='signup-details'><summary>Details</summary>You can leave your <b>Instagram handle</b>, <b>Email address</b>, <b>Phone number</b> ..., whichever method you prefer your match to reach out to you!</details>
                             <input type='text' name='contactInfo' onChange={this.handleChange} required/> 
 
                             <Button>Create my account</Button>

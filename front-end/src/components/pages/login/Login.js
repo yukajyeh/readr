@@ -49,9 +49,8 @@ export default class Login extends Component {
         }
 
         return (
-
-        
             <div className='login-page'>
+                <Link className='closing-link closing-login' to='/'>x</Link>
                 <div className='login-container'>
                     <h1>Log in</h1>
                 <div className='login-form'>

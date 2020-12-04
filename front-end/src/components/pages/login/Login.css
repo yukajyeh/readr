@@ -2,15 +2,16 @@
     background-color: var(--coral-color);
     height: 100vh;
 }
+
 .login-container{
-  text-align: center;
+    text-align: center;
 }
 
 .login-container h1{
-  color: var(--paper-color);
-  font-size: 8vw;
-  margin: 0 auto;
-  padding-top:100px;
+    color: var(--paper-color);
+    font-size: 8vw;
+    margin: 0 auto;
+    padding-top:100px;
 }
 
 .login-form form{
@@ -20,20 +21,41 @@
 
 .login-form label{
     margin: 10px auto;
-    color:#F0D5C0;
+    color: var(--paper-color);
 }
 
 .login-form input{
     margin : 0 auto;
     border-radius: 25px;
-    border: 1px solid #F0D5C0;
+    border: 1px solid var(--paper-color);
     padding:10px; 
     width: 200px;
     height: 5px;
 }
 
+
+.closing-login {
+    color: var(--coral-color);
+    background-color: var(--paper-color);
+}
+  
+.closing-login:hover{
+    color: var(--dark-blue-color);
+    background-color: var(--paper-color);
+}
+
+
+
 @media screen and (min-width: 800px) {
     .login-container h1 {
         font-size: 5vw;
+    }
+
+    .closing-link {
+    position: absolute;
+    right: 25px;
+    font-size: 1.2rem;
+    padding: 6px 10px 9px 10px;
+    line-height: 1rem;
     }
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Bookshelf.css'
-import Axios from 'axios'
 import BookService from '../../../services/auth/bookshelf-services'
 
 export default class Bookshelf extends Component {

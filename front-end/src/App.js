@@ -32,9 +32,7 @@ class App extends React.Component {
         loggedInUser: user,
       })
     })
-    .catch((err)=> {
-      console.log(err)
-    })
+    .catch(err=> { console.log(err)})
   }
 
   getTheUser = (user) => {
@@ -46,21 +44,25 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="App">
+      <div>
   
-        <NavBar userInSession={this.state.loggedInUser}/>
-        
         <Switch>
-          <Route exact path='/' component={Main} />
           <Route exact path='/login' render={() => <Login getTheUser={this.getTheUser} />}/>
           <Route exact path='/signup' render={() => <Signup getTheUser={this.getTheUser} /> } />
+           {/* <ProtectedRoute userInSession={this.state.loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
+           <Route exact path='/pick-my-books' render={(props) => <StartUpFlow {...props} userInSession={this.state.loggedInUser} />} />
+        </Switch>
+        
+        <Route path='/' render={(props) => <NavBar {...props} userInSession={this.state.loggedInUser} />}/>
+        
+        <Switch>
+          <Route exact path='/' render={(props) => <Main {...props} userInSession={this.state.loggedInUser} />} />
           <Route exact path='/404' component={ErrorPage} />
 
           <ProtectedRoute userInSession={this.state.loggedInUser} path='/find-my-match' component={SwipeBookshelfs} />
           <ProtectedRoute userInSession={this.state.loggedInUser} path='/profile' component={Profile} getTheUser={this.getTheUser} />
-          <ProtectedRoute userInSession={this.state.loggedInUser} path='/matches' componet={Matches} />
-          {/* <ProtectedRoute userInSession={this.state.loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
-          <Route exact path='/pick-my-books' render={(props) => <StartUpFlow {...props} userInSession={this.state.loggedInUser} />} />
+          <ProtectedRoute userInSession={this.state.loggedInUser} path='/matches' component={Matches} />
+         
         </Switch>
     
       </div>
