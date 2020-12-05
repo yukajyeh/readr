@@ -37,12 +37,17 @@ router.post('/pick-my-books', (req , res) => {
     
     newBookshelf.save()
     .then(bookshelf => {
-         User.findByIdAndUpdate( {_id: currentUser._id }, {$set: { bookShelf: bookshelf._id}} )
-         return bookshelf
+        return User.findByIdAndUpdate( {_id: currentUser._id }, {$set: { bookShelf: bookshelf._id}} )
     })
+
+    .then(user => {
+        return Bookshelf.find( {owner:user._id} )
+    })
+
     .then(response => {
         res.status(200).json(response)
     })
+    
     .catch(err => {
         console.log(err)
         res.status(500).json({message:"Something went wrong "})

@@ -109,7 +109,7 @@ export default class StartUpFlow extends Component {
         .then(response => {
             console.log('bookshelf', response)
             this.setState({
-                bookshelfId: response._id,
+                bookshelfId: response[0]._id,
                 currentStep: this.state.currentStep+1,
                 lastStep: true
             })
@@ -168,25 +168,30 @@ export default class StartUpFlow extends Component {
         if(currentStep > 0 && currentStep < 7) {
             return (
                 <div className='startup-flow'>
-                    {this.displayTitle()}
-                    <p> Search by book title</p>
-                    <SearchBar
-                        searchQuery={this.state.searchQuery}
-                        updateSearchQuery={this.searchHandler}
-                    />
+
                      <div className='search-container'>
+                        {this.displayTitle()}
+                        <p> Search by book title</p>
+                        <SearchBar
+                            searchQuery={this.state.searchQuery}
+                            updateSearchQuery={this.searchHandler}
+                        />
+                        <div className='input-container'>
                             {this.state.searchResults.map(book => {
                                 return (
                                     <div className='search-result'>
                                         <form key={book.id} onChange={(e) => this.onChangeHandler(e, book)}>
+                                            <div className='bookresult'>
                                                 <h3>{book.volumeInfo.title}</h3> 
                                                 <h3>{book.volumeInfo.authors}</h3> 
                                                 {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
                                                 <input type='radio' value={book.id} name={currentBookStep} />
+                                            </div>
                                         </form>
                                     </div>
                                 )
                             })}
+                        </div>
                             <span>{this.state.errorMessage}</span> 
                             <div className='step-buttons'>
                                 {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
