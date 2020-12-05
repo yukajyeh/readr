@@ -16,7 +16,19 @@ export default class Bookshelf extends Component {
     bookService = new BookService()
 
     componentDidMount() {
-        const bookshelfId = this.props.bookshelfId
+        this.onRenderBookshelf();
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log('booksheld did update',this.props.bookshelfId);
+        if (this.props.bookshelfId !== prevProps.bookshelfId) {
+            this.onRenderBookshelf();
+        }
+    }
+
+
+    onRenderBookshelf = () => {
+        const bookshelfId = this.props.bookshelfId;
 
         this.bookService.showShelf(bookshelfId)
         .then(bookshelf => {
@@ -36,17 +48,16 @@ export default class Bookshelf extends Component {
     }
 
 
-
     render() {
         console.log(this.state)
         const booksArr = [
-                        this.state.favBook,
-                        this.state.childBook,
-                        this.state.weaponBook,
-                        this.state.pleasureBook,
-                        this.state.showoffBook,
-                        this.state.nextRead
-                    ]
+            this.state.favBook,
+            this.state.childBook,
+            this.state.weaponBook,
+            this.state.pleasureBook,
+            this.state.showoffBook,
+            this.state.nextRead
+        ]
         
         return (
             <div>

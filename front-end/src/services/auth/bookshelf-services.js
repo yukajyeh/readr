@@ -24,7 +24,22 @@ class BookShelf {
             return res.data
         })
         .catch(err => console.log(err))
-   
+    }
+
+    getRandomBookshelf = () => {
+        return this.service.get('/book/random-bookshelf')
+        .then(res => {
+            return res.data
+        })
+        .catch(err => console.log(err))
+    }
+
+    updateLikesOrDislikes = (likes, dislikes) => {
+        console.log('update',likes, dislikes)
+        return this.service.post('/book/likes-dislikes', { likes, dislikes })
+        .then(res => {
+            return res.data
+        })
     }
 }
 
