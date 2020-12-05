@@ -19,8 +19,7 @@ const userSchema = new Schema({
     },
 
     profileImage:{
-        type: String,
-        default: '/images/default_avatar.jpg'
+        type: String
     },
 
     gender:{
@@ -41,7 +40,15 @@ const userSchema = new Schema({
     bookShelf: [{
         type: Schema.Types.ObjectId,
         "ref": "BookShelf",
-    }]
+    }],
+
+    likes: {
+        type: Schema.Types.Mixed
+    },
+
+    dislikes:{
+        type: Schema.Types.Mixed
+    }
 },
 
 {   timestamps: 

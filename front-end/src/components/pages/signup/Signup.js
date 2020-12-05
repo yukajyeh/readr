@@ -31,12 +31,13 @@ export default class Signup extends Component {
         })
     }
 
-    handleFileUpload = e => {
+    handleFileUpload = (e) => {
         const uploadData = new FormData();
         uploadData.append("profileImage", e.target.files[0]);
 
         this.fileUpload.handleUpload(uploadData)
         .then(response => {
+            console.log(response)
             this.setState({ profileImage: response.path });
           })
           .catch(err => {

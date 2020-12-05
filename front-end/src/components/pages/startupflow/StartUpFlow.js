@@ -109,7 +109,7 @@ export default class StartUpFlow extends Component {
         .then(response => {
             console.log('bookshelf', response)
             this.setState({
-                bookshelfId: response._id,
+                bookshelfId: response[0]._id,
                 currentStep: this.state.currentStep+1,
                 lastStep: true
             })
@@ -158,7 +158,8 @@ export default class StartUpFlow extends Component {
         if (currentStep === 0){
             return(
                 <div className='startup-flow'>
-                    <h1>Hello {this.props.userInSession && this.props.userInSession.profileName}! Let's Start Making Your Bookshelf</h1>
+                    <h1>Hello {this.props.userInSession && this.props.userInSession.profileName}!
+                    Let's Start Making Your Bookshelf</h1>
                     <Button onClick={() => this.stepHandler('next')} >Start</Button>
                 </div>
             )
@@ -167,27 +168,36 @@ export default class StartUpFlow extends Component {
         if(currentStep > 0 && currentStep < 7) {
             return (
                 <div className='startup-flow'>
-                    {this.displayTitle()}
-                    <p> Search by book title</p>
-                    <SearchBar
-                        searchQuery={this.state.searchQuery}
-                        updateSearchQuery={this.searchHandler}
-                    />
-                     <div>
+
+                     <div className='search-container'>
+                        {this.displayTitle()}
+                        <p> Search by book title</p>
+                        <SearchBar
+                            searchQuery={this.state.searchQuery}
+                            updateSearchQuery={this.searchHandler}
+                        />
+                        <div className='input-container'>
                             {this.state.searchResults.map(book => {
                                 return (
-                                    <form key={book.id} onChange={(e) => this.onChangeHandler(e, book)}>
-                                            <h3>{book.volumeInfo.title}</h3> 
-                                            <h3>{book.volumeInfo.authors}</h3> 
-                                            {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
-                                            <input type='radio' value={book.id} name={currentBookStep} />
-                                    </form>
+                                    <div className='search-result'>
+                                        <form key={book.id} onChange={(e) => this.onChangeHandler(e, book)}>
+                                            <div className='bookresult'>
+                                                <h3>{book.volumeInfo.title}</h3> 
+                                                <h3>{book.volumeInfo.authors}</h3> 
+                                                {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
+                                                <input type='radio' value={book.id} name={currentBookStep} />
+                                            </div>
+                                        </form>
+                                    </div>
                                 )
                             })}
+                        </div>
                             <span>{this.state.errorMessage}</span> 
-                            {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
-                            {currentStep < 6 && <Button onClick={() =>this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
-                            {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
+                            <div className='step-buttons'>
+                                {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
+                                {currentStep < 6 && <Button onClick={() =>this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
+                                {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
+                            </div>
                     </div>
                 </div>
         )} 
