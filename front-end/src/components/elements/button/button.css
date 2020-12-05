@@ -1,19 +1,21 @@
 .btn {
     cursor: pointer;
-    padding: 12px 8px;
-    border: none;
-    border-radius: 2px;
+    padding: 15px 35px;
+    border: 2px solid var(--dark-blue-color);
+    border-radius: 30px;
     transition: background-color ease-in 0.4s;
     outline: none;
-    
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: lowercase;
 }
 
 .btn--default {
-    background-color: var(--old-pink-color);
+    color: var(--dark-blue-color);
 }
 
 .btn--default:hover {
-    background-color: var(--coral-color);
+    background-color: transparent;
 }
 
 .btn--primary {

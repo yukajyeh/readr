@@ -54,11 +54,13 @@ export default class Profile extends Component {
                     <p>Profile name: {userInSession.profileName}</p>
                     <p>Match preference: {userInSession.matchPreference}</p>
                     <p>Prefered contact method: {userInSession.contactInfo}</p>
+                    <Button>Edite profile</Button>
+                    <Button type='secundary'>Delete profile</Button>
                 
                 
                 </div>
                 <div className='second-container-profile'>
-                    {/* <BookshelfDisplay bookshelfId={userInSession.bookShelf} /> */}
+                    <BookshelfDisplay bookshelfId={userInSession.bookShelf} />
                    
                 </div>
             </div>

@@ -19,7 +19,7 @@
     justify-content: center;
     width: 100vw;
     height: 80vh;
-    background-color: var(--dark-blue-color)
+    background-color: var(--coral-color)
 }
 
 .first-container-profile img {
@@ -63,6 +63,10 @@
     }
 
     .first-container-profile img {
+        margin: 150px 15px 0 15px;
+    }
+
+    .second-container-profile div {
         margin: 150px 15px 0 15px;
     }
 
