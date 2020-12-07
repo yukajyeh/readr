@@ -26,7 +26,6 @@ export default class StartUpFlow extends Component {
         bookshelfId: '',
         errorMessage: '',
         redirect: false,
-        lastStep: false,
     }
 
     bookService = new BookService()
@@ -84,7 +83,7 @@ export default class StartUpFlow extends Component {
             })
         }
     
-        if (this.state.lastStep) {
+        if (this.state.currentStep === 7) {
             this.setState({
                 redirect:true
             })
@@ -107,12 +106,11 @@ export default class StartUpFlow extends Component {
             this.state.selectedBooks.nextBook
         )
         .then(response => {
-            console.log('bookshelf', response)
-            this.setState({
-                bookshelfId: response[0]._id,
-                currentStep: this.state.currentStep+1,
-                lastStep: true
-            })
+            console.log(response)
+            // this.setState({
+            //     bookshelfId: response._id,
+            //     currentStep: this.state.currentStep+1,
+            // })
         })
         .catch(err => {
             console.log(err)
@@ -140,8 +138,6 @@ export default class StartUpFlow extends Component {
     }}
     
     render() {
-
-        console.log(this.state.bookshelfId)
 
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
@@ -177,11 +173,11 @@ export default class StartUpFlow extends Component {
                             updateSearchQuery={this.searchHandler}
                         />
                         <div className='input-container'>
-                            {this.state.searchResults.map(book => {
+                            {this.state.searchResults.map((book, index) => {
                                 return (
-                                    <div className='search-result'>
-                                        <form key={book.id} onChange={(e) => this.onChangeHandler(e, book)}>
-                                            <div className='bookresult'>
+                                    <div className='search-result' key={index}>
+                                        <form onChange={(e) => this.onChangeHandler(e, book)}>
+                                            <div className='bookresult' >
                                                 <h3>{book.volumeInfo.title}</h3> 
                                                 <h3>{book.volumeInfo.authors}</h3> 
                                                 {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
@@ -202,11 +198,11 @@ export default class StartUpFlow extends Component {
                 </div>
         )} 
 
-        if(this.state.lastStep){
+        if(currentStep === 7){
             return(
                 <div className='startup-flow'>
                     <h2>Your Bookshelf!</h2>
-                    <BookshelfDisplay bookshelfId={this.state.bookshelfId} />
+                    <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
                     <Button onClick={() =>this.stepHandler('next')}>Meet Your Fellow Nerds</Button>
                 </div>
             )

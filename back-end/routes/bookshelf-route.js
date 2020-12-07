@@ -1,6 +1,6 @@
 const express = require('express')
 const router  = express.Router()
-const Bookshelf = require('../models/Bookshelf')
+const Bookshelf = require('../models/Bookshelf-model')
 const User = require('../models/User')
 
 
@@ -36,12 +36,14 @@ router.post('/pick-my-books', (req , res) => {
     
     newBookshelf.save()
     .then(bookshelf => {
-        return User.findByIdAndUpdate( {_id: currentUser._id }, {$set: { bookShelf: bookshelf._id}} )
+        console.log(bookshelf)
+        return User.findByIdAndUpdate( {_id: currentUser._id }, {$push: { bookShelf: bookshelf._id}} ).populate('BookShelf')
     })
-
     .then(user => {
+        console.log(user)
         return Bookshelf.find( {owner:user._id} )
     })
+    .catch((err)=>console.log('error',err))
 })
 
 //display a random bookshelf on swipe page

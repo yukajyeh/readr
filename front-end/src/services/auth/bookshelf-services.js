@@ -13,6 +13,7 @@ class BookShelf {
     createShelf = (favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook) => {
         return this.service.post('/book/pick-my-books', { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook })
         .then(res => {
+            console.log('shelf created', res)
             return res.data
         })
     }
