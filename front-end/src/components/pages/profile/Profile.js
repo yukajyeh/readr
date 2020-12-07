@@ -7,6 +7,7 @@ import DefaultAvatar from '../../../assets/default_avatar.jpg'
 import BookshelfDisplay from '../../elements/bookshelf/Bookshelf'
 
 import AuthService from '../../../services/auth/auth-services';
+import Navbar from '../../elements/navbar/Navbar';
 
 
 export default class Profile extends Component {
@@ -45,7 +46,10 @@ export default class Profile extends Component {
         }
 
         return (
+            <>
+            <Navbar userInSession={userInSession} />
             <div className='main-container-profile'>
+                
                 <p onClick={this.logoutUser} className='logout-link'>Logout</p>
                 <div className='first-container-profile'>
                     
@@ -64,6 +68,7 @@ export default class Profile extends Component {
                    
                 </div>
             </div>
+            </>
                 
         )
     }

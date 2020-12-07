@@ -1,6 +1,19 @@
 .login-page{
     background-color: var(--coral-color);
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-page p {
+    color: var(--light-blue-color);
+    font-weight: 400;
+}
+
+.login-page a {
+    color: var(--paper-color);
+    font-weight: 400;
 }
 
 .login-container{
@@ -10,8 +23,7 @@
 .login-container h1{
     color: var(--paper-color);
     font-size: 8vw;
-    margin: 0 auto;
-    padding-top:100px;
+    margin: 20px 0;
 }
 
 .login-form form{
@@ -31,17 +43,16 @@
     padding:10px; 
     width: 200px;
     height: 5px;
+    color: var(--coral-color)
 }
 
 
 .closing-login {
     color: var(--coral-color);
-    background-color: var(--paper-color);
 }
   
 .closing-login:hover{
-    color: var(--dark-blue-color);
-    background-color: var(--paper-color);
+    color: var(--paper-color);
 }
 
 

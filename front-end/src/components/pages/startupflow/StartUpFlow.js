@@ -185,7 +185,7 @@ export default class StartUpFlow extends Component {
                                 )
                             })}
                             <span>{this.state.errorMessage}</span> 
-                            {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
+                            {currentStep > 0 && <Button type="secondary" onClick={this.stepHandler}>Previous</Button>}
                             {currentStep < 6 && <Button onClick={() =>this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
                             {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
                     </div>

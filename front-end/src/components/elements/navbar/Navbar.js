@@ -15,22 +15,19 @@ export default class Navbar extends Component {
 
     state = {
         loggedInUser: null,
-        reload: false
     }
 
     service = new AuthService()
 
+    componentDidMount(){
+        this.setState({
+            loggedInUser: this.props.userInSession
+        })
+    }
+
     componentWillReceiveProps(nextProps) {
         this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
       }
-
-    pageReload = () => {
-        console.log('hello')
-        window.location.reload()
-        this.setState({
-            reload: true
-        })
-    }
 
     render() {
         const userInSession = this.state.loggedInUser
