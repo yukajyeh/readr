@@ -32,6 +32,7 @@ class AuthService {
         return this.service.get('/auth/loggedin')
         .then(response => response.data)
     }
+    
 }
 
 

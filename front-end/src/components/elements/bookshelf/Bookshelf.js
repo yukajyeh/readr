@@ -29,6 +29,7 @@ export default class Bookshelf extends Component {
 
     onRenderBookshelf = () => {
         const bookshelfId = this.props.bookshelfId;
+        console.log(bookshelfId)
 
         this.bookService.showShelf(bookshelfId)
         .then(bookshelf => {

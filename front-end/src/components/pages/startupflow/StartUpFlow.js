@@ -46,8 +46,7 @@ export default class StartUpFlow extends Component {
     searchHandler = (searchValue) => {
         this.setState({
             searchQuery: searchValue
-        });
-        this.searchBook(searchValue);
+        }, this.searchBook(searchValue));
     }
 
     onChangeHandler = (e, book) => { 
@@ -97,6 +96,7 @@ export default class StartUpFlow extends Component {
     }
 
     saveBooks = () => {
+        console.log('saveBooks is called')
         this.bookService.createShelf(
             this.state.selectedBooks.favBook,
             this.state.selectedBooks.childBook,
@@ -107,10 +107,10 @@ export default class StartUpFlow extends Component {
         )
         .then(response => {
             console.log(response)
-            // this.setState({
-            //     bookshelfId: response._id,
-            //     currentStep: this.state.currentStep+1,
-            // })
+            this.setState({
+                bookshelfId: response.bookShelf,
+                currentStep: this.state.currentStep+1,
+            })
         })
         .catch(err => {
             console.log(err)
@@ -138,6 +138,7 @@ export default class StartUpFlow extends Component {
     }}
     
     render() {
+        console.log(this.state.bookshelfId)
 
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
@@ -149,6 +150,8 @@ export default class StartUpFlow extends Component {
         if(this.state.redirect){
             return <Redirect to='/find-my-match'/>
         }
+
+        
         
         
         if (currentStep === 0){
@@ -191,7 +194,8 @@ export default class StartUpFlow extends Component {
                             <span>{this.state.errorMessage}</span> 
                             <div className='step-buttons'>
                                 {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
-                                {currentStep < 6 && <Button onClick={() =>this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
+                                {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
+                                {/* {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} >Next</Button>} */}
                                 {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
                             </div>
                     </div>
