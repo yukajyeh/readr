@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Navbar from '../../elements/navbar/Navbar'
+
 import './SwipeBookshelfs.css'
 import BookService from '../../../services/auth/bookshelf-services'
 import BookshelfDisplay from '../../elements/bookshelf/Bookshelf'
@@ -64,10 +66,13 @@ export default class SwipeBookshelfs extends Component {
 
         return (
             <div>
+                <Navbar userInSession={this.props.userInSession} />
+
                 <p>{this.state.randomBookshelfId}</p>
                 <BookshelfDisplay bookshelfId={this.state.randomBookshelfId} />
                 <button onClick={ () => this.likeOrdislike('disliked') }>Dislike</button>
                 <button onClick={ () => this.likeOrdislike('liked') }>Like</button>
+
             </div>
         )
     }

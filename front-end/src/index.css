@@ -85,18 +85,19 @@ select {
   position: absolute;
   right: 20px;
   top: 10px;
-  color: var(--coral-color);
   font-size: 0.7rem;
   font-weight: 600;
   cursor: pointer;
   background-color: var(--paper-color);
+  border: 1px solid var(--paper-color);
   border-radius: 90px;
   padding: 2px 8px 4px 8px;
   line-height: 1rem;
 }
 
 .closing-link:hover{
-  background-color: var(--light-blue-color);
+  background-color: transparent;
+  border: 1px solid var(--paper-color)
 }
 
 

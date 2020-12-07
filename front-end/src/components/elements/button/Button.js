@@ -1,7 +1,7 @@
 import React from 'react';
 import './button.css';
 
-const Button = ({ children, type = 'default', onClick, disabled = false }) => {
+const Button = ({ children, type = 'default', onClick, disabled = false}) => {
 
     const classTypes = {
         primary: 'primary',

@@ -85,49 +85,49 @@ export default class Signup extends Component {
             <div className='sign-up-page'>
                 <Link className='closing-link closing-signup' to='/'>x</Link>
                 <div className='outercontainer'>
-                        <h1>Sign up</h1>
+                    <h1>Sign up</h1>
                     <div className='sign-up-form'>
                         <form onSubmit={this.handleFormSubmit}>
-                            <label htmlFor ='profileImage'>Profile Photo</label>
-                            <input type='file' name='profileImage' onChange={this.handleFileUpload} /> 
-
+                            
                             <label>Username</label>
-                            <input type="text" name="username" value={this.state.username} onChange={this.handleChange} required/>
+                            <input  className='sign-up-form-input' type="text" name="username" value={this.state.username} onChange={this.handleChange} required/>
 
                             <label>Password</label>
-                            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required/>
+                            <input className='sign-up-form-input' type="password" name="password" value={this.state.password} onChange={this.handleChange} required/>
 
                             <label>Profile Name</label>
-                            <input type="profileName" name="profileName" value={this.state.profileName} onChange={this.handleChange} required/>
+                            <input className='sign-up-form-input' type="test" name="profileName" value={this.state.profileName} onChange={this.handleChange} required/>
                             
-                            <label>Gender:   
+                            <label>Gender</label> 
                             <div className='custom-select'>
                                 <select name="gender" value={this.state.gender} onChange={this.handleChange} required>
-                                    <option value="">--Select One--</option>  
+                                    <option value="">--Select Your Gender--</option>  
                                     <option value="female">Female</option>
                                     <option value="male">Male</option>
                                     <option value="unicorn">Unicorn</option>
                                 </select>
                             </div>
-                            </label>
+                            
 
-                            <label>I want to match with:   
+                            <label>I want to match with</label>
                             <div className='custom-select'>
                                 <select name="matchPreference" value={this.state.matchPreference} onChange={this.handleChange} required>
-                                    <option value="">--Select One--</option>
+                                    <option value="">--Select Match Preference--</option>
                                     <option value="female">Female</option>
                                     <option value="male">Male</option>
                                     <option value="unicorn">Unicorn</option>
                                     <option value="all">Everyone</option>
                                 </select>
                             </div>
-                            </label>
-
+                           
                             <label htmlFor ='contactInfo'>Preferred Contact Method</label>  
                             <details id='signup-details'><summary>Details</summary>You can leave your <b>Instagram handle</b>, <b>Email address</b>, <b>Phone number</b> ..., whichever method you prefer your match to reach out to you!</details>
-                            <input type='text' name='contactInfo' onChange={this.handleChange} required/> 
+                            <input className='sign-up-form-input' type='text' name='contactInfo' onChange={this.handleChange} required/> 
 
-                            <Button>Create my account</Button>
+                            <label htmlFor ='profileImage'>Profile Photo</label>
+                            <input className='custom-file-input' type='file' name='profileImage' onChange={this.handleFileUpload} /> 
+                            
+                            <Button type='primary'>Create my account</Button>
                         </form>
                         <span>{this.state.errorMessage}</span> 
                     </div>

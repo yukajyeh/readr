@@ -4,6 +4,7 @@
     justify-content: center;
 }
 
+
 .first-container {
     display: flex;
     flex-direction: column;
@@ -14,6 +15,7 @@
     background-image: url('../../../assets/background-img-home_skew.jpg');
     background-size: cover;
 }
+
 
 .first-container img {
     margin-top: 50px;
@@ -26,7 +28,7 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 50vh;
+    height: 48vh;
     background-color: var(--coral-color);
     text-align: center;
 }

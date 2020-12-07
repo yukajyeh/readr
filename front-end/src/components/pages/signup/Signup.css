@@ -1,5 +1,9 @@
 .sign-up-page{
     background-color: var(--dark-blue-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .outercontainer{
@@ -9,8 +13,7 @@
 .outercontainer h1{
     color: var(--paper-color);
     font-size: 8vw;
-    margin: 0 auto;
-    padding-top:100px;
+    margin: 20px 0;
 }
 
 .sign-up-form form{
@@ -23,13 +26,14 @@
     color: var(--paper-color);
 }
 
-.sign-up-form input{
+.sign-up-form-input{
     margin : 0 auto;
     border-radius: 25px;
-    border: 1px solid #F0D5C0;
-    padding:10px; 
+    border: 1px solid var(--paper-color);
+    padding: 10px; 
     width: 200px;
     height: 5px;
+    color: var(--dark-blue-color)
 }
 
 #signup-details {
@@ -38,19 +42,28 @@
 }
 
 .custom-select select{
-    width:200px;
-    margin-top:5px;
+    width: 220px;
+    border-radius: 25px;
+    padding: 5px; 
+    margin-top: 5px;
+    border: 1px solid var(--paper-color);
+    color: var(--dark-blue-color)
 }
+
+input[type='file' i] {
+    color: var(--coral-color);
+}
+
 
 .closing-signup {
     color: var(--dark-blue-color);
-    background-color: var(--paper-color);
 }
   
 .closing-signup:hover{
-    color: var(--coral-color);
-    background-color: var(--paper-color);
+    color: var(--paper-color);
+
 }
+
 
 summary {
     outline: none;
