@@ -20,7 +20,6 @@ export default class Bookshelf extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log('booksheld did update',this.props.bookshelfId);
         if (this.props.bookshelfId !== prevProps.bookshelfId) {
             this.onRenderBookshelf();
         }
@@ -28,11 +27,9 @@ export default class Bookshelf extends Component {
 
     onRenderBookshelf = () => {
         const bookshelfId = this.props.bookshelfId;
-        console.log(bookshelfId)
 
         this.bookService.showShelf(bookshelfId)
         .then(bookshelf => {
-            console.log('response', bookshelf)
             this.setState({
                 favBook: bookshelf.favBook,
                 childBook: bookshelf.childBook,
@@ -80,7 +77,7 @@ export default class Bookshelf extends Component {
             <div>
                 {booksArr.map((book, index) => {
                     return (
-                        <div key={book.id}>
+                        <div key={index}>
                             {this.displayTitle(index)}
                             <h3>{book.title}</h3>
                             <img src={book.cover} alt='book cover'/>
