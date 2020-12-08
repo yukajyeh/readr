@@ -5,11 +5,9 @@ const User = require('../models/User')
 
 
 router.get('/bookshelf/:id', (req, res) => {
-    console.log(req.params.id)
 
     Bookshelf.findById({_id: req.params.id})
     .then(response => {
-        console.log(response)
         res.status(200).json(response)
     })
     .catch(err => {
@@ -50,15 +48,10 @@ router.post('/pick-my-books', (req , res) => {
 router.get('/random-bookshelf', (req, res) => {
     
     const currentUser = req.session.user
-    console.log(currentUser)
-
 
     Bookshelf.count().exec(function (err, count) {
         // Get a random entry
         const random = Math.floor(Math.random() * (count-1)) 
-
-        console.log('count', count)
-        console.log('random', random)
       
         // Again query all bookshelves but only fetch one offset by our random #
         Bookshelf.findOne(({ $and: [
@@ -77,15 +70,15 @@ router.get('/random-bookshelf', (req, res) => {
 
 //update swipe options
 router.post('/likes-dislikes', (req, res) => {
-    console.log('test', req.body)
-    const { likes, dislikes } = req.body
+    console.log('route file req body:', req.body)
+    const { disliked, liked } = req.body
     const currentUser = req.session.user
     
-    User.findByIdAndUpdate( {_id: currentUser._id }, {$push: {likes: likes, dislikes: dislikes} } )
+    User.findByIdAndUpdate( {_id: currentUser._id }, {$push: {likes: liked, dislikes: disliked}}, {new: true} )
     .then(response => {
+        console.log(response)
         res.status(200).json(response)
     })
-    
     .catch(err => {
         console.log(err)
         res.status(500).json({message:"Something went wrong "})
