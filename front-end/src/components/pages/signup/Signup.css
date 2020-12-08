@@ -1,6 +1,6 @@
 .sign-up-page{
     background-color: var(--dark-blue-color);
-    height: 100vh;
+    height: 120vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,17 +8,22 @@
 
 .outercontainer{
     text-align: center;
+    height:100vh;
 }
 
 .outercontainer h1{
     color: var(--paper-color);
     font-size: 8vw;
-    margin: 20px 0;
+    margin: 5px 0;
 }
 
 .sign-up-form form{
     display: flex;
     flex-direction: column;
+}
+
+.sign-up-form button{
+    margin-left:40px;
 }
 
 .sign-up-form label{
@@ -27,7 +32,7 @@
 }
 
 .sign-up-form-input{
-    margin : 0 auto;
+    margin : 5px auto;
     border-radius: 25px;
     border: 1px solid var(--paper-color);
     padding: 10px; 
@@ -52,6 +57,8 @@
 
 input[type='file' i] {
     color: var(--coral-color);
+    margin-bottom:10px;
+    margin-left:50px;
 }
 
 
@@ -63,7 +70,6 @@ input[type='file' i] {
     color: var(--paper-color);
 
 }
-
 
 summary {
     outline: none;
