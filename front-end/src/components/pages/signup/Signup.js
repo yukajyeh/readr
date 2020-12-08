@@ -31,14 +31,14 @@ export default class Signup extends Component {
         })
     }
 
-    handleFileUpload = e => {
+    handleFileUpload = (e) => {
+        
         const uploadData = new FormData();
-        uploadData.append("profileImage", e.target.files[0]);
+        uploadData.append('profileImage', e.target.files[0])
 
         this.fileUpload.handleUpload(uploadData)
         .then(response => {
-            console.log(response)
-            this.setState({ profileImage: response.path });
+            this.setState({ profileImage: response });
           })
           .catch(err => {
             console.log("Error while uploading the file: ", err);
@@ -76,8 +76,6 @@ export default class Signup extends Component {
 
 
     render() {
-
-        console.log(this.state.profileImage)
 
         if(this.state.redirect){
             return <Redirect to='/pick-my-books'></Redirect>
