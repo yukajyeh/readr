@@ -129,7 +129,9 @@ export default class Signup extends Component {
                             
                             <Button type='primary'>Create my account</Button>
                         </form>
+                        
                         <span>{this.state.errorMessage}</span> 
+
                     </div>
                 </div>
             </div>
