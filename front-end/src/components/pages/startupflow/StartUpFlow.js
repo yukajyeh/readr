@@ -34,7 +34,7 @@ export default class StartUpFlow extends Component {
         const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API
 
         Axios
-        .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchInput}&printType=books&projection=lite&maxResults=5&key=${apiKey}`)
+        .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchInput}&printType=books&projection=lite&maxResults=6&key=${apiKey}`)
         .then(response => {
 
             if(response.data.items === undefined){
@@ -146,7 +146,7 @@ export default class StartUpFlow extends Component {
     }}
     
     render() {
-        //console.log(this.state.bookshelfId)
+        console.log(this.state.selectedBooks)
 
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
@@ -160,14 +160,13 @@ export default class StartUpFlow extends Component {
         }
 
         
-        
-        
+    
         if (currentStep === 0){
             return(
                 <div className='startup-flow'>
                     <h1>Hello {this.props.userInSession && this.props.userInSession.profileName}!
                     Let's Start Making Your Bookshelf</h1>
-                    <Button onClick={() => this.stepHandler('next')} >Start</Button>
+                    <Button onClick={() => this.stepHandler('next')} type='primary'>Start</Button>
                 </div>
             )
         } 
@@ -184,20 +183,20 @@ export default class StartUpFlow extends Component {
                             updateSearchQuery={this.searchHandler}
                         />
                         <div className='input-container'>
-                            {this.state.searchResults.map((book, index) => {
-                                return (
-                                    <div className='search-result' key={index}>
-                                        <form onChange={(e) => this.onChangeHandler(e, book)}>
-                                            <div className='bookresult' >
-                                                <h3>{book.volumeInfo.title}</h3> 
-                                                <h3>{book.volumeInfo.authors}</h3> 
-                                                {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
-                                                <input type='radio' value={book.id} name={currentBookStep} />
-                                            </div>
-                                        </form>
-                                    </div>
-                                )
-                            })}
+                            <form >
+                                {this.state.searchResults.map((book, index) => {
+                                    return (
+                                        <div className='search-result' key={index}>
+                                                <div className='bookresult' >
+                                                    <h3>{book.volumeInfo.title}</h3> 
+                                                    <h3>{book.volumeInfo.authors}</h3> 
+                                                    {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
+                                                    <input type='radio' value={book.id} name={currentBookStep} onChange={(e) => this.onChangeHandler(e, book)} />
+                                                </div>
+                                        </div>
+                                    )
+                                })}
+                            </form>
                         </div>
                             <span>{this.state.errorMessage}</span> 
                             <div className='step-buttons'>
@@ -215,7 +214,7 @@ export default class StartUpFlow extends Component {
                 <div className='startup-flow'>
                     <h2>Your Bookshelf!</h2>
                     <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
-                    <Button onClick={() =>this.stepHandler('next')}>Meet Your Fellow Nerds</Button>
+                    <Button onClick={() =>this.stepHandler('next')} type='primary'>Meet Your Fellow Nerds</Button>
                 </div>
             )
         }
