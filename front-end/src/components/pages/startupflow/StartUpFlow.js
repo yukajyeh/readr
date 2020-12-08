@@ -36,9 +36,17 @@ export default class StartUpFlow extends Component {
         Axios
         .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchInput}&printType=books&projection=lite&maxResults=5&key=${apiKey}`)
         .then(response => {
-            this.setState({
-                searchResults: response.data.items
-            })
+
+            if(response.data.items === undefined){
+                return
+            } 
+            
+            else {
+                this.setState({
+                    searchResults: response.data.items
+                })
+            }
+            
         })
         .catch(err => console.error(err))
     }
@@ -138,7 +146,7 @@ export default class StartUpFlow extends Component {
     }}
     
     render() {
-        console.log(this.state.bookshelfId)
+        //console.log(this.state.bookshelfId)
 
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep

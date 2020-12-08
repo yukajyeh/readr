@@ -10,16 +10,13 @@ class BookShelf {
     }
 
     createShelf = (favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook) => {
-        console.log('createShelf is called in services file')
         return this.service.post('/book/pick-my-books', { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook })
         .then(res => {
-            console.log('shelf created', res)
             return res.data
         })
     }
 
     showShelf = (bookshelfId) => {
-        console.log(bookshelfId)
         return this.service.get('/book/bookshelf/' + bookshelfId)
         .then(res => {
             return res.data
