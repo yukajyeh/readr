@@ -26,7 +26,6 @@ export default class Bookshelf extends Component {
         }
     }
 
-
     onRenderBookshelf = () => {
         const bookshelfId = this.props.bookshelfId;
         console.log(bookshelfId)
@@ -48,9 +47,26 @@ export default class Bookshelf extends Component {
         }) 
     }
 
+    displayTitle = (index) => {
+        switch (index) {
+            case 0: 
+                return <h2>Favorite Book</h2>
+            case 1:
+                return <h2>Childhood Favorite Book</h2>
+            case 2:
+                return <h2>Go-To Weapon Book </h2>
+            case 3:
+                return <h2>Guilty Pleasure Book</h2>  
+            case 4:
+                return <h2>Name Drop Book</h2> 
+            case 5:
+                return <h2>Next Read</h2>
+            default:
+            return 
+    }}
+
 
     render() {
-        console.log(this.state)
         const booksArr = [
             this.state.favBook,
             this.state.childBook,
@@ -62,41 +78,16 @@ export default class Bookshelf extends Component {
         
         return (
             <div>
-                <ul>
-                    <h3>Favourite Book</h3>
-                    <h3>{this.state.favBook.title}</h3>
-                    <li><img src={this.state.favBook.cover} alt='book cover'/></li>
-                </ul>
-
-                <ul>
-                    <h3>Favourite Childhood Book</h3>
-                    <li>{this.state.childBook.title}</li>
-                    <li><img src={this.state.childBook.cover} alt='book cover'/></li>
-                </ul>
-
-                <ul>
-                    <h3>Go-To Weapon Book</h3>
-                    <li>{this.state.weaponBook.title}</li>
-                    <li><img src={this.state.weaponBook.cover} alt='book cover'/></li>
-                </ul>
-
-                <ul>
-                    <h3>Guilty Pleasure Book</h3>
-                    <li>{this.state.pleasureBook.title}</li>
-                    <li><img src={this.state.pleasureBook.cover} alt='book cover'/></li>
-                </ul>
-
-                <ul>
-                    <h3>Name-Drop Pleasure Book</h3>
-                    <li>{this.state.showoffBook.title}</li>
-                    <li><img src={this.state.showoffBook.cover} alt='book cover'/></li>
-                </ul>
-
-                <ul>
-                    <h3>Next Read</h3>
-                    <li>{this.state.nextRead.title}</li>
-                    <li><img src={this.state.nextRead.cover} alt='book cover'/></li>
-                </ul>  
+                {booksArr.map((book, index) => {
+                    return (
+                        <div key={book.id}>
+                            {this.displayTitle(index)}
+                            <h3>{book.title}</h3>
+                            <img src={book.cover} alt='book cover'/>
+                        </div>
+                    )
+                })}
+            
 
                 <span>{this.state.errorMessage}</span> 
             </div>
@@ -104,30 +95,4 @@ export default class Bookshelf extends Component {
     }
 }
 
-   {/* {booksArr.map (book => {
-                return(
-                        {displayBookTitle = () => {
-                                switch (book) {
-                                    case favBook: 
-                                        return <h2>Your Favorite Book</h2>
-                                    case childBook:
-                                        return <h2>Your Childhood Favorite Book</h2>
-                                    case weaponBook:
-                                        return <h2>Your Go-To Weapon Book </h2>
-                                    case pleasureBook:
-                                        return <h2> Your Guilty Pleasure Book</h2>  
-                                    case showoffBook:
-                                        return <h2>Your Name-Drop To Be Cool Book</h2> 
-                                    case nextBook:
-                                        return <h2>Your Next Read</h2>
-                                    default:
-                                    return 
-                            }}}
-                    
-                    <ul key={book._id}>
-                        <h3>Your Favourite Book</h3>
-                        <h3>{this.state.favBook.title}</h3>
-                        <li><img src={this.state.favBook.cover} alt='book cover'/></li>
-                    </ul>
-                )
-            })} */}
+   
