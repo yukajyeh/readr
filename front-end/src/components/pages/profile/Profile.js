@@ -58,7 +58,7 @@ export default class Profile extends Component {
                     <p>Profile name: {userInSession.profileName}</p>
                     <p>Match preference: {userInSession.matchPreference}</p>
                     <p>Prefered contact method: {userInSession.contactInfo}</p>
-                    <Button>Edite profile</Button>
+                    <Button>Edit profile</Button>
                     <Button type='secundary'>Delete profile</Button>
                 
                 
