@@ -1,6 +1,6 @@
 const express = require('express')
 const router  = express.Router()
-const Bookshelf = require('../models/Bookshelf')
+const Bookshelf = require('../models/Bookshelf-model')
 const User = require('../models/User')
 
 
@@ -24,7 +24,7 @@ router.post('/pick-my-books', (req , res) => {
     // console.log('current:', currentUser)
     // console.log(req.body)
 
-    const newBookshelf = new Bookshelf({
+    const newBookshelfModel = new Bookshelf({
         favBook: favBook, 
         childBook: childBook, 
         weaponBook: weaponBook, 
@@ -34,14 +34,16 @@ router.post('/pick-my-books', (req , res) => {
         owner: currentUser._id
     })
     
-    newBookshelf.save()
+    newBookshelfModel.save()
     .then(bookshelf => {
-        return User.findByIdAndUpdate( {_id: currentUser._id }, {$set: { bookShelf: bookshelf._id}} )
+        console.log('bookshelf in route file', bookshelf)
+        return User.findByIdAndUpdate( {_id: currentUser._id }, { bookShelf: bookshelf._id}, {new: true} )
     })
-
-    .then(user => {
-        return Bookshelf.find( {owner:user._id} )
+    .then(response => {
+        console.log(response)
+        res.status(200).json(response)
     })
+    .catch((err)=>console.log('error',err))
 })
 
 //display a random bookshelf on swipe page
@@ -50,7 +52,6 @@ router.get('/random-bookshelf', (req, res) => {
     const currentUser = req.session.user
     console.log(currentUser)
 
-  
 
     Bookshelf.count().exec(function (err, count) {
         // Get a random entry

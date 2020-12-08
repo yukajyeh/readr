@@ -10,17 +10,19 @@ class FileUpload {
   }
 
   errorHandler = err => {
-      // console.error(err);
       throw err;
     }
    
-  handleUpload (theFile) {
-      // console.log('file in service: ', theFile)
+  handleUpload = (theFile) => {
+      console.log('file in service: ', theFile)
       return this.service.post('/api/upload', theFile)
-        .then(res => res.data)
+        .then(res => {
+          console.log(res.data)
+          return res.data
+        } )
         .catch(this.errorHandler);
-    }
-   
   }
+   
+}
 
-  export default FileUpload
+export default FileUpload

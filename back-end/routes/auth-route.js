@@ -9,8 +9,6 @@ const profileImgUpload = require('../configs/cloudinary-setup')
 /* User Signup */
 router.post('/signup', profileImgUpload.single("profileImage"), async(req, res) => {
     const { profileImage, username, password, profileName, gender, matchPreference, contactInfo } = req.body
-
-    console.log(req.body)
     
     if(!username || !password || !profileName || !gender || !matchPreference || !contactInfo){
         res.status(400).json({message:"Please fill in all the fields"})

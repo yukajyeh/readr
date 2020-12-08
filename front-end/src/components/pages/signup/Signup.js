@@ -31,7 +31,7 @@ export default class Signup extends Component {
         })
     }
 
-    handleFileUpload = (e) => {
+    handleFileUpload = e => {
         const uploadData = new FormData();
         uploadData.append("profileImage", e.target.files[0]);
 
@@ -76,6 +76,8 @@ export default class Signup extends Component {
 
 
     render() {
+
+        console.log(this.state.profileImage)
 
         if(this.state.redirect){
             return <Redirect to='/pick-my-books'></Redirect>

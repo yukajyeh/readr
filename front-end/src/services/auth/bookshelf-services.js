@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 class BookShelf {
-    
     constructor(){
         let service = axios.create({
             baseURL: process.env.REACT_APP_BASE_URL,
@@ -11,8 +10,10 @@ class BookShelf {
     }
 
     createShelf = (favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook) => {
+        console.log('createShelf is called in services file')
         return this.service.post('/book/pick-my-books', { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook })
         .then(res => {
+            console.log('shelf created', res)
             return res.data
         })
     }
