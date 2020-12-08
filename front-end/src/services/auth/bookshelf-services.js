@@ -35,12 +35,12 @@ class BookShelf {
         .catch(err => console.log(err))
     }
 
-    updateLikesOrDislikes = (likes, dislikes) => {
-        console.log('update',likes, dislikes)
-        return this.service.post('/book/likes-dislikes', { likes, dislikes })
+    updateLikesOrDislikes = (disliked, liked) => {
+        return this.service.post('/book/likes-dislikes', { disliked, liked })
         .then(res => {
             return res.data
         })
+        .catch(err => console.log(err))
     }
 }
 

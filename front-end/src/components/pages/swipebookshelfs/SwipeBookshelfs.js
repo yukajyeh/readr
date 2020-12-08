@@ -39,25 +39,31 @@ export default class SwipeBookshelfs extends Component {
             .catch(err => console.log(err))
     }
 
-    saveLikeOrDislike = () => {
-        this.bookService.updateLikesOrDislikes(this.state.liked,this.state.disliked)
+    saveLikeOrDislike = (disliked, liked) => {
+        console.log('save like or dislike is called', disliked, liked)
+        this.bookService.updateLikesOrDislikes(disliked, liked)
             .then(res => this.getRandomBookshelf())
             .catch(err => console.log(err))
     }
 
-    likeOrdislike = (likeOrdislike) => {
-        console.log('likeordislike');
+    likeOrdislike = (likeOrDislike) => {
+        console.log('likeOrDislike is called');
         this.setState({
-            [likeOrdislike]: this.state.randomBookshelfId
-        }, this.saveLikeOrDislike())   
+            [likeOrDislike]: this.state.randomBookshelfId
+        }, () => {this.saveLikeOrDislike(this.state.disliked, this.state.liked)})  
     }
 
     render() {
         // !this.state.showNewBookshelf && this.getRandomBookshelf();
 
         console.log(
-            '%c RANDOMBOOKSHELFID ',
-            'color: white; background-color: green; border-radius: 3px', this.state.randomBookshelfId
+            '%c liked ',
+            'color: white; background-color: green; border-radius: 3px', this.state.liked
+        )
+
+        console.log(
+            '%c disliked ',
+            'color: white; background-color: red; border-radius: 3px', this.state.disliked
         )
         
         if(!this.state.randomBookshelfId){
