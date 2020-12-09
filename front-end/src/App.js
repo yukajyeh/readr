@@ -6,7 +6,6 @@ import ProtectedRoute from './services/auth/protected-route'
 import AuthService from './services/auth/auth-services'
 
 import Main from './components/pages/main/Main'
-import NavBar from './components/elements/navbar/Navbar'
 import Login from './components/pages/login/Login'
 import Signup from './components/pages/signup/Signup'
 import SwipeBookshelfs from './components/pages/swipebookshelfs/SwipeBookshelfs'
@@ -25,14 +24,20 @@ class App extends React.Component {
 
   service = new AuthService()
 
-  componentDidMount(){
-    this.service.loggedin()
-    .then((user) => {
-      this.setState({
-        loggedInUser: user,
+  fetchUser(){
+    if(this.state.loggedInUser === null ){
+      this.service.loggedin()
+      .then(response =>{
+        this.setState({
+          loggedInUser:  response
+        }) 
       })
-    })
-    .catch(err=> { console.log(err)})
+      .catch( err =>{
+        this.setState({
+          loggedInUser:  false
+        }) 
+      })
+    }
   }
 
   getTheUser = (user) => {
@@ -43,6 +48,7 @@ class App extends React.Component {
 
 
   render(){
+    this.fetchUser()
     return (
       <div>
 

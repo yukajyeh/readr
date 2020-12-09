@@ -84,6 +84,7 @@ router.post('/login', async(req, res) => {
 
 /* LoggedIn */
 router.get('/loggedin', (req, res) => {
+    console.log('loggedin', req.session.user)
 
     if(req.session.user){
       res.status(200).json(req.session.user)
