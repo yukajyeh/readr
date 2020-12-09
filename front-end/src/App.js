@@ -19,16 +19,10 @@ import StartUpFlow from './components/pages/startupflow/StartUpFlow';
 class App extends React.Component {
 
   state = {
-    loggedInUser: ''
+    loggedInUser: null
   }
 
   service = new AuthService()
-
-  componentDidMount(){
-    this.setState({
-      loggedInUser: null
-    })
-  }
 
   fetchUser(){
     if(this.state.loggedInUser === null ){
@@ -47,7 +41,6 @@ class App extends React.Component {
   }
 
   getTheUser = (user) => {
-    console.log('get the user is called in app.js', user)
     this.setState({
       loggedInUser: user
     })

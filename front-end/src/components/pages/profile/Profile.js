@@ -15,23 +15,13 @@ export default class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            loggedInUser: '',
-            redirect: ''
+            loggedInUser: null,
+            redirect: false
         }
     }
 
     service = new AuthService()
 
-    componentDidMount(){
-        this.setState({
-            loggedInUser: null,
-            redirect: false
-        })
-    }
-
-    componentDidUpdate() {
-        console.log('profile component did update');
-    }
 
     componentWillReceiveProps(nextProps) {
         this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
@@ -41,15 +31,11 @@ export default class Profile extends Component {
         this.service.logout()
         .then(() => {
             this.props.getTheUser(null)
-            this.componentWillUnmount()
+            this.setState({
+                redirect: true
+            })  
         })
         .catch(err => console.log(err))
-    }
-
-    componentWillUnmount(){
-        this.setState({
-            redirect: true
-        })
     }
 
 

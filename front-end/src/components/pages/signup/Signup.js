@@ -27,19 +27,6 @@ export default class Signup extends Component {
     fileUpload = new FileUpload()
     authService = new AuthService()
 
-    componentDidMount(){
-        this.setState({
-            username: '', 
-            password: '', 
-            profileName: '', 
-            profileImage: '', 
-            gender: '', 
-            matchPreference: '', 
-            contactInfo: '',
-            errorMessage:'',
-            redirect: false,
-        })
-    }
 
     handleChange = (e) => {
         const { name, value } = e.target
@@ -73,22 +60,16 @@ export default class Signup extends Component {
             this.state.contactInfo,
             this.state.profileImage
         )
-
         .then(user => {
-            console.log('user in signup function handleFormSubmit', user)
             this.props.getTheUser(user)
-            this.componentWillUnmount()
+            this.setState({
+                redirect: true
+            })
         })
         .catch(err => {
             this.setState({
                 errorMessage: err.response.data.message
             })
-        })
-    }
-
-    componentWillUnmount(){
-        this.setState({
-            redirect:true
         })
     }
 
