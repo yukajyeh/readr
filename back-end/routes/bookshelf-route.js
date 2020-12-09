@@ -20,7 +20,7 @@ router.get('/bookshelf/:id', (req, res) => {
 router.post('/pick-my-books', (req , res) => {
     const { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook } = req.body
     const currentUser = req.session.user
-    console.log('current:', currentUser)
+    // console.log('current:', currentUser)
     // console.log(req.body)
 
     const newBookshelfModel = new Bookshelf({
@@ -39,7 +39,7 @@ router.post('/pick-my-books', (req , res) => {
         return User.findByIdAndUpdate( {_id: currentUser._id }, { bookShelf: bookshelf._id}, {new: true} )
     })
     .then(response => {
-        console.log('response bookshelf-route post pick-my-books', response)
+        req.session.user = response
         res.status(200).json(response)
     })
     .catch((err)=>console.log('error',err))
@@ -49,22 +49,26 @@ router.post('/pick-my-books', (req , res) => {
 router.get('/random-bookshelf', (req, res) => {
     
     const currentUser = req.session.user
+    const userLikes = currentUser.likes
+    console.log('currentUser', currentUser)
+    console.log('currentUser likes', userLikes)
 
     Bookshelf.count().exec(function (err, count) {
         // Get a random entry
         const random = Math.floor(Math.random() * (count-1)) 
       
         // Again query all bookshelves but only fetch one offset by our random #
-        Bookshelf.findOne(({ $and: [
+        Bookshelf.findOne((
+            { $and: [
             { owner: { $ne: currentUser._id } }, 
-            { _id: { $nin: currentUser.likes } },
-            { _id: { $nin: currentUser.dislikes } },
-        ]})).skip(random).exec(
+            { id: { $nin: currentUser.likes  } },
+            { id: { $nin: currentUser.dislikes } },
+            ]}
+        )).skip(random).exec(
             function (err, result) {
                 res.status(200).json(result)
             }
         )
-    
     })
 })
 
@@ -77,7 +81,7 @@ router.post('/likes-dislikes', (req, res) => {
     
     User.findByIdAndUpdate( {_id: currentUser._id }, {$push: {likes: liked, dislikes: disliked}}, {new: true} )
     .then(response => {
-        console.log(response)
+        req.session.user = response
         res.status(200).json(response)
     })
     .catch(err => {
