@@ -5,6 +5,7 @@ const User = require('../models/User')
 
 
 router.get('/bookshelf/:id', (req, res) => {
+    console.log(req.params.id)
 
     Bookshelf.findById({_id: req.params.id})
     .then(response => {
@@ -19,7 +20,7 @@ router.get('/bookshelf/:id', (req, res) => {
 router.post('/pick-my-books', (req , res) => {
     const { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook } = req.body
     const currentUser = req.session.user
-    // console.log('current:', currentUser)
+    console.log('current:', currentUser)
     // console.log(req.body)
 
     const newBookshelfModel = new Bookshelf({
@@ -38,7 +39,7 @@ router.post('/pick-my-books', (req , res) => {
         return User.findByIdAndUpdate( {_id: currentUser._id }, { bookShelf: bookshelf._id}, {new: true} )
     })
     .then(response => {
-        console.log(response)
+        console.log('response bookshelf-route post pick-my-books', response)
         res.status(200).json(response)
     })
     .catch((err)=>console.log('error',err))

@@ -7,8 +7,8 @@ router.post('/upload', profileImgUpload.single('profileImage'), (req, res, next)
         next(new Error('No file uploaded!'));
         return;
     }
-    
-    return res.json(req.file.path);
+    console.log('req file path', req.file.path)
+    res.status(200).json(req.file.path);
   })
 
 
