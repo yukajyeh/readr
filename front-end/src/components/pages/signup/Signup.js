@@ -9,20 +9,37 @@ import'./Signup.css'
 
 export default class Signup extends Component {
 
-    state = {
-        username: '', 
-        password: '', 
-        profileName: '', 
-        profileImage: '', 
-        gender: '', 
-        matchPreference: '', 
-        contactInfo: '',
-        errorMessage:'',
-        redirect: false,
+    constructor(props) {
+        super(props)
+        this.state = {
+            username: '', 
+            password: '', 
+            profileName: '', 
+            profileImage: '', 
+            gender: '', 
+            matchPreference: '', 
+            contactInfo: '',
+            errorMessage:'',
+            redirect: false,
+        }
     }
 
     fileUpload = new FileUpload()
     authService = new AuthService()
+
+    componentDidMount(){
+        this.setState({
+            username: '', 
+            password: '', 
+            profileName: '', 
+            profileImage: '', 
+            gender: '', 
+            matchPreference: '', 
+            contactInfo: '',
+            errorMessage:'',
+            redirect: false,
+        })
+    }
 
     handleChange = (e) => {
         const { name, value } = e.target
@@ -32,7 +49,6 @@ export default class Signup extends Component {
     }
 
     handleFileUpload = (e) => {
-        
         const uploadData = new FormData();
         uploadData.append('profileImage', e.target.files[0])
 
@@ -56,22 +72,24 @@ export default class Signup extends Component {
             this.state.matchPreference,
             this.state.contactInfo,
             this.state.profileImage
-             )
+        )
 
         .then(user => {
-            console.log(user)
+            console.log('user in signup function handleFormSubmit', user)
             this.props.getTheUser(user)
-            this.setState({
-                redirect:true
-            })
+            this.componentWillUnmount()
         })
-
         .catch(err => {
             this.setState({
                 errorMessage: err.response.data.message
             })
         })
+    }
 
+    componentWillUnmount(){
+        this.setState({
+            redirect:true
+        })
     }
 
 
@@ -98,6 +116,9 @@ export default class Signup extends Component {
                             <label>Profile Name</label>
                             <input className='sign-up-form-input' type="test" name="profileName" value={this.state.profileName} onChange={this.handleChange} required/>
                             
+                            <label htmlFor ='profileImage'>Profile Photo</label>
+                            <input className='custom-file-input' type='file' name='profileImage' onChange={this.handleFileUpload} /> 
+            
                             <label>Gender</label> 
                             <div className='custom-select'>
                                 <select name="gender" value={this.state.gender} onChange={this.handleChange} required>
@@ -124,8 +145,7 @@ export default class Signup extends Component {
                             <details id='signup-details'><summary>Details</summary>You can leave your <b>Instagram handle</b>, <b>Email address</b>, <b>Phone number</b> ..., whichever method you prefer your match to reach out to you!</details>
                             <input className='sign-up-form-input' type='text' name='contactInfo' onChange={this.handleChange} required/> 
 
-                            <label htmlFor ='profileImage'>Profile Photo</label>
-                            <input className='custom-file-input' type='file' name='profileImage' onChange={this.handleFileUpload} /> 
+                         
                             
                             <Button type='primary'>Create my account</Button>
                         </form>

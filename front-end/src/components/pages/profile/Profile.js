@@ -12,12 +12,26 @@ import Navbar from '../../elements/navbar/Navbar';
 
 export default class Profile extends Component {
 
-    state = {
-        loggedInUser: null,
-        redirect: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            loggedInUser: '',
+            redirect: ''
+        }
     }
 
     service = new AuthService()
+
+    componentDidMount(){
+        this.setState({
+            loggedInUser: null,
+            redirect: false
+        })
+    }
+
+    componentDidUpdate() {
+        console.log('profile component did update');
+    }
 
     componentWillReceiveProps(nextProps) {
         this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
@@ -26,20 +40,22 @@ export default class Profile extends Component {
     logoutUser = () => {
         this.service.logout()
         .then(() => {
-            this.setState({loggedInUser: null})
             this.props.getTheUser(null)
-        })
-        .then(() => {
-            this.setState({redirect: true})
+            this.componentWillUnmount()
         })
         .catch(err => console.log(err))
+    }
+
+    componentWillUnmount(){
+        this.setState({
+            redirect: true
+        })
     }
 
 
     render() {
 
         const userInSession = this.props.userInSession
-        console.log(userInSession)
 
         if(this.state.redirect){
             return <Redirect to='/'></Redirect>
@@ -64,7 +80,7 @@ export default class Profile extends Component {
                 
                 </div>
                 <div className='second-container-profile'>
-                    <BookshelfDisplay bookshelfId={userInSession.bookShelf} />
+                    {/* <BookshelfDisplay bookshelfId={userInSession.bookShelf} /> */}
                    
                 </div>
             </div>

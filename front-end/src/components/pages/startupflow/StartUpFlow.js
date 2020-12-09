@@ -58,12 +58,12 @@ export default class StartUpFlow extends Component {
     }
 
     onChangeHandler = (e, book) => { 
-        let { name, value } = e.target
-        const bookTitle = book.volumeInfo.title
-        const bookAuthors = book.volumeInfo.authors
+        let { name, value } = e.target;
+        const bookTitle = book.volumeInfo.title;
+        const bookAuthors = book.volumeInfo.authors;
         
-        let bookCover
-        book.volumeInfo.imageLinks ? bookCover = book.volumeInfo.imageLinks.thumbnail : bookCover = DefaultBookCover
+        let bookCover;
+        book.volumeInfo.imageLinks ? bookCover = book.volumeInfo.imageLinks.thumbnail : bookCover = DefaultBookCover;
         
         this.setState(prevState => ({
             ...prevState,

@@ -6,7 +6,6 @@ import ProtectedRoute from './services/auth/protected-route'
 import AuthService from './services/auth/auth-services'
 
 import Main from './components/pages/main/Main'
-import NavBar from './components/elements/navbar/Navbar'
 import Login from './components/pages/login/Login'
 import Signup from './components/pages/signup/Signup'
 import SwipeBookshelfs from './components/pages/swipebookshelfs/SwipeBookshelfs'
@@ -20,22 +19,35 @@ import StartUpFlow from './components/pages/startupflow/StartUpFlow';
 class App extends React.Component {
 
   state = {
-    loggedInUser: null
+    loggedInUser: ''
   }
 
   service = new AuthService()
 
   componentDidMount(){
-    this.service.loggedin()
-    .then((user) => {
-      this.setState({
-        loggedInUser: user,
-      })
+    this.setState({
+      loggedInUser: null
     })
-    .catch(err=> { console.log(err)})
+  }
+
+  fetchUser(){
+    if(this.state.loggedInUser === null ){
+      this.service.loggedin()
+      .then(response =>{
+        this.setState({
+          loggedInUser:  response
+        }) 
+      })
+      .catch( err =>{
+        this.setState({
+          loggedInUser:  false
+        }) 
+      })
+    }
   }
 
   getTheUser = (user) => {
+    console.log('get the user is called in app.js', user)
     this.setState({
       loggedInUser: user
     })
@@ -43,6 +55,7 @@ class App extends React.Component {
 
 
   render(){
+    this.fetchUser()
     return (
       <div>
 
