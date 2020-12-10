@@ -3,7 +3,7 @@ import axios from 'axios'
 class AuthService {
     constructor(){
         let service = axios.create({
-            baseURL: process.env.REACT_APP_BASEURL,
+            baseURL: process.env.REACT_APP_BASE_URL,
             withCredentials: true
         })
         this.service = service
@@ -24,14 +24,15 @@ class AuthService {
     }
 
     logout = () => {
-        return this.service.get('auth/logout')
+        return this.service.get('/auth/logout')
         .then(response => response.data)
     }
 
     loggedin = () => {
-        return this.service.get('auth/loggedin')
+        return this.service.get('/auth/loggedin')
         .then(response => response.data)
     }
+    
 }
 
 

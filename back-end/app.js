@@ -70,5 +70,11 @@ const imgUpload = require('./routes/file-upload-back');
 app.use('/api', imgUpload);
 
 
+const bookshelf = require('./routes/bookshelf-route');
+app.use('/book', bookshelf);
+
+const user = require('./routes/user-route');
+app.use('/user', user);
+
 
 module.exports = app;

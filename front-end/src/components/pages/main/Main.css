@@ -1,0 +1,150 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.first-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 50vh;
+    background-image: url('../../../assets/background-img-home_skew.jpg');
+    background-size: cover;
+}
+
+
+.first-container img {
+    margin-top: 50px;
+    width: 80%;
+}
+
+.second-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 48vh;
+    background-color: var(--coral-color);
+    text-align: center;
+}
+
+.main-container h1 {
+    font-size: 8vw;
+    color: var(--paper-color);
+    line-height: 2.3rem;
+}
+
+.about-section {
+    margin: 0 auto 50px auto;
+    width: 70vw; 
+}
+
+.about-section h2 {
+    text-align: center;
+    font-size: 7vw;
+    color: var(--light-blue-color)
+}
+
+.social-icons-font1 {
+    font-family: 'socialico_plusplus';
+    font-size: 1.5rem;
+    color: var(--dark-blue-color);
+    margin-right: 25px;
+}
+
+.social-icons-font2 {
+    font-family: 'socialicoregular';
+    font-size: 1.5rem;
+    color: var(--dark-blue-color);
+    margin-right: 25px;
+}
+
+.mail {
+    font-family: 'socialico_plusplus';
+    font-size: 2rem;
+    color: var(--coral-color);
+    margin-right: 30px;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--paper-color);
+    padding: 20px 0;
+}
+
+.footer p {
+    font-size: 0.7rem;
+    padding: 0 25px;
+    line-height: 1rem;
+    display: inline;
+}
+
+.footer-left{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-right: 20px;
+}
+
+.footer-left div {
+    display: flex;
+    align-items: center;
+}
+
+.footer-right{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+
+
+@media screen and (min-width: 800px) {
+    .first-container {
+        width: 50vw;
+        height: 98vh;
+    }
+
+    .first-container img {
+        margin-bottom: 100px;
+    }
+
+    .second-container {
+        width: 50vw;
+        height: 98vh;
+    }
+
+    .main-container h1 {
+        font-size: 5vw;
+        line-height: 3.3rem;
+    }
+
+    .main-container {
+        flex-direction: row;
+    }
+
+    .about-section {
+        max-width: 60vw; 
+        margin: 0 auto 100px auto;
+    }
+
+    .about-section h2 {
+        font-size: 5vw;
+    }
+
+    .footer-left{
+        flex-direction: row;
+    }
+
+}

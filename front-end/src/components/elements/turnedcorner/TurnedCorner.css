@@ -1,0 +1,32 @@
+.tc {
+  width: 0;
+  height: 0;
+  border-top: 50px solid var(--coral-color);
+  border-right: 50px solid transparent;
+  position: absolute;
+}
+
+.tc--home {
+  bottom: 50vh;
+  right: 0;
+}
+
+
+
+@media screen and (min-width: 800px) {
+  .tc {
+      width: 0;
+      height: 0;
+      border-top: 9vh solid var(--coral-color);
+      border-right: 9vh solid transparent;
+      position: absolute;
+    }
+
+    .tc--home {
+      bottom: 2vh;
+      right: 50vw;
+    }
+}
+
+
+

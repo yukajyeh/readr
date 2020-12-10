@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@font-face {
+  font-family: 'socialicoregular';
+  src: url('./assets/fonts/socialico-regular-webfont.woff2') format('woff2'),
+       url('./assets/fonts/socialico-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'socialico_plusplus';
+  src: url('./assets/fonts/socialicoplus-plus-webfont.woff2') format('woff2'),
+       url('./assets/fonts/socialicoplus-plus-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --dark-blue-color: #094275;
@@ -16,7 +31,7 @@ body {
   padding: 0;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
-  font-size: 62.5%;
+  font-size:  80%;
   box-sizing: border-box;
 }
 
@@ -26,10 +41,70 @@ code {
 }
 
 
-h1 {
+h1,
+h2 {
     font-family: 'Rozha One', serif;
+}
+
+p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.3rem;
 }
 
 a {
     text-decoration: none;
+}
+
+a:focus,
+button:focus,
+input:focus {
+  outline: none;
+}
+
+summary {
+  outline: none;
+}
+
+br {
+  display: block;
+  content: '';
+  margin: 0;
+}
+
+input {
+  outline: none;
+}
+
+select {
+  outline: none;
+}
+
+
+.closing-link {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--paper-color);
+  border: 1px solid var(--paper-color);
+  border-radius: 90px;
+  padding: 2px 8px 4px 8px;
+  line-height: 1rem;
+}
+
+.closing-link:hover{
+  background-color: transparent;
+  border: 1px solid var(--paper-color)
+}
+
+
+@media screen and (min-width: 800px) {
+  p{
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+  }
+
 }

@@ -1,0 +1,143 @@
+.nav-style {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    box-shadow: 0 4px 4px -4px rgba(0,0,0,.4);
+}
+
+.nav-style a {
+    color: var(--dark-blue-color);
+    font-size: 0.7rem;
+    font-weight: 400;
+    white-space: pre;
+}
+
+.about-link {
+    cursor: pointer;
+}
+
+.nav-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding: 0 5px;
+}
+
+.profile-img {
+    border-radius: 90px;
+    border: 0.5px solid rgb(9, 66, 117, 0.3);
+    object-fit: cover;
+    width: 27px;
+    height: 27px;
+    margin: 0 15px;
+}
+
+.nav-big-screen {
+    display: none;
+}
+
+.nav-big-screen img{
+    display: none;
+}
+
+.nav-icon img{
+    height: 20px;
+    opacity: 0.8;
+    margin: 0 15px;
+}
+
+.nav-right {
+    display: none;
+}
+
+.nav-right-no-user {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.nav-right-no-user a {
+    padding-right: 15px;
+}
+
+
+.nav-big-screen-no-user img {
+    padding-top: 4px;
+    width: 110px; 
+} 
+
+.selected {
+    color: var(--coral-color) !important;
+}
+
+
+@media screen and (min-width: 800px) {
+    .nav-style a {
+        font-size: 0.8rem;
+    }
+
+    .nav-left{
+        padding: 0 10px;
+    }
+
+    div.profile-img > img:first-child{
+        display: none;
+    }
+
+    .nav-big-screen  {
+        display: inherit;
+        width: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .nav-big-screen img {
+        display: inherit;
+        width: 130px;
+    }
+
+    .nav-big-screen a {
+        padding-right: 25px;
+    }
+
+    .nav-icon {
+        display: none;
+    }
+
+    .nav-right {
+        display: inherit;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .nav-right a {
+        padding: 0 20px;
+    }
+
+    .profile-img {
+        width: 30px;
+        height: 30px;
+        margin: 0;
+    }
+
+    .nav-right-no-user a {
+        padding: 0 20px;
+    }
+
+
+    .selected {
+        color: var(--coral-color) !important;
+    }
+
+}

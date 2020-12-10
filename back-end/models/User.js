@@ -37,10 +37,18 @@ const userSchema = new Schema({
         required:true
     },
 
-    bookShelf: [{
-        type: Schema.Types.ObjectId,
-        "ref": "BookShelf",
-    }]
+    bookShelf: {
+        type: String,
+        "ref": "bookShelf",
+    },
+
+    likes: {
+        type: Schema.Types.Mixed
+    },
+
+    dislikes:{
+        type: Schema.Types.Mixed
+    }
 },
 
 {   timestamps: 

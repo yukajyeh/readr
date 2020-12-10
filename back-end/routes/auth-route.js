@@ -6,12 +6,9 @@ const bcryptSalt = 10
 const profileImgUpload = require('../configs/cloudinary-setup')
 
 
-
 /* User Signup */
 router.post('/signup', profileImgUpload.single("profileImage"), async(req, res) => {
     const { profileImage, username, password, profileName, gender, matchPreference, contactInfo } = req.body
-
-    console.log(req.body)
     
     if(!username || !password || !profileName || !gender || !matchPreference || !contactInfo){
         res.status(400).json({message:"Please fill in all the fields"})
@@ -36,7 +33,9 @@ router.post('/signup', profileImgUpload.single("profileImage"), async(req, res) 
             gender: gender, 
             matchPreference: matchPreference, 
             contactInfo: contactInfo, 
-            profileImage: profileImage
+            profileImage: profileImage,
+            likes:[],
+            dislikes:[]
         })
 
         req.session.user = user 
@@ -85,19 +84,20 @@ router.post('/login', async(req, res) => {
 
 /* LoggedIn */
 router.get('/loggedin', (req, res) => {
+    console.log('loggedin', req.session.user)
 
     if(req.session.user){
       res.status(200).json(req.session.user)
     } else {
       res.status(400).json({ message: 'No user in session' })
     }
-  })
+})
   
 
 /* Logout */ 
-  router.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   req.session.destroy()
   res.status(200).json({ message: 'You have logged out' })
-  })
+})
   
-  module.exports = router;
+module.exports = router;
