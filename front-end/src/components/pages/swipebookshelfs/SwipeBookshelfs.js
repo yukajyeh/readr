@@ -3,6 +3,10 @@ import Navbar from '../../elements/navbar/Navbar'
 import './SwipeBookshelfs.css'
 import BookService from '../../../services/auth/bookshelf-services'
 import BookshelfDisplay from '../../elements/bookshelf/Bookshelf'
+import Loader from '../../elements/loader/Loader'
+
+import IconLike from '../../../assets/icons/heart_like.png'
+import IconDislike from '../../../assets/icons/cross_dislike.png'
 
 
 export default class SwipeBookshelfs extends Component {
@@ -49,7 +53,7 @@ export default class SwipeBookshelfs extends Component {
     render() {
         
         if(!this.state.randomBookshelfId){
-            return <h1>loading</h1>
+            return <Loader/>
         }
 
         return (
@@ -57,8 +61,8 @@ export default class SwipeBookshelfs extends Component {
                 <Navbar userInSession={this.props.userInSession} />
                 <p>{this.state.randomBookshelfId}</p>
                 <BookshelfDisplay bookshelfId={this.state.randomBookshelfId} />
-                <button onClick={ () => this.likeOrdislike('disliked') }>Dislike</button>
-                <button onClick={ () => this.likeOrdislike('liked') }>Like</button>
+                <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
+                <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
             </div>
         )
     }
