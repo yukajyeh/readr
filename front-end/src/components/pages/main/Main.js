@@ -33,13 +33,14 @@ export default class Main extends Component {
                 <header className='main-container' id='header-section'>
                     <div className='first-container'>
                         <img src={LogoDarkBackground} alt='Logo readr' />
-                        <TurnedCorner position='home'/>
+                        
                     </div>
                     <div className='second-container'>
                         <h1>Book<br/>Your Next<br/>Date</h1>
                         {this.props.userInSession ? 
                             <Button onClick={() => this.redirect('/find-my-match')}>Start</Button> 
                             : <Button onClick={() => this.redirect('/signup')}>Sign up</Button>}
+                            <TurnedCorner position='home'/>
                     </div>
                 </header>
                 <article className='about-section' id='about-section'>
