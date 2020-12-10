@@ -48,6 +48,10 @@ const userSchema = new Schema({
 
     dislikes:{
         type: Schema.Types.Mixed
+    },
+
+    matches: {
+        type: Schema.Types.Mixed
     }
 },
 

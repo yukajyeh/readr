@@ -14,7 +14,8 @@ export default class SwipeBookshelfs extends Component {
     state = {
         randomBookshelfId:'',
         liked: '',
-        disliked: ''
+        disliked: '',
+        errorMessage:''
     }
 
     bookService = new BookService()
@@ -40,8 +41,16 @@ export default class SwipeBookshelfs extends Component {
 
     saveLikeOrDislike = (disliked, liked) => {
         this.bookService.updateLikesOrDislikes(disliked, liked)
-            .then(res => this.getRandomBookshelf())
-            .catch(err => console.log(err))
+            .then(res => {
+                console.log('response form backend', res)
+                this.getRandomBookshelf()
+            })
+            .catch(err => {
+                console.log('error in saveLikeOrDislike', err)
+                this.setState({
+                    errorMessage: err.response.data.message
+                })
+            })
     }
 
     likeOrdislike = (likeOrDislike) => {
@@ -63,6 +72,7 @@ export default class SwipeBookshelfs extends Component {
                 <BookshelfDisplay bookshelfId={this.state.randomBookshelfId} />
                 <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
                 <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
+                <span>{this.state.errorMessage}</span>
             </div>
         )
     }
