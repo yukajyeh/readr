@@ -35,7 +35,8 @@ router.post('/signup', profileImgUpload.single("profileImage"), async(req, res) 
             contactInfo: contactInfo, 
             profileImage: profileImage,
             likes:[],
-            dislikes:[]
+            dislikes:[],
+            matches:[]
         })
 
         req.session.user = user 
