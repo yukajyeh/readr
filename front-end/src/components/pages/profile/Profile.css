@@ -3,7 +3,7 @@
     right: 20px;
     top: 50px;
     cursor: pointer;
-    color: var(--paper-color)
+    color: var(--coral-color)
 }
 
 .main-container-profile{
@@ -42,21 +42,13 @@
     /* background-color: var(--paper-color); */
 }
 
-.second-container-profile div {
-    margin: 50px 0;
-}
-
-
 
 
 @media screen and (min-width: 800px) {
-    .logout-link {
-        color: var(--coral-color)
-    }
 
     .first-container-profile {
         width: 50vw;
-        height: 98vh;
+        height: 100vh;
         align-items: center;
         justify-content: flex-start;
         padding-bottom: 0;
@@ -77,8 +69,8 @@
         margin: 150px 15px 0 15px;
     }
 
-    .second-container-profile div {
-        margin: 150px 15px 0 15px;
+    .second-container-profile {
+        margin-top: 80px;
     }
 
 }
