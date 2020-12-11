@@ -13,6 +13,7 @@ export default class SwipeBookshelfs extends Component {
 
     state = {
         randomBookshelfId:'',
+        loader: true,
         liked: '',
         disliked: '',
         errorMessage:''
@@ -32,11 +33,11 @@ export default class SwipeBookshelfs extends Component {
     getRandomBookshelf = () => {
         this.bookService.getRandomBookshelf()
             .then(response => {
-                this.setState({
-                    randomBookshelfId: response._id,
-                })
+                response ? this.setState({randomBookshelfId: response._id, loader: false}) : this.setState({ errorMessage: 'Sorry, This Is All.', loader: false, randomBookshelfId: ''})
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log('error in get random bookshelf', err)
+            })
     }
 
     saveLikeOrDislike = (disliked, liked) => {
@@ -49,13 +50,13 @@ export default class SwipeBookshelfs extends Component {
             this.bookService.updateLikes(liked) 
             .then(res => {
                 console.log('response form backend', res)
+                this.setState({
+                    liked: ''
+                })
                 this.getRandomBookshelf()
             })
             .catch(err => {
-                console.log('error in saveLikeOrDislike', err)
-                this.setState({
-                    errorMessage: err.response.data.message
-                })
+                console.log('error in saveLike', err)
             })
         } 
         
@@ -64,13 +65,13 @@ export default class SwipeBookshelfs extends Component {
             this.bookService.updateDislikes(disliked)
             .then(res => {
                 console.log('response form backend', res)
+                this.setState({
+                    disliked: ''
+                })
                 this.getRandomBookshelf()
             })
             .catch(err => {
-                console.log('error in saveLikeOrDislike', err)
-                this.setState({
-                    errorMessage: err.response.data.message
-                })
+                console.log('error in saveDislike', err)
             })
         }
     }
@@ -82,19 +83,33 @@ export default class SwipeBookshelfs extends Component {
     }
 
     render() {
+
+        console.log('state liked', this.state.liked)
+        console.log('state disliked', this.state.disliked)
         
-        if(!this.state.randomBookshelfId){
+        if(this.state.loader){
             return <Loader/>
         }
 
+        if(this.state.errorMessage){
+            return(
+                <div >
+                     <Navbar userInSession={this.props.userInSession} />
+                     <div className='main-container-swipe'>
+                        <span>{this.state.errorMessage}</span>
+                     </div>
+                </div>
+            )
+        }
+
         return (
-            <div>
+            <div >
                 <Navbar userInSession={this.props.userInSession} />
-                <p>{this.state.randomBookshelfId}</p>
-                <BookshelfDisplay bookshelfId={this.state.randomBookshelfId} />
-                <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
-                <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
-                <span>{this.state.errorMessage}</span>
+                <div className='main-container-swipe'>
+                    <BookshelfDisplay bookshelfId={this.state.randomBookshelfId} />
+                    <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
+                    <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
+                </div>
             </div>
         )
     }

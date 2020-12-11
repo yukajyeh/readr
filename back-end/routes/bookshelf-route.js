@@ -47,26 +47,24 @@ router.post('/pick-my-books', (req , res) => {
 router.get('/random-bookshelf', (req, res) => {
     
     const currentUser = req.session.user
-    console.log('current users likes', currentUser.likes)
+    console.log('likes current user', currentUser.likes)
+    console.log('dislikes current user', currentUser.dislikes)
 
-        Bookshelf.find(
-            { $and: [
-            { owner: { $nin: currentUser._id } }, 
-            { _id: { $nin: currentUser.likes  } },
-            { _id: { $nin: currentUser.dislikes } }, 
-            ]}
-        )
-        .then(response => {
-                const filteredBookshelfsArray = response
-                const randomIndex = Math.round(Math.random() * (filteredBookshelfsArray.length-1))
-                console.log('filtered Bookshelfs', filteredBookshelfsArray)
-                console.log('random index', randomIndex)
-                const randomBookshelf = filteredBookshelfsArray[randomIndex]
-                //console.log(randomBookshelf)
-                res.status(200).json(randomBookshelf)
-        })
-        .catch((err) => {console.log(err)})
-        
+    Bookshelf.findOne(
+        { $and: [
+        { owner: { $nin: currentUser._id } }, 
+        { _id: { $nin: currentUser.likes  } },
+        { _id: { $nin: currentUser.dislikes } }, 
+        ]}
+    )
+    .then(response => {
+            //console.log('response backend findone bookshelf', response)
+            res.status(200).json(response)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message:"Something went wrong "})
+    })
 })
 
 
@@ -85,8 +83,6 @@ router.post('/update-likes', (req, res) => {
         User.findOne( { bookShelf: liked })
         .then(targetBookshelf => {
             const likedFromTarget = targetBookshelf.likes
-            
-            //console.log(likedFromTarget)
             
             if(likedFromTarget.includes(currentUser.bookShelf)) {
                 User.findByIdAndUpdate({ _id: targetBookshelf._id}, {$push: {matches: currentUser.bookShelf}}, {new: true})
