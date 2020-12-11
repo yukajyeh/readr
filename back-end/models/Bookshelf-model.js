@@ -33,10 +33,10 @@ const bookshelfSchema = new Schema({
         required: true
     },
 
-    owner:[{
+    owner:{
         type: Schema.Types.ObjectId,
         "ref": "User",
-    }]
+    }
 },
 
 {   timestamps: 

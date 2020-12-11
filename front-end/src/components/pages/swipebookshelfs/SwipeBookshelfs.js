@@ -40,7 +40,13 @@ export default class SwipeBookshelfs extends Component {
     }
 
     saveLikeOrDislike = (disliked, liked) => {
-        this.bookService.updateLikesOrDislikes(disliked, liked)
+
+        console.log('liked', liked)
+        console.log('disliked', disliked)
+        
+        if(liked){
+            console.log('liked is called')
+            this.bookService.updateLikes(liked) 
             .then(res => {
                 console.log('response form backend', res)
                 this.getRandomBookshelf()
@@ -51,6 +57,22 @@ export default class SwipeBookshelfs extends Component {
                     errorMessage: err.response.data.message
                 })
             })
+        } 
+        
+        if(disliked) {
+            console.log('disliked is called')
+            this.bookService.updateDislikes(disliked)
+            .then(res => {
+                console.log('response form backend', res)
+                this.getRandomBookshelf()
+            })
+            .catch(err => {
+                console.log('error in saveLikeOrDislike', err)
+                this.setState({
+                    errorMessage: err.response.data.message
+                })
+            })
+        }
     }
 
     likeOrdislike = (likeOrDislike) => {
