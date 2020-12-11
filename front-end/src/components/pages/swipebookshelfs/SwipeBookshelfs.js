@@ -41,18 +41,10 @@ export default class SwipeBookshelfs extends Component {
     }
 
     saveLikeOrDislike = (disliked, liked) => {
-
-        console.log('liked', liked)
-        console.log('disliked', disliked)
-        
         if(liked){
-            console.log('liked is called')
             this.bookService.updateLikes(liked) 
             .then(res => {
-                console.log('response form backend', res)
-                this.setState({
-                    liked: ''
-                })
+                this.setState({liked: '' })
                 this.getRandomBookshelf()
             })
             .catch(err => {
@@ -61,13 +53,9 @@ export default class SwipeBookshelfs extends Component {
         } 
         
         if(disliked) {
-            console.log('disliked is called')
             this.bookService.updateDislikes(disliked)
             .then(res => {
-                console.log('response form backend', res)
-                this.setState({
-                    disliked: ''
-                })
+                this.setState({disliked: ''})
                 this.getRandomBookshelf()
             })
             .catch(err => {
@@ -84,9 +72,6 @@ export default class SwipeBookshelfs extends Component {
 
     render() {
 
-        console.log('state liked', this.state.liked)
-        console.log('state disliked', this.state.disliked)
-        
         if(this.state.loader){
             return <Loader/>
         }
