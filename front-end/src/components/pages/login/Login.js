@@ -59,11 +59,12 @@ export default class Login extends Component {
                         <input type="text" name="username" value={this.state.username} onChange={this.onChangeHandler}></input>
                         <label>Password</label>
                         <input type="password" name="password" value={this.state.password} onChange={this.onChangeHandler}></input>
+                        <span>{this.state.errorMessage}</span>
                         <Button>Log in</Button>
                     </form> 
                 </div>
-                    <span>{this.state.errorMessage}</span>
-                    <p>No account yet? <Link to="/signup">Sign up</Link></p>
+                    
+                    <p>No account yet? <Link className='link-signup' to="/signup">Sign up</Link></p>
                 </div>
             </div>
         )

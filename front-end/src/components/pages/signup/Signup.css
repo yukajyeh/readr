@@ -41,6 +41,12 @@
     color: var(--dark-blue-color)
 }
 
+.sign-up-form span {
+    margin-top: 20px;
+    color: rgb(255, 208, 0);
+    font-size: 0.9rem
+}
+
 #signup-details {
     color: var(--paper-color);
     margin-bottom: 5px;

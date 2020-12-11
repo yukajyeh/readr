@@ -11,9 +11,10 @@
     font-weight: 400;
 }
 
-.login-page a {
+.link-signup {
     color: var(--paper-color);
     font-weight: 400;
+    font-style: italic;
 }
 
 .login-container{
@@ -44,6 +45,16 @@
     width: 200px;
     height: 5px;
     color: var(--coral-color)
+}
+
+.login-form button{
+    margin-top: 20px;
+}
+
+.login-form span {
+    margin-top: 20px;
+    color: rgb(255, 208, 0);
+    font-size: 0.9rem;
 }
 
 
