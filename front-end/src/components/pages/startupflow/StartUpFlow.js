@@ -104,7 +104,6 @@ export default class StartUpFlow extends Component {
     }
 
     saveBooks = () => {
-        console.log('saveBooks is called')
         this.bookService.createShelf(
             this.state.selectedBooks.favBook,
             this.state.selectedBooks.childBook,
@@ -146,7 +145,6 @@ export default class StartUpFlow extends Component {
     }}
     
     render() {
-        console.log(this.state.selectedBooks)
 
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep

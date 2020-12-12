@@ -126,12 +126,12 @@ export default class Signup extends Component {
                             <details id='signup-details'><summary>Details</summary>You can leave your <b>Instagram handle</b>, <b>Email address</b>, <b>Phone number</b> ..., whichever method you prefer your match to reach out to you!</details>
                             <input className='sign-up-form-input' type='text' name='contactInfo' onChange={this.handleChange} required/> 
 
-                         
+                            <span>{this.state.errorMessage}</span> 
                             
                             <Button type='primary'>Create my account</Button>
                         </form>
                         
-                        <span>{this.state.errorMessage}</span> 
+                        
 
                     </div>
                 </div>

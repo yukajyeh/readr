@@ -57,7 +57,7 @@ router.post('/login', async(req, res) => {
     const { username, password } = req.body
 
     if(!username || !password){
-      res.status(400).json({ message: "Please fill in the information"})
+      res.status(400).json({ message: "Please fill in all the information"})
       return
     } 
 
