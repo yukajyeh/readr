@@ -1,0 +1,17 @@
+.matches {
+    padding-top: 100px;
+}
+
+.crush-card{
+    margin: auto 5px;
+    padding: 5px;
+}
+
+.bookshelf-display{
+    display:flex;
+    flex-direction:row;
+}
+
+.owner-info img {
+    width:15vw;
+}

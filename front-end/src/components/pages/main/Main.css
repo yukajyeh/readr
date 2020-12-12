@@ -50,6 +50,25 @@
     color: var(--light-blue-color)
 }
 
+.review-section {
+    margin: 0 auto ;
+    width: 100vw; 
+    height: 55vh;
+    text-align:center;
+    background-color: var(--paper-color);
+}
+
+.review-section h2{
+    text-align: center;
+    font-size: 5vw;
+    color: var(--light-blue-color)
+}
+
+.review-section img{
+    width:23vw;
+    margin: auto 10px;
+}
+
 .social-icons-font1 {
     font-family: 'socialico_plusplus';
     font-size: 1.5rem;
@@ -76,7 +95,7 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    background-color: var(--paper-color);
+    background-color: white;
     padding: 20px 0;
 }
 

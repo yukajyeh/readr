@@ -1,4 +1,21 @@
-
-
-
-
+  .fade-enter {
+    transform: translateX(-100vw);
+  }
+  .fade-enter-active {
+    transform: translateX(0);
+  }
+  .fade-exit {
+    transform: translateX(0);
+  }
+  .fade-exit-active {
+    transform: translateX(100vw);
+  }
+  .fade-appear-active{
+    transition: transform 1000ms;
+  }
+  .fade-enter-active {
+    transition: transform 1000ms;
+  }
+  .fade-exit-active {
+    transition: transform 1000ms;
+  }

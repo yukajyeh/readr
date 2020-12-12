@@ -10,15 +10,25 @@ class UserService {
     }
 
 
-    getUserProfile = (userId) => {
-        return this.service.get('/user/user-info', userId)
+    grabOwner = (userId) => {
+        return this.service.get('/user/user-info/'+ userId)
         .then(res => {
             return res.data
         })
         .catch(err => console.log(err))
     }
 
-    
+    showUser = (bookshelfId) => {
+        //console.log('bookshelfID in services', bookshelfId)
+        return this.service.get('/user/owner/'+ bookshelfId)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => console.log(err))
+    }
+
+  
+ 
     
 }
 

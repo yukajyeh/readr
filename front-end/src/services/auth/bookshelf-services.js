@@ -58,6 +58,15 @@ class BookShelf {
         })
         .catch(err => console.log(err))
     }
+
+    getMatchInfo = (bookshelfId) => {
+        console.log('get match info in services is called')
+        return this.service.get('/book/info/' + bookshelfId)
+        .then(res => {
+            return res.data
+        })
+        .catch(err => console.log(err))
+    }
 }
 
 export default BookShelf
