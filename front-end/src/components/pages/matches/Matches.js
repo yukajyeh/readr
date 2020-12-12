@@ -44,9 +44,7 @@ export default class Matches extends Component {
                 console.log(err)
             })
         })
-
     } 
-
 
     getMatches = () => {
 
@@ -59,16 +57,13 @@ export default class Matches extends Component {
         .catch(err => {
             console.log('error getting matched-bookshelfId', err)
         })
-
     }
 
     displayCrush = (ownerId) => {
-
         this.setState({
             redirect: true,
             ownerId: ownerId
         })
-
     }
 
 
@@ -79,9 +74,8 @@ export default class Matches extends Component {
             
             return <Redirect to={{
                         pathname: '/profile',
-                        state: { id: this.state.ownerId}
-                    }}
-            />
+                        state: { id: this.state.ownerId, userInSession: 'hello'}
+                    }}/>
         }
 
         const combinedInfo = this.state.combinedInfo
