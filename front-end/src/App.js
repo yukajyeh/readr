@@ -1,77 +1,118 @@
+import React from "react";
+import "./App.css";
+import { Switch, Route, withRouter } from "react-router-dom";
+import ProtectedRoute from "./services/auth/protected-route";
+import AuthService from "./services/auth/auth-services";
 
-import React from 'react'
-import './App.css';
-import { Switch, Route } from 'react-router-dom'
-import ProtectedRoute from './services/auth/protected-route'
-import AuthService from './services/auth/auth-services'
-
-import Main from './components/pages/main/Main'
-import Login from './components/pages/login/Login'
-import Signup from './components/pages/signup/Signup'
-import SwipeBookshelfs from './components/pages/swipebookshelfs/SwipeBookshelfs'
-import ErrorPage from './components/pages/error-page/error-page'
-import Profile from './components/pages/profile/Profile';
-import Matches from './components/pages/matches/Matches';
-import StartUpFlow from './components/pages/startupflow/StartUpFlow';
-
-
+import Main from "./components/pages/main/Main";
+import Login from "./components/pages/login/Login";
+import Signup from "./components/pages/signup/Signup";
+import SwipeBookshelfs from "./components/pages/swipebookshelfs/SwipeBookshelfs";
+import ErrorPage from "./components/pages/error-page/error-page";
+import Profile from "./components/pages/profile/Profile";
+import Matches from "./components/pages/matches/Matches";
+import StartUpFlow from "./components/pages/startupflow/StartUpFlow";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 class App extends React.Component {
-
   state = {
-    loggedInUser: null
-  }
+    loggedInUser: null,
+  };
 
-  service = new AuthService()
+  service = new AuthService();
 
-  fetchUser(){
-    if(this.state.loggedInUser === null ){
-      this.service.loggedin()
-      .then(response =>{
-        this.setState({
-          loggedInUser:  response
-        }) 
-      })
-      .catch( err =>{
-        this.setState({
-          loggedInUser:  false
-        }) 
-      })
+  fetchUser() {
+    if (this.state.loggedInUser === null) {
+      this.service
+        .loggedin()
+        .then((response) => {
+          this.setState({
+            loggedInUser: response,
+          });
+        })
+        .catch((err) => {
+          this.setState({
+            loggedInUser: false,
+          });
+        });
     }
   }
 
   getTheUser = (user) => {
     this.setState({
-      loggedInUser: user
-    })
-  }
+      loggedInUser: user,
+    });
+  };
 
-
-  render(){
-    this.fetchUser()
+  render() {
+    this.fetchUser();
     return (
       <div>
-
-                
-        <Switch>
-          <Route exact path='/' render={(props) => <Main {...props} userInSession={this.state.loggedInUser} />} />
-          <Route exact path='/404' component={ErrorPage} />
-
-          <Route exact path='/login' render={() => <Login getTheUser={this.getTheUser} />}/>
-          <Route exact path='/signup' render={() => <Signup getTheUser={this.getTheUser} /> } />
-           {/* <ProtectedRoute userInSession={this.state.loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
-          <Route exact path='/pick-my-books' render={(props) => <StartUpFlow {...props} userInSession={this.state.loggedInUser} />} />
-
-          <ProtectedRoute userInSession={this.state.loggedInUser} path='/find-my-match' component={SwipeBookshelfs} />
-          <ProtectedRoute userInSession={this.state.loggedInUser} path='/profile' component={Profile} getTheUser={this.getTheUser} />
-          <ProtectedRoute userInSession={this.state.loggedInUser} path='/matches' component={Matches} />
-         
-        </Switch>
-    
+        <AnimatedSwitch
+          loggedInUser={this.state.loggedInUser}
+          getTheUser={this.getTheUser}
+        />
       </div>
     );
   }
-  
 }
+
+const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
+  const { key = "default" } = location;
+  return (
+    <TransitionGroup>
+      <CSSTransition
+        key={key}
+        classNames="fade"
+        timeout={1000}
+      >
+        <Switch location={location}>
+          <Route
+            exact
+            path="/"
+            render={(props) => <Main {...props} userInSession={loggedInUser} />}
+          />
+          <Route exact path="/404" component={ErrorPage} />
+
+          <Route
+            exact
+            path="/login"
+            render={() => <Login getTheUser={getTheUser} />}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={() => <Signup getTheUser={getTheUser} />}
+          />
+          {/* <ProtectedRoute userInSession={loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
+          <Route
+            exact
+            path="/pick-my-books"
+            render={(props) => (
+              <StartUpFlow {...props} userInSession={loggedInUser} />
+            )}
+          />
+
+          <ProtectedRoute
+            userInSession={loggedInUser}
+            path="/find-my-match"
+            component={SwipeBookshelfs}
+          />
+          <ProtectedRoute
+            userInSession={loggedInUser}
+            path="/profile"
+            component={Profile}
+            getTheUser={getTheUser}
+          />
+          <ProtectedRoute
+            userInSession={loggedInUser}
+            path="/matches"
+            component={Matches}
+          />
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
+  );
+});
 
 export default App;

@@ -18,6 +18,21 @@ router.get('/user-info', (req, res) => {
         res.status(500).json({message:"Something went wrong "})
     }) 
 })
+
+/* get user infor by bookshelf*/
+router.get('/owner', (req, res) => {
+    const { bookshelfId } = req.body
+
+    User.findOne({ bookShelf: bookshelfId })
+    .then(response => {
+        console.log(response)
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message:"Something went wrong "})
+    }) 
+})
   
 
 

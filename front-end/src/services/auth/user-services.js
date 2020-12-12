@@ -18,6 +18,14 @@ class UserService {
         .catch(err => console.log(err))
     }
 
+    showUser = (bookshelfId) => {
+        return this.service.get('/user/owner', {bookshelfId})
+        .then(res => {
+            return res.data
+        })
+        .catch(err => console.log(err))
+    }
+
     
     
 }
