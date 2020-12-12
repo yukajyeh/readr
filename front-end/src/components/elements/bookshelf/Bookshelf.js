@@ -47,17 +47,17 @@ export default class Bookshelf extends Component {
     displayTitle = (index) => {
         switch (index) {
             case 0: 
-                return <h2>Favorite Book</h2>
+                return <h3>All-time Favourite</h3>
             case 1:
-                return <h2>Childhood Favorite Book</h2>
+                return <h3>Childhood Favorite</h3>
             case 2:
-                return <h2>Go-To Weapon Book </h2>
+                return <h3>Go-To Weapon</h3>
             case 3:
-                return <h2>Guilty Pleasure Book</h2>  
+                return <h3>Guilty Pleasure</h3>  
             case 4:
-                return <h2>Name Drop Book</h2> 
+                return <h3>Name-Drop Book</h3> 
             case 5:
-                return <h2>Next Read</h2>
+                return <h3>Next Read</h3>
             default:
             return 
     }}
@@ -74,19 +74,25 @@ export default class Bookshelf extends Component {
         ]
         
         return (
-            <div>
-                {booksArr.map((book, index) => {
-                    return (
-                        <div key={index}>
-                            {this.displayTitle(index)}
-                            <h3>{book.title}</h3>
-                            <img src={book.cover} alt='book cover'/>
-                        </div>
-                    )
-                })}
-            
+            <div className='container'>
+                <h2>Bookshelf</h2>
+                <div className='bookshelf'>
 
-                <span>{this.state.errorMessage}</span> 
+                    {booksArr.map((book, index) => {
+                        return (
+                            <div className='book' key={index}>
+                                {this.displayTitle(index)}
+                                <div className='img-wrap'>
+                                    <img src={book.cover} alt='book cover'/>
+                                    <p className='img-description'>{book.title}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                
+
+                    <span>{this.state.errorMessage}</span> 
+                </div>
             </div>
         )
     }
