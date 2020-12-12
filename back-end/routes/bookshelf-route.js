@@ -116,4 +116,25 @@ router.post('/update-dislikes', (req, res) => {
     }) 
 })
 
+//display matched bookshelf
+router.get('/matches', (req, res) => {
+    const currentUser = req.session.user
+
+    User.findById({_id: currentUser._id})
+    .then(response => {
+        console.log('response back-end', response)
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message:"Something went wrong "})
+    }) 
+})
+
+// router.post('/matchedShelf', (req, res) => {
+//     const {matches} = req.body
+
+//     console.log('matches', matches)
+// })
+
 module.exports = router

@@ -44,6 +44,7 @@ export default class SwipeBookshelfs extends Component {
         if(liked){
             this.bookService.updateLikes(liked) 
             .then(res => {
+                
                 this.setState({liked: '' })
                 this.getRandomBookshelf()
             })
