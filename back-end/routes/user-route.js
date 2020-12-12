@@ -1,15 +1,12 @@
 const express = require('express')
 const router  = express.Router()
 const User = require('../models/User')
-
 const profileImgUpload = require('../configs/cloudinary-setup')
 
 
 /* getting user info */
-router.get('/user-info', (req, res) => {
-    const { userId } = req.body
-
-    User.findById({_id: userId})
+router.get('/user-info/:id', (req, res) => {
+    User.findById({_id: req.params.id})
     .then(response => {
         res.status(200).json(response)
     })
@@ -19,13 +16,11 @@ router.get('/user-info', (req, res) => {
     }) 
 })
 
-/* get user infor by bookshelf*/
-router.get('/owner', (req, res) => {
-    const { bookshelfId } = req.body
+/* get user info by bookshelf*/
+router.get('/owner/:id', (req, res) => {
 
-    User.findOne({ bookShelf: bookshelfId })
+    User.findOne({ bookShelf: req.params.id })
     .then(response => {
-        console.log(response)
         res.status(200).json(response)
     })
     .catch(err => {

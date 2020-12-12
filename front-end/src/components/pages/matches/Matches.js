@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import Navbar from '../../elements/navbar/Navbar'
 import BookService from '../../../services/auth/bookshelf-services'
 import Bookshelf from '../../elements/bookshelf/Bookshelf'
 import UserService from '../../../services/auth/user-services'
+import DefaultAvatar from '../../../assets/default_avatar.jpg'
+
+import './Matches.css'
 
 export default class Matches extends Component {
 
     state= {
         matches: [],
-        matchedBookshelfs: [],
-        matchedShelfOwners:[]
+        combinedInfo:[],
+        ownerId:'',
+        redirect: false
+
     }
 
     bookService = new BookService()
-    UserService = new UserService()
+    userService = new UserService()
 
     componentDidMount(){
         this.getMatches()
@@ -24,37 +30,26 @@ export default class Matches extends Component {
     }
 
     matchedBookshelfnOwner = () => {
+
         const matchesIdsArray = this.state.matches
 
         matchesIdsArray.forEach(bookshelfId => {
-            this.bookService.showShelf(bookshelfId)
+            this.bookService.getMatchInfo(bookshelfId)
             .then(response => {
                 this.setState({
-                    matchedBookshelfs: [...this.state.matchedBookshelfs, response]
-                })
+                 combinedInfo: [...this.state.combinedInfo,response]
+                 })
             })
             .catch(err => {
-                console.log('error getting matched-shelfs', err)
+                console.log('error getting matched-bookshelfId', err)
             })
         })
 
-        matchesIdsArray.forEach(bookshelfId => {
-            this.UserService.showUser(bookshelfId)
-            .then(response => {
-                this.setState({
-                    matchedShelfOwners: [...this.state.matchedShelfOwners, response]
-                })
-            })
-            .catch(err => {
-                console.log('error getting matched-owners', err)
-            })
-        })
-
-    }  
-
+    } 
 
 
     getMatches = () => {
+
         this.bookService.getMatches()
         .then(response => {
             this.setState({
@@ -64,27 +59,55 @@ export default class Matches extends Component {
         .catch(err => {
             console.log('error getting matched-bookshelfId', err)
         })
+
+    }
+
+    displayCrush = (ownerId) => {
+
+        this.setState({
+            redirect: true,
+            ownerId: ownerId
+        })
+
     }
 
 
 
     render() {
-        const bookshelfsArray = this.state.matchedBookshelfs
-        console.log(this.state.matchedShelfOwners)
+        console.log(this.state.ownerId)
 
+        if(this.state.redirect){
+            
+            // return <Redirect to='/profile'  />
+
+
+            return <Redirect to={{
+                        pathname: '/profile',
+                        state: { id: this.state.ownerId }
+                    }}
+            />
+        }
+
+        const combinedInfo = this.state.combinedInfo
+        console.log('combined',combinedInfo)
         return (
             <div className='container-matches'>
                 <Navbar userInSession={this.props.userInSession} />
+            
             <div className='matches'>
-                {bookshelfsArray.map((bookshelf,index) => {
+                <div className='bookshelf-display'>
+                {combinedInfo.map((combination,index) => {
                     return(
-                        <div key={index}>
-                        
-                            <Bookshelf bookshelfId={bookshelf._id}/>
-        
+                        <div key={index} className='crush-card' onClick = {() => this.displayCrush(combination.owner._id)}>
+                            <div className='owner-info'>
+                                <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>
+                                <h4>{combination.owner.profileName}</h4>
+                            </div>
+                                <Bookshelf bookshelfId={combination._id}/>
                         </div>
                     )
                 })} 
+                </div>
             </div>
    
             </div>

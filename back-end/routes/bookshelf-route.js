@@ -131,5 +131,18 @@ router.get('/matches', (req, res) => {
     }) 
 })
 
+router.get('/info/:id', (req, res) => {
+    let combinedInfo = []
+
+    Bookshelf.findById({_id: req.params.id}).populate('owner')
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message:"Something went wrong "})
+    }) 
+})
+
 
 module.exports = router

@@ -7,6 +7,7 @@ import DefaultAvatar from '../../../assets/default_avatar.jpg'
 import BookshelfDisplay from '../../elements/bookshelf/Bookshelf'
 
 import AuthService from '../../../services/auth/auth-services';
+import UserService from '../../../services/auth/user-services'
 import Navbar from '../../elements/navbar/Navbar';
 
 
@@ -16,16 +17,14 @@ export default class Profile extends Component {
         super(props)
         this.state = {
             loggedInUser: null,
-            currentUserOwnerProfile: false,
+            targetOwner:'',
             redirect: false
         }
     }
 
     service = new AuthService()
+    userService = new UserService()
 
-    // componentWillReceiveProps(nextProps) {
-    //     this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
-    // }
 
     componentDidMount(){
         this.setState({
@@ -34,11 +33,15 @@ export default class Profile extends Component {
     }
 
     checkOwnerProfile = () => {
-        if(this.props.profileId){
-            this.state.loggedInUser.id === this.props.profileId && this.setState({currentUserOwnerProfile: true})
-        } else {
-            this.setState({currentUserOwnerProfile: true})
-        }
+        if(this.props.location.state.id){
+            this.userService.grabOwner(this.props.location.state.id)
+            .then((response) =>{
+                this.setState({
+                    targetOwner: response
+                })
+            })
+            .catch(err => console.log(err))
+        } 
     }
 
     logoutUser = () => {
@@ -54,46 +57,59 @@ export default class Profile extends Component {
 
 
     render() {
-
-        console.log(this.state.loggedInUser)
-    
+        
+        console.log(this.state.targetOwner)
 
         if(this.state.redirect){
             return <Redirect to='/'></Redirect>
         }
 
-        if(this.state.currentUserOwnerProfile){
+        if(this.state.targetOwner){
             return (
                 <div>
-                    <Navbar userInSession={this.state.loggedInUser} />
-                    <div className='main-container-profile'>
+                        <Navbar userInSession={this.state.loggedInUser} />
+                        <div className='main-container-profile'>
                         
-                        <p onClick={this.logoutUser} className='logout-link'>Logout</p>
                         <div className='first-container-profile'>
                             
-                        
-                            <img src={this.state.loggedInUser.profileImage === '' ? DefaultAvatar : this.state.loggedInUser.profileImage} alt='user'></img>
-                            <p>Profile name: {this.state.loggedInUser.profileName}</p>
-                            <p>Match preference: {this.state.loggedInUser.matchPreference}</p>
-                            <p>Prefered contact method: {this.state.loggedInUser.contactInfo}</p>
-                            <Button>Edit profile</Button>
-                            <Button type='secondary'>Delete profile</Button>
-                        
-                        
+                            <p>Profile name: {this.state.targetOwner.profileName}</p>
+                            <p>Match preference: {this.state.targetOwner.matchPreference}</p>
+                            <p>Prefered contact method: {this.state.targetOwner.contactInfo}</p>
                         </div>
+                        
                         <div className='second-container-profile'>
-                            <BookshelfDisplay bookshelfId={this.state.loggedInUser.bookShelf} />
+                            <BookshelfDisplay bookshelfId={this.state.targetOwner.bookShelf} />
                         
                         </div>
                     </div>
                 </div>
                     
             )
-        } else{
+        } else if (this.state.loggedInUser){
             return (
                 <div>
-                    <h1>hello</h1>
+                <Navbar userInSession={this.state.loggedInUser} />
+                <div className='main-container-profile'>
+                    
+                    <p onClick={this.logoutUser} className='logout-link'>Logout</p>
+                    <div className='first-container-profile'>
+                        
+                    
+                        <img src={this.state.loggedInUser.profileImage === '' ? DefaultAvatar : this.state.loggedInUser.profileImage} alt='user'></img>
+                        <p>Profile name: {this.state.loggedInUser.profileName}</p>
+                        <p>Match preference: {this.state.loggedInUser.matchPreference}</p>
+                        <p>Prefered contact method: {this.state.loggedInUser.contactInfo}</p>
+                        <Button>Edit profile</Button>
+                        <Button type='secondary'>Delete profile</Button>
+                    
+                    
+                    </div>
+                    <div className='second-container-profile'>
+                        <BookshelfDisplay bookshelfId={this.state.loggedInUser.bookShelf} />
+                    
+                    </div>
                 </div>
+            </div>
             )
         }
         
