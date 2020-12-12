@@ -71,34 +71,34 @@ export default class Matches extends Component {
     render() {
 
         if(this.state.redirect){
-            
-            return <Redirect to={{
-                        pathname: '/profile',
-                        state: { id: this.state.ownerId, userInSession: 'hello'}
-                    }}/>
+            return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
         }
 
         const combinedInfo = this.state.combinedInfo
+
         return (
             <div className='container-matches'>
                 <Navbar userInSession={this.props.userInSession} />
             
-            <div className='matches'>
-                <div className='bookshelf-display'>
-                {combinedInfo.map((combination,index) => {
-                    return(
-                        <div key={index} className='crush-card' onClick = {() => this.displayCrush(combination.owner._id)}>
-                            <div className='owner-info'>
-                                <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>
-                                <h4>{combination.owner.profileName}</h4>
-                            </div>
-                                <Bookshelf bookshelfId={combination._id}/>
-                        </div>
-                    )
-                })} 
+                <div className='matches'>
+                    <div className='bookshelf-display'>
+                        {combinedInfo.map((combination,index) => {
+                            return (
+                                <div key={index} className='crush-card' onClick = {() => this.displayCrush(combination.owner._id)}>
+                                    <div className='owner-info'>
+                                        <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>
+                                        <div>
+                                            <p>Bookshelf</p>
+                                            <h2>{combination.owner.profileName}</h2>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    <Bookshelf bookshelfId={combination._id}/>
+                                </div>
+                            )
+                        })} 
+                    </div>
                 </div>
-            </div>
-   
             </div>
         )
     }

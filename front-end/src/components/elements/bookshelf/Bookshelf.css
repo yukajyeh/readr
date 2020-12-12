@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .book {
@@ -38,6 +38,7 @@
     position: relative;
     height: 150px;
     width: 100px;
+
   }
 
 .book img {
@@ -72,8 +73,7 @@
 
 @media screen and (min-width: 800px) {
     .container {
-        width: 35vw;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 30vw;
     }
 
 }
