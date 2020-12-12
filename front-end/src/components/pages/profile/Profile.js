@@ -27,21 +27,24 @@ export default class Profile extends Component {
 
 
     componentDidMount(){
-        this.setState({
-            loggedInUser: this.props.userInSession
-        }, () => {this.checkOwnerProfile()})
+        if(this.props.userInSession){
+            this.setState({
+                loggedInUser: this.props.userInSession
+            })
+        } 
+        this.checkOwnerProfile()
     }
 
     checkOwnerProfile = () => {
         if(this.props.location.state.id){
             this.userService.grabOwner(this.props.location.state.id)
             .then((response) =>{
-                this.setState({
+               this.setState({
                     targetOwner: response
-                })
+                }) 
             })
             .catch(err => console.log(err))
-        } 
+        }
     }
 
     logoutUser = () => {
@@ -58,13 +61,13 @@ export default class Profile extends Component {
 
     render() {
         
-        console.log(this.state.targetOwner)
+        console.log(this.props)
 
         if(this.state.redirect){
             return <Redirect to='/'></Redirect>
         }
 
-        if(this.state.targetOwner){
+        if(this.props.location.state.id){
             return (
                 <div>
                         <Navbar userInSession={this.state.loggedInUser} />
@@ -85,33 +88,31 @@ export default class Profile extends Component {
                 </div>
                     
             )
-        } else if (this.state.loggedInUser){
+        } 
+        
+        if(this.state.loggedInUser){
+            
             return (
                 <div>
                 <Navbar userInSession={this.state.loggedInUser} />
                 <div className='main-container-profile'>
                     
                     <p onClick={this.logoutUser} className='logout-link'>Logout</p>
-                    <div className='first-container-profile'>
-                        
-                    
-                        <img src={this.state.loggedInUser.profileImage === '' ? DefaultAvatar : this.state.loggedInUser.profileImage} alt='user'></img>
-                        <p>Profile name: {this.state.loggedInUser.profileName}</p>
-                        <p>Match preference: {this.state.loggedInUser.matchPreference}</p>
-                        <p>Prefered contact method: {this.state.loggedInUser.contactInfo}</p>
-                        <Button>Edit profile</Button>
-                        <Button type='secondary'>Delete profile</Button>
-                    
-                    
-                    </div>
-                    <div className='second-container-profile'>
-                        <BookshelfDisplay bookshelfId={this.state.loggedInUser.bookShelf} />
-                    
-                    </div>
+                        <div className='first-container-profile'>
+                            <img src={this.state.loggedInUser.profileImage === '' ? DefaultAvatar : this.state.loggedInUser.profileImage} alt='user'></img>
+                            <p>Profile name: {this.state.loggedInUser.profileName}</p>
+                            <p>Match preference: {this.state.loggedInUser.matchPreference}</p>
+                            <p>Prefered contact method: {this.state.loggedInUser.contactInfo}</p>
+                            <Button>Edit profile</Button>
+                            <Button type='secondary'>Delete profile</Button>
+                        </div>
+                        <div className='second-container-profile'>
+                            <BookshelfDisplay bookshelfId={this.state.loggedInUser.bookShelf} />
+                        </div>
                 </div>
             </div>
             )
-        }
+        } 
         
     }
 }

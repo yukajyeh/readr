@@ -41,7 +41,7 @@ export default class Matches extends Component {
                  })
             })
             .catch(err => {
-                console.log('error getting matched-bookshelfId', err)
+                console.log(err)
             })
         })
 
@@ -74,22 +74,17 @@ export default class Matches extends Component {
 
 
     render() {
-        console.log(this.state.ownerId)
 
         if(this.state.redirect){
             
-            // return <Redirect to='/profile'  />
-
-
             return <Redirect to={{
                         pathname: '/profile',
-                        state: { id: this.state.ownerId }
+                        state: { id: this.state.ownerId}
                     }}
             />
         }
 
         const combinedInfo = this.state.combinedInfo
-        console.log('combined',combinedInfo)
         return (
             <div className='container-matches'>
                 <Navbar userInSession={this.props.userInSession} />
