@@ -15,6 +15,7 @@ export default class Navbar extends Component {
 
     state = {
         loggedInUser: null,
+        dropDownOpen: false
     }
 
     service = new AuthService()
@@ -27,7 +28,8 @@ export default class Navbar extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
-      }
+    }
+
 
     render() {
         const userInSession = this.state.loggedInUser
@@ -40,7 +42,7 @@ export default class Navbar extends Component {
                         <NavLink to='/find-my-match' activeClassName='selected' className='nav-icon'><img src={IconRate} alt='icon profile' /></NavLink>
                         <NavLink to='/matches' activeClassName='selected' className='nav-icon'><img src={IconMatches} alt='icon profile' /></NavLink>
                         <Link to='/profile' >
-                            <img className='profile-img nav-icon' src={userInSession.profileImage === '' ? DefaultAvatar : userInSession.profileImage} alt='user'/>
+                            <img className='profile-img nav-icon' src={!userInSession.profileImage ? DefaultAvatar : userInSession.profileImage} alt='user'/>
                         </Link>
 
                         <div className='nav-big-screen'>
@@ -51,9 +53,17 @@ export default class Navbar extends Component {
                     <div className='nav-right'>
                         <NavLink to='/find-my-match' activeClassName='selected'>Find my match</NavLink>
                         <NavLink to='/matches' activeClassName='selected'>Matches</NavLink>
-                        <Link to='/profile' >
-                            <img className='profile-img' src={userInSession.profileImage === '' ? DefaultAvatar : userInSession.profileImage} alt='user'/>
-                        </Link>
+                        {/* <Link to='/profile' >
+                            <img className='profile-img' src={!userInSession.profileImage ? DefaultAvatar : userInSession.profileImage} alt='user'/>
+                        </Link> */}
+                      
+                        <div class="dropdown">
+                            <img className='profile-img' src={!userInSession.profileImage ? DefaultAvatar : userInSession.profileImage} alt='user'/>
+                            <div className="dropdown-content">
+                                <NavLink to='/profile' activeClassName='selected'>Profile</NavLink>
+                                <NavLink to='#' activeClassName='selected'>Logout</NavLink>
+                            </div>
+                        </div>
                 
                     </div>
                 </nav>
@@ -68,7 +78,6 @@ export default class Navbar extends Component {
                         </div>    
                         <div className='nav-right-no-user'>
                             <NavLink to='/login' activeClassName='selected' >Log in</NavLink>
-                            {/* <NavLink to='/signup' activeClassName='selected'>Sign up</NavLink> */}
                             <ScrollLink 
                                 className='about-link'
                                 to='about-section'

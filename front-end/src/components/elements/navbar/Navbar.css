@@ -7,6 +7,7 @@
     height: 50px;
     background-color: white;
     box-shadow: 0 4px 4px -4px rgba(0,0,0,.4);
+    z-index: 1;
 }
 
 .nav-style a {
@@ -27,15 +28,6 @@
     width: 100%;
     height: 50px;
     padding: 0 5px;
-}
-
-.profile-img {
-    border-radius: 90px;
-    border: 0.5px solid rgb(9, 66, 117, 0.3);
-    object-fit: cover;
-    width: 27px;
-    height: 27px;
-    margin: 0 15px;
 }
 
 .nav-big-screen {
@@ -78,6 +70,49 @@
     color: var(--coral-color) !important;
 }
 
+/* Dropdown */
+.profile-img {
+    border-radius: 90px;
+    border: 0.5px solid rgb(9, 66, 117, 0.3);
+    object-fit: cover;
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+  }
+  
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /* box-shadow: 0 4px 4px -4px rgba(0,0,0,.4); */
+    width: 100px;
+    z-index: 1;
+    cursor: pointer;
+    right: 0;
+   
+}
+  
+.dropdown-content a {
+    color: var(--dark-blue-color);
+    display: block;
+    text-align: center;
+    padding: 15px 0 !important;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: var(--coral-color);}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .profile-img {  border: 1px solid var(--coral-color);}
 
 @media screen and (min-width: 800px) {
     .nav-style a {
@@ -122,13 +157,13 @@
     }
 
     .nav-right a {
-        padding: 0 20px;
+        padding-left: 60px;
     }
 
     .profile-img {
         width: 30px;
         height: 30px;
-        margin: 0;
+        margin: 0 0 0 30px;
     }
 
     .nav-right-no-user a {
@@ -138,6 +173,12 @@
 
     .selected {
         color: var(--coral-color) !important;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        margin: 0 20px 0 40px;
     }
 
 }
