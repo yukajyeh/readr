@@ -4,7 +4,7 @@ import BookService from '../../../services/auth/bookshelf-services'
 
 export default class Bookshelf extends Component {
 
-    state= {
+    state = {
         favBook: {},
         childBook: {},
         weaponBook: {},
@@ -75,7 +75,7 @@ export default class Bookshelf extends Component {
         
         return (
             <div className='container'>
-                <h2>Bookshelf</h2>
+                {/* <h2>Bookshelf</h2> */}
                 <div className='bookshelf'>
 
                     {booksArr.map((book, index) => {
@@ -89,9 +89,7 @@ export default class Bookshelf extends Component {
                             </div>
                         )
                     })}
-                
-
-                    <span>{this.state.errorMessage}</span> 
+            
                 </div>
             </div>
         )

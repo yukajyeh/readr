@@ -14,15 +14,17 @@ export default class Matches extends Component {
         matches: [],
         combinedInfo:[],
         ownerId:'',
-        redirect: false
-
+        redirect: false,
+        loggedInUser: ''
     }
 
     bookService = new BookService()
     userService = new UserService()
 
-    componentDidMount(){
-        this.getMatches()
+    componentDidMount() {
+        this.setState({
+            loggedInUser: this.props.userInSession
+        }, () => this.getMatches())
     }
 
     componentDidUpdate() {
@@ -30,26 +32,22 @@ export default class Matches extends Component {
     }
 
     matchedBookshelfnOwner = () => {
-
         const matchesIdsArray = this.state.matches
 
         matchesIdsArray.forEach(bookshelfId => {
             this.bookService.getMatchInfo(bookshelfId)
             .then(response => {
                 this.setState({
-                 combinedInfo: [...this.state.combinedInfo,response]
+                    combinedInfo: [...this.state.combinedInfo,response]
                  })
             })
             .catch(err => {
                 console.log(err)
             })
         })
-
     } 
 
-
     getMatches = () => {
-
         this.bookService.getMatches()
         .then(response => {
             this.setState({
@@ -59,52 +57,46 @@ export default class Matches extends Component {
         .catch(err => {
             console.log('error getting matched-bookshelfId', err)
         })
-
     }
 
     displayCrush = (ownerId) => {
-
         this.setState({
             redirect: true,
             ownerId: ownerId
         })
-
     }
 
-
-
     render() {
-
+    
         if(this.state.redirect){
-            
-            return <Redirect to={{
-                        pathname: '/profile',
-                        state: { id: this.state.ownerId}
-                    }}
-            />
+            return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
         }
 
         const combinedInfo = this.state.combinedInfo
+
         return (
             <div className='container-matches'>
-                <Navbar userInSession={this.props.userInSession} />
+                <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
             
-            <div className='matches'>
-                <div className='bookshelf-display'>
-                {combinedInfo.map((combination,index) => {
-                    return(
-                        <div key={index} className='crush-card' onClick = {() => this.displayCrush(combination.owner._id)}>
-                            <div className='owner-info'>
-                                <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>
-                                <h4>{combination.owner.profileName}</h4>
-                            </div>
-                                <Bookshelf bookshelfId={combination._id}/>
-                        </div>
-                    )
-                })} 
+                <div className='matches'>
+                    <div className='bookshelf-display'>
+                        {combinedInfo.map((combination,index) => {
+                            return (
+                                <div key={index} className='crush-card' onClick = {() => this.displayCrush(combination.owner._id)}>
+                                    <div className='owner-info'>
+                                        <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>
+                                        <div>
+                                            <p>Bookshelf</p>
+                                            <h2>{combination.owner.profileName}</h2>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                    <Bookshelf bookshelfId={combination._id}/>
+                                </div>
+                            )
+                        })} 
+                    </div>
                 </div>
-            </div>
-   
             </div>
         )
     }

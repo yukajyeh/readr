@@ -16,7 +16,7 @@ export default class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            loggedInUser: null,
+            loggedInUser: '',
             targetOwner:'',
             redirect: false
         }
@@ -27,17 +27,14 @@ export default class Profile extends Component {
 
 
     componentDidMount(){
-        if(this.props.userInSession){
-            this.setState({
-                loggedInUser: this.props.userInSession
-            })
-        } 
-        this.checkOwnerProfile()
+        this.setState({
+            loggedInUser: this.props.userInSession
+        }, () => this.checkOwnerProfile(this.props.location.state && this.props.location.state.id))
     }
 
-    checkOwnerProfile = () => {
-        if(this.props.location.state.id){
-            this.userService.grabOwner(this.props.location.state.id)
+    checkOwnerProfile = (targetsId) => {
+        if(targetsId){
+            this.userService.grabOwner(targetsId)
             .then((response) =>{
                this.setState({
                     targetOwner: response
@@ -47,34 +44,17 @@ export default class Profile extends Component {
         }
     }
 
-    logoutUser = () => {
-        this.service.logout()
-        .then(() => {
-            this.props.getTheUser(null)
-            this.setState({
-                redirect: true
-            })  
-        })
-        .catch(err => console.log(err))
-    }
-
-
+ 
     render() {
+ 
         
-        console.log(this.props)
-
-        if(this.state.redirect){
-            return <Redirect to='/'></Redirect>
-        }
-
-        if(this.props.location.state.id){
+        if(this.state.targetOwner){
             return (
                 <div>
-                        <Navbar userInSession={this.state.loggedInUser} />
-                        <div className='main-container-profile'>
-                        
-                        <div className='first-container-profile'>
-                            
+                    <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
+                    <div className='main-container-profile'>
+                         <div className='first-container-profile'>
+                            <img src={!this.state.targetOwner.profileImage ? DefaultAvatar : this.state.targetOwner.profileImage} alt='crush'></img>
                             <p>Profile name: {this.state.targetOwner.profileName}</p>
                             <p>Match preference: {this.state.targetOwner.matchPreference}</p>
                             <p>Prefered contact method: {this.state.targetOwner.contactInfo}</p>
@@ -82,25 +62,18 @@ export default class Profile extends Component {
                         
                         <div className='second-container-profile'>
                             <BookshelfDisplay bookshelfId={this.state.targetOwner.bookShelf} />
-                        
                         </div>
                     </div>
-                </div>
-                    
+                </div>     
             )
-        } 
-        
-        if(this.state.loggedInUser){
-            
+        } else {
             return (
                 <div>
-                <Navbar userInSession={this.state.loggedInUser} />
-                <div className='main-container-profile'>
-                    
-                    <p onClick={this.logoutUser} className='logout-link'>Logout</p>
+                     <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser} />
+                     <div className='main-container-profile'>
                         <div className='first-container-profile'>
-                            <img src={this.state.loggedInUser.profileImage === '' ? DefaultAvatar : this.state.loggedInUser.profileImage} alt='user'></img>
-                            <p>Profile name: {this.state.loggedInUser.profileName}</p>
+                            <img src={!this.state.loggedInUser.profileImage ? DefaultAvatar : this.state.loggedInUser.profileImage} alt='crush'></img>
+                            <p>Profile name: {this.state.loggedInUser.username}</p>
                             <p>Match preference: {this.state.loggedInUser.matchPreference}</p>
                             <p>Prefered contact method: {this.state.loggedInUser.contactInfo}</p>
                             <Button>Edit profile</Button>
@@ -109,10 +82,12 @@ export default class Profile extends Component {
                         <div className='second-container-profile'>
                             <BookshelfDisplay bookshelfId={this.state.loggedInUser.bookShelf} />
                         </div>
+                     </div>
                 </div>
-            </div>
             )
-        } 
-        
+
+        }
+
+
     }
 }

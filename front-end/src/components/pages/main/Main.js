@@ -13,7 +13,18 @@ import Tweet3 from '../../../assets/pictures/tweet_michael.png'
 export default class Main extends Component {
 
     state = {
-        redirect: ''
+        redirect: '',
+        loggedInUser: '',
+    }
+
+    componentDidMount(){
+        this.setState({
+            loggedInUser: this.props.userInSession
+        })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
     }
 
     redirect = (targetPage) => {
@@ -22,16 +33,15 @@ export default class Main extends Component {
         })
     }
 
-
     render() {
-
+   
         if(this.state.redirect){
             return <Redirect to={this.state.redirect} />
         }
 
         return (
             <div>
-                <Navbar userInSession={this.props.userInSession} />
+                <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                 <header className='main-container' id='header-section'>
                     <div className='first-container'>
                         <img src={LogoDarkBackground} alt='Logo readr' />
