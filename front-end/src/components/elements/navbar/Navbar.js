@@ -15,7 +15,7 @@ export default class Navbar extends Component {
 
     state = {
         loggedInUser: null,
-        dropDownOpen: false
+        widthNav: '0',
     }
 
     service = new AuthService()
@@ -30,6 +30,27 @@ export default class Navbar extends Component {
         this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
     }
 
+    openNav = () => {
+        this.setState({
+            widthNav: '100%'
+        })
+    }
+
+    closeNav = () => {
+        this.setState({
+            widthNav: '0px'
+        })
+    }
+
+    logoutUser = () => {
+        console.log('logout called')
+        this.service.logout()
+        .then(() => {
+            this.props.getTheUser(null)
+        })
+        .catch(err => console.log(err))
+    }
+
 
     render() {
         const userInSession = this.state.loggedInUser
@@ -39,29 +60,42 @@ export default class Navbar extends Component {
                 <nav className="nav-style">
                     <div className='nav-left'> 
       
-                        <NavLink to='/find-my-match' activeClassName='selected' className='nav-icon'><img src={IconRate} alt='icon profile' /></NavLink>
-                        <NavLink to='/matches' activeClassName='selected' className='nav-icon'><img src={IconMatches} alt='icon profile' /></NavLink>
-                        <Link to='/profile' >
-                            <img className='profile-img nav-icon' src={!userInSession.profileImage ? DefaultAvatar : userInSession.profileImage} alt='user'/>
-                        </Link>
 
-                        <div className='nav-big-screen'>
+
+                        <div className='logo-readr'>
                             <Link to='/'><img  src={LogoBlue} alt='Logo readr'/></Link>
+                        </div>
+
+                        {/* <NavLink to='/find-my-match' activeClassName='selected' className='nav-icon'><img src={IconRate} alt='icon profile' /></NavLink>
+                        <NavLink to='/matches' activeClassName='selected' className='nav-icon'><img src={IconMatches} alt='icon profile' /></NavLink> */}
+                        {/* <Link to='/profile' >
+                            <img className='profile-img nav-icon' src={!userInSession.profileImage ? DefaultAvatar : userInSession.profileImage} alt='user'/>
+                        </Link> */}
+
+                        <p onClick={this.openNav}>open</p>
+
+                        <div className="sidenav" style={{width: this.state.widthNav}}>
+                                <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav}>&times;</a>
+                               
+                                <NavLink to='/find-my-match' activeClassName='selected'><img src={IconRate} alt='icon matches' style={{height:'12px'}} />  Find my match</NavLink>
+                                <NavLink to='/matches' activeClassName='selected'><img src={IconMatches} alt='icon matches' style={{height:'12px'}} />  Matches</NavLink>
+                                <NavLink to='/profile' activeClassName='selected'>Profile</NavLink>
+                                <hr/>
+                                
+                                <a href='#' onClick={this.logoutUser} activeClassName='selected'>Logout</a>
+                         
                         </div>
                        
                     </div>
                     <div className='nav-right'>
-                        <NavLink to='/find-my-match' activeClassName='selected'>Find my match</NavLink>
-                        <NavLink to='/matches' activeClassName='selected'>Matches</NavLink>
-                        {/* <Link to='/profile' >
-                            <img className='profile-img' src={!userInSession.profileImage ? DefaultAvatar : userInSession.profileImage} alt='user'/>
-                        </Link> */}
+                        <NavLink to='/find-my-match' activeClassName='selected'><img src={IconRate} alt='icon matches' style={{height:'12px'}} />  Find my match</NavLink>
+                        <NavLink to='/matches' activeClassName='selected'><img src={IconMatches} alt='icon matches' style={{height:'12px'}} />  Matches</NavLink>
                       
-                        <div class="dropdown">
+                        <div className="dropdown">
                             <img className='profile-img' src={!userInSession.profileImage ? DefaultAvatar : userInSession.profileImage} alt='user'/>
                             <div className="dropdown-content">
                                 <NavLink to='/profile' activeClassName='selected'>Profile</NavLink>
-                                <NavLink to='#' activeClassName='selected'>Logout</NavLink>
+                                <a href='#' onClick={this.logoutUser} activeClassName='selected'>Logout</a>
                             </div>
                         </div>
                 

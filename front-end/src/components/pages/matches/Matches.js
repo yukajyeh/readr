@@ -14,15 +14,18 @@ export default class Matches extends Component {
         matches: [],
         combinedInfo:[],
         ownerId:'',
-        redirect: false
-
+        redirect: false,
+        redirectHome: false,
+        loggedInUser: ''
     }
 
     bookService = new BookService()
     userService = new UserService()
 
-    componentDidMount(){
-        this.getMatches()
+    componentDidMount() {
+        this.setState({
+            loggedInUser: this.props.userInSession
+        }, () => this.getMatches())
     }
 
     componentDidUpdate() {
@@ -66,9 +69,21 @@ export default class Matches extends Component {
         })
     }
 
-
+    logoutUser = () => {
+        this.props.getTheUser(null)
+        this.setState({
+            redirectHome: true
+        })  
+    }
 
     render() {
+        if(this.getTheUser === null){
+            this.logoutUser()
+        }
+
+        if(this.state.redirectHome){
+            return <Redirect to='/'></Redirect>
+        }
 
         if(this.state.redirect){
             return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
@@ -78,7 +93,7 @@ export default class Matches extends Component {
 
         return (
             <div className='container-matches'>
-                <Navbar userInSession={this.props.userInSession} />
+                <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
             
                 <div className='matches'>
                     <div className='bookshelf-display'>

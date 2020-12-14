@@ -45,18 +45,19 @@ export default class Profile extends Component {
     }
 
     logoutUser = () => {
-        this.service.logout()
-        .then(() => {
             this.props.getTheUser(null)
             this.setState({
                 redirect: true
             })  
-        })
-        .catch(err => console.log(err))
+
     }
 
 
     render() {
+
+        if(this.getTheUser === null){
+            this.logoutUser()
+        }
         
         if(this.state.redirect){
             return <Redirect to='/'></Redirect>
@@ -65,7 +66,7 @@ export default class Profile extends Component {
         if(this.state.targetOwner){
             return (
                 <div>
-                    <Navbar userInSession={this.state.loggedInUser} />
+                    <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                     <div className='main-container-profile'>
                          <div className='first-container-profile'>
                             <img src={!this.state.targetOwner.profileImage ? DefaultAvatar : this.state.targetOwner.profileImage} alt='crush'></img>
@@ -83,10 +84,8 @@ export default class Profile extends Component {
         } else {
             return (
                 <div>
-                     <Navbar userInSession={this.state.loggedInUser} />
+                     <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser} />
                      <div className='main-container-profile'>
-                    
-                        <p onClick={this.logoutUser} className='logout-link'>Logout</p>
                         <div className='first-container-profile'>
                             <img src={!this.state.loggedInUser.profileImage ? DefaultAvatar : this.state.loggedInUser.profileImage} alt='crush'></img>
                             <p>Profile name: {this.state.loggedInUser.username}</p>

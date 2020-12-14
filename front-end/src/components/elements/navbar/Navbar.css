@@ -27,15 +27,74 @@
     align-items: center;
     width: 100%;
     height: 50px;
-    padding: 0 5px;
+    padding: 0 7px 0 2px;
 }
 
-.nav-big-screen {
+.sidenav {
+    height: 100%; 
+    width: 0;
+    position: fixed;
+    z-index: 1; 
+    top: 0; 
+    right: 0;
+    background-color: var(--dark-blue-color); 
+    overflow-x: hidden; 
+    padding-top: 60px; 
+    transition: 0.5s; 
+}
+  
+  /* The navigation menu links */
+.sidenav a {
+    display: block;
+    transition: 0.3s;
+    color: var(--paper-color);
+    font-size: 0.9rem;
+    font-weight: 400;
+    white-space: pre;
+    text-align: center;
+    padding: 30px 20px 40px 0;
+}
+  
+  /* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+  
+  /* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    font-size: 2rem;
+}
+
+.sidenav hr {
+    background-color: var(--coral-color);
+    height: 1px;
+    border: none;
+    margin: 0 80px 0 80px;
+}
+
+
+/* .nav-big-screen {
     display: none;
 }
 
 .nav-big-screen img{
     display: none;
+} */
+
+.logo-readr  {
+    display: inherit;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.logo-readr img {
+    display: inherit;
+    width: 90px;
 }
 
 .nav-icon img{
@@ -59,7 +118,6 @@
 .nav-right-no-user a {
     padding-right: 15px;
 }
-
 
 .nav-big-screen-no-user img {
     padding-top: 4px;
@@ -90,12 +148,10 @@
     position: absolute;
     background-color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    /* box-shadow: 0 4px 4px -4px rgba(0,0,0,.4); */
     width: 100px;
     z-index: 1;
     cursor: pointer;
     right: 0;
-   
 }
   
 .dropdown-content a {
@@ -105,14 +161,12 @@
     padding: 15px 0 !important;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: var(--coral-color);}
+.dropdown-content a:hover {background-color: var(--paper-color);}
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .profile-img {  border: 1px solid var(--coral-color);}
+
 
 @media screen and (min-width: 800px) {
     .nav-style a {
@@ -127,18 +181,7 @@
         display: none;
     }
 
-    .nav-big-screen  {
-        display: inherit;
-        width: 100%;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-    }
 
-    .nav-big-screen img {
-        display: inherit;
-        width: 130px;
-    }
 
     .nav-big-screen a {
         padding-right: 25px;

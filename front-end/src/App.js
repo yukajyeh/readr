@@ -13,6 +13,7 @@ import Profile from "./components/pages/profile/Profile";
 import Matches from "./components/pages/matches/Matches";
 import StartUpFlow from "./components/pages/startupflow/StartUpFlow";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import Navbar from "./components/elements/navbar/Navbar";
 
 class App extends React.Component {
   state = {
@@ -46,6 +47,7 @@ class App extends React.Component {
 
   render() {
     this.fetchUser();
+
     return (
       <div>
         <AnimatedSwitch
@@ -66,6 +68,8 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
         classNames="fade"
         timeout={1000}
       >
+
+
         <Switch location={location}>
           <Route
             exact
@@ -92,11 +96,12 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
               <StartUpFlow {...props} userInSession={loggedInUser} />
             )}
           />
-
+      
           <ProtectedRoute
             userInSession={loggedInUser}
             path="/find-my-match"
             component={SwipeBookshelfs}
+            getTheUser={getTheUser} 
           />
           <ProtectedRoute
             userInSession={loggedInUser}
@@ -108,6 +113,7 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
             userInSession={loggedInUser}
             path="/matches"
             component={Matches}
+            getTheUser={getTheUser} 
           />
         </Switch>
       </CSSTransition>
