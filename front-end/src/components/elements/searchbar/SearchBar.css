@@ -1,0 +1,8 @@
+.input-search-bar {
+    border-radius: 25px;
+    border: 1px solid var(--paper-color);
+    padding: 10px; 
+    width: 200px;
+    height: 5px;
+    color: var(--dark-blue-color)
+}

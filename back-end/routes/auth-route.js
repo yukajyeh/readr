@@ -35,7 +35,8 @@ router.post('/signup', profileImgUpload.single("profileImage"), async(req, res) 
             contactInfo: contactInfo, 
             profileImage: profileImage,
             likes:[],
-            dislikes:[]
+            dislikes:[],
+            matches:[]
         })
 
         req.session.user = user 
@@ -56,7 +57,7 @@ router.post('/login', async(req, res) => {
     const { username, password } = req.body
 
     if(!username || !password){
-      res.status(400).json({ message: "Please fill in the information"})
+      res.status(400).json({ message: "Please fill in all the information"})
       return
     } 
 
@@ -96,6 +97,7 @@ router.get('/loggedin', (req, res) => {
 
 /* Logout */ 
 router.get('/logout', (req, res) => {
+  console.log('back-end logout called')
   req.session.destroy()
   res.status(200).json({ message: 'You have logged out' })
 })

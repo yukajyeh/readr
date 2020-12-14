@@ -32,8 +32,32 @@ class BookShelf {
         .catch(err => console.log(err))
     }
 
-    updateLikesOrDislikes = (disliked, liked) => {
-        return this.service.post('/book/likes-dislikes', { disliked, liked })
+    updateLikes = (liked) => {
+        return this.service.post('/book/update-likes',  {liked})
+        .then(res => {
+            return res.data
+        })
+        .catch(err => console.log(err))
+    }
+
+    updateDislikes = (disliked) => {
+        return this.service.post('/book/update-dislikes', {disliked})
+        .then(res => {
+            return res.data
+        })
+        .catch(err => console.log(err))
+    }
+
+    getMatches = () => {
+        return this.service.get('/book/matches')
+        .then(res => {
+            return res.data
+        })
+        .catch(err => console.log(err))
+    }
+
+    getMatchInfo = (bookshelfId) => {
+        return this.service.get('/book/info/' + bookshelfId)
         .then(res => {
             return res.data
         })
