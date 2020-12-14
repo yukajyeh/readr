@@ -44,25 +44,10 @@ export default class Profile extends Component {
         }
     }
 
-    logoutUser = () => {
-            this.props.getTheUser(null)
-            this.setState({
-                redirect: true
-            })  
-
-    }
-
-
+ 
     render() {
-
-        if(this.getTheUser === null){
-            this.logoutUser()
-        }
+ 
         
-        if(this.state.redirect){
-            return <Redirect to='/'></Redirect>
-        }
-
         if(this.state.targetOwner){
             return (
                 <div>

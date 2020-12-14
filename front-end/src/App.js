@@ -13,7 +13,7 @@ import Profile from "./components/pages/profile/Profile";
 import Matches from "./components/pages/matches/Matches";
 import StartUpFlow from "./components/pages/startupflow/StartUpFlow";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Navbar from "./components/elements/navbar/Navbar";
+
 
 class App extends React.Component {
   state = {
@@ -74,7 +74,7 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
           <Route
             exact
             path="/"
-            render={(props) => <Main {...props} userInSession={loggedInUser} />}
+            render={(props) => <Main {...props} userInSession={loggedInUser} getTheUser={getTheUser}/>}
           />
           <Route exact path="/404" component={ErrorPage} />
 

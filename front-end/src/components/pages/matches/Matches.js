@@ -15,7 +15,6 @@ export default class Matches extends Component {
         combinedInfo:[],
         ownerId:'',
         redirect: false,
-        redirectHome: false,
         loggedInUser: ''
     }
 
@@ -33,14 +32,13 @@ export default class Matches extends Component {
     }
 
     matchedBookshelfnOwner = () => {
-
         const matchesIdsArray = this.state.matches
 
         matchesIdsArray.forEach(bookshelfId => {
             this.bookService.getMatchInfo(bookshelfId)
             .then(response => {
                 this.setState({
-                 combinedInfo: [...this.state.combinedInfo,response]
+                    combinedInfo: [...this.state.combinedInfo,response]
                  })
             })
             .catch(err => {
@@ -50,7 +48,6 @@ export default class Matches extends Component {
     } 
 
     getMatches = () => {
-
         this.bookService.getMatches()
         .then(response => {
             this.setState({
@@ -69,22 +66,8 @@ export default class Matches extends Component {
         })
     }
 
-    logoutUser = () => {
-        this.props.getTheUser(null)
-        this.setState({
-            redirectHome: true
-        })  
-    }
-
     render() {
-        if(this.getTheUser === null){
-            this.logoutUser()
-        }
-
-        if(this.state.redirectHome){
-            return <Redirect to='/'></Redirect>
-        }
-
+    
         if(this.state.redirect){
             return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
         }

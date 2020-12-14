@@ -18,7 +18,6 @@ export default class SwipeBookshelfs extends Component {
         liked: '',
         disliked: '',
         errorMessage:'',
-        redirectHome: false,
         loggedInUser: ''
     }
 
@@ -76,23 +75,8 @@ export default class SwipeBookshelfs extends Component {
         }, () => {this.saveLikeOrDislike(this.state.disliked, this.state.liked)})  
     }
 
-    logoutUser = () => {
-        this.props.getTheUser(null)
-        this.setState({
-            redirectHome: true
-        })  
-    }
 
     render() {
-        if(this.getTheUser === null){
-            this.logoutUser()
-        }
-
-        if(this.state.redirectHome){
-            return <Redirect to='/'></Redirect>
-        }
-
-
         if(this.state.loader){
             return <Loader/>
         }
