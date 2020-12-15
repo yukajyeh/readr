@@ -1,0 +1,14 @@
+
+.carousel-root {
+    padding:5px;
+}
+
+.carousel .slide {
+    background-color:var(--paper-color);
+    margin-bottom:40px !important;
+}
+
+.carousel .slide img{
+    width:40vw !important;
+    border-radius: 20px ;
+}

@@ -6,9 +6,8 @@ import LogoDarkBackground from '../../../assets/logo/Logo_dark_background.png'
 import TurnedCorner from "../../elements/turnedcorner/TurnedCorner"
 import Button from "../../elements/button/Button"
 import Navbar from '../../elements/navbar/Navbar'
-import Tweet1 from '../../../assets/pictures/tweet_bill.png'
-import Tweet2 from '../../../assets/pictures/tweet_bruce.png'
-import Tweet3 from '../../../assets/pictures/tweet_michael.png'
+import Slider from '../../elements/slider/slider'
+
 
 export default class Main extends Component {
 
@@ -35,8 +34,8 @@ export default class Main extends Component {
                 <header className='main-container' id='header-section'>
                     <div className='first-container'>
                         <img src={LogoDarkBackground} alt='Logo readr' />
-                        
                     </div>
+
                     <div className='second-container'>
                         <h1>Book<br/>Your Next<br/>Date</h1>
                         {this.props.userInSession ? 
@@ -45,6 +44,7 @@ export default class Main extends Component {
                             <TurnedCorner position='home'/>
                     </div>
                 </header>
+
                 <article className='about-section' id='about-section'>
                     <h2>About</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non vestibulum neque. Praesent sit amet egestas eros. Morbi tempor ac eros vitae tincidunt. Nulla tincidunt malesuada tincidunt. Suspendisse placerat maximus arcu a scelerisque.  </p>
@@ -52,11 +52,9 @@ export default class Main extends Component {
                 </article>
 
                 <section className='review-section'>
-                    <h2>Reviews</h2>
-                    <img src={Tweet1} alt='tweet-1'/>
-                    <img src={Tweet2} alt='tweet-2'/>
-                    <img src={Tweet3} alt='tweet-3'/>
-                </section>
+			        <h2> Reviews</h2>	
+                    <Slider/>					
+               </section>
 
                 <footer className='footer'>
                     <div className='footer-left'>
@@ -74,9 +72,12 @@ export default class Main extends Component {
                     </div>
                 </footer>
             </div>
+       
         )
     }
 }
+
+
 
 
 
