@@ -59,11 +59,13 @@ export default class Main extends Component {
 
                 <article className='about-section' id='about-section'>
                     <h2>About</h2>
-                    <p>Want to skip small talks when it comes to meeting new people? 
+                    <p>Want to skip small talks and straight to business when it comes to meeting new people? 
                     Can't find the ones who read the same type of books as you do? 
-                    Prefer brain more than appearances? Do you identify as "Sapiosexual"?
-                    <b>Say no more</b>.With <b>Readr</b> you can find your future partner, friends, spiritual animals & many more ...
-                    based on their reading interests</p>
+                    Struggle to start your own bookclub?
+                    Prefer brain over faces? </p>
+                    <p>
+                    <b>Think no more</b>. With <b>Readr</b> you can find your future partner, friends, spiritual animals & many more ...
+                    based on their reading interests {'('}and of course yours!{')'}. </p>
                 </article>
 
                 <section className='review-section'>
