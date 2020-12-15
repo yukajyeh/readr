@@ -88,7 +88,7 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
             path="/signup"
             render={() => <Signup getTheUser={getTheUser} />}
           />
-          {/* <ProtectedRoute userInSession={loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
+         {/*  <ProtectedRoute userInSession={loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
           <Route
             exact
             path="/pick-my-books"

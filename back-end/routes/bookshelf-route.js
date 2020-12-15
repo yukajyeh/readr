@@ -20,6 +20,7 @@ router.get('/bookshelf/:id', (req, res) => {
 router.post('/pick-my-books', (req , res) => {
     const { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook } = req.body
     const currentUser = req.session.user
+    console.log('hi',currentUser)
 
     const newBookshelfModel = new Bookshelf({
         favBook: favBook, 

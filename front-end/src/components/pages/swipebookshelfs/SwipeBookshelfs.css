@@ -1,3 +1,36 @@
 .main-container-swipe{
-    padding-top: 100px;
+    padding-top: 70px;
+    background-color: var(--old-pink-color);
+    height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
+
+.swipe-shelf{
+    margin: 5px auto 10px auto ;
+    width:30vw;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.buttons{
+    display:flex;
+    flex-direction:row;
+    margin-top:5px;
+}
+
+.likey-dislikey{
+    background-color: white;
+    padding: 15px;
+    border-radius:70px;
+    margin: auto 20px;
+}
+
+
+
+
+
+

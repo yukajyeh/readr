@@ -4,7 +4,7 @@
 }
 
 .carousel .slide {
-    background-color:var(--paper-color);
+    background-color:rgb(240, 213, 192, 0);
     margin-bottom:45px !important;
 }
 
