@@ -122,7 +122,6 @@ router.get('/matches', (req, res) => {
 
     User.findById({_id: currentUser._id})
     .then(response => {
-        console.log('response back-end', response)
         res.status(200).json(response)
     })
     .catch(err => {
@@ -132,8 +131,6 @@ router.get('/matches', (req, res) => {
 })
 
 router.get('/info/:id', (req, res) => {
-    let combinedInfo = []
-
     Bookshelf.findById({_id: req.params.id}).populate('owner')
     .then(response => {
         res.status(200).json(response)

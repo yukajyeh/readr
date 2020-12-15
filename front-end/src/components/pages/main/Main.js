@@ -12,7 +12,18 @@ import Slider from '../../elements/slider/slider'
 export default class Main extends Component {
 
     state = {
-        redirect: ''
+        redirect: '',
+        loggedInUser: '',
+    }
+
+    componentDidMount(){
+        this.setState({
+            loggedInUser: this.props.userInSession
+        })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({...this.state, loggedInUser: nextProps["userInSession"]})
     }
 
     redirect = (targetPage) => {
@@ -21,23 +32,24 @@ export default class Main extends Component {
         })
     }
 
-
     render() {
-
+   
         if(this.state.redirect){
             return <Redirect to={this.state.redirect} />
         }
 
         return (
             <div>
-                <Navbar userInSession={this.props.userInSession} />
+                <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                 <header className='main-container' id='header-section'>
                     <div className='first-container'>
                         <img src={LogoDarkBackground} alt='Logo readr' />
                     </div>
 
                     <div className='second-container'>
-                        <h1>Book<br/>Your Next<br/>Date</h1>
+                        <h1>Book</h1>
+                        <h1>Your Next</h1>
+                        <h1>Date</h1>
                         {this.props.userInSession ? 
                             <Button onClick={() => this.redirect('/find-my-match')}>Start</Button> 
                             : <Button onClick={() => this.redirect('/signup')}>Sign up</Button>}
@@ -47,8 +59,11 @@ export default class Main extends Component {
 
                 <article className='about-section' id='about-section'>
                     <h2>About</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non vestibulum neque. Praesent sit amet egestas eros. Morbi tempor ac eros vitae tincidunt. Nulla tincidunt malesuada tincidunt. Suspendisse placerat maximus arcu a scelerisque.  </p>
-                    <p>Mauris mauris enim, pharetra nec lacinia sed, vehicula at enim. Nunc pulvinar tristique nisi, non feugiat neque blandit et. Nullam tincidunt dignissim diam, eu fringilla arcu rutrum ut. Nulla euismod sollicitudin sagittis. Proin egestas sapien id enim dictum feugiat. Aenean porttitor ornare purus, nec convallis massa ultrices a. Nam turpis libero, pharetra eget mi a, congue consectetur metus.</p>
+                    <p>Want to skip small talks when it comes to meeting new people? 
+                    Can't find the ones who read the same type of books as you do? 
+                    Prefer brain more than appearances? Do you identify as "Sapiosexual"?
+                    <b>Say no more</b>.With <b>Readr</b> you can find your future partner, friends, spiritual animals & many more ...
+                    based on their reading interests</p>
                 </article>
 
                 <section className='review-section'>

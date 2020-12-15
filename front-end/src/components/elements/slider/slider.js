@@ -7,6 +7,7 @@ import Tweet1 from '../../../assets/pictures/tweet_bill.png'
 import Tweet2 from '../../../assets/pictures/tweet_bruce.png'
 import Tweet3 from '../../../assets/pictures/tweet_guido.png'
 import Tweet4 from '../../../assets/pictures/tweet_michael.png'
+import Tweet5 from '../../../assets/pictures/tweet-rock.png'
 
 class DemoCarousel extends Component {
     render() {
@@ -25,6 +26,9 @@ class DemoCarousel extends Component {
                 </div>
                 <div className='tweet'>
                     <img src={Tweet4} alt='tweet-4'/>
+                </div>
+                <div className='tweet'>
+                    <img src={Tweet5} alt='tweet-5'/>
                 </div>
             </Carousel>
         )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import Navbar from '../../elements/navbar/Navbar'
 import './SwipeBookshelfs.css'
 import BookService from '../../../services/auth/bookshelf-services'
@@ -16,13 +17,16 @@ export default class SwipeBookshelfs extends Component {
         loader: true,
         liked: '',
         disliked: '',
-        errorMessage:''
+        errorMessage:'',
+        loggedInUser: ''
     }
 
     bookService = new BookService()
 
     componentDidMount() {
-        this.getRandomBookshelf();
+        this.setState({
+            loggedInUser: this.props.userInSession
+        }, () => this.getRandomBookshelf())
     }
 
     componentDidUpdate() {
@@ -71,8 +75,8 @@ export default class SwipeBookshelfs extends Component {
         }, () => {this.saveLikeOrDislike(this.state.disliked, this.state.liked)})  
     }
 
-    render() {
 
+    render() {
         if(this.state.loader){
             return <Loader/>
         }
@@ -80,7 +84,7 @@ export default class SwipeBookshelfs extends Component {
         if(this.state.errorMessage){
             return(
                 <div >
-                     <Navbar userInSession={this.props.userInSession} />
+                     <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                      <div className='main-container-swipe'>
                         <span>{this.state.errorMessage}</span>
                      </div>
@@ -90,7 +94,7 @@ export default class SwipeBookshelfs extends Component {
 
         return (
             <div >
-                <Navbar userInSession={this.props.userInSession} />
+                <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                 <div className='main-container-swipe'>
                     <BookshelfDisplay bookshelfId={this.state.randomBookshelfId} />
                     <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />

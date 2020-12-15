@@ -33,6 +33,14 @@
     text-align: center;
 }
 
+.second-container h1{
+    margin: 8px auto;
+}
+
+.second-container .btn--default {
+    margin-top:20px;
+}
+
 .main-container h1 {
     font-size: 8vw;
     color: var(--paper-color);
@@ -51,7 +59,7 @@
 }
 
 .review-section {
-    margin: 0 auto 50px auto ;
+    margin: 0 auto;
     padding-top:30px;
     width: 100vw; 
     text-align:center;
@@ -60,6 +68,7 @@
 
 .review-section h2{
     margin: 0 auto;
+    padding-bottom:12px;
     text-align: center;
     font-size: 7vw;
     color: var(--light-blue-color)
@@ -154,6 +163,10 @@
     }
 
     .about-section h2 {
+        font-size: 5vw;
+    }
+
+    .review-section h2{
         font-size: 5vw;
     }
 

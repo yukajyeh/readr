@@ -33,7 +33,6 @@ class BookShelf {
     }
 
     updateLikes = (liked) => {
-        console.log('liked is called services', liked)
         return this.service.post('/book/update-likes',  {liked})
         .then(res => {
             return res.data
@@ -42,7 +41,6 @@ class BookShelf {
     }
 
     updateDislikes = (disliked) => {
-        console.log('disliked is called services', disliked)
         return this.service.post('/book/update-dislikes', {disliked})
         .then(res => {
             return res.data
@@ -51,7 +49,6 @@ class BookShelf {
     }
 
     getMatches = () => {
-        console.log('matches in services called')
         return this.service.get('/book/matches')
         .then(res => {
             return res.data
@@ -60,7 +57,6 @@ class BookShelf {
     }
 
     getMatchInfo = (bookshelfId) => {
-        console.log('get match info in services is called')
         return this.service.get('/book/info/' + bookshelfId)
         .then(res => {
             return res.data

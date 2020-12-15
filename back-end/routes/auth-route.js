@@ -97,6 +97,7 @@ router.get('/loggedin', (req, res) => {
 
 /* Logout */ 
 router.get('/logout', (req, res) => {
+  console.log('back-end logout called')
   req.session.destroy()
   res.status(200).json({ message: 'You have logged out' })
 })

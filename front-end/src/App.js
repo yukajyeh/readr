@@ -47,6 +47,7 @@ class App extends React.Component {
 
   render() {
     this.fetchUser();
+
     return (
       <div>
         <AnimatedSwitch
@@ -67,11 +68,13 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
         classNames="fade"
         timeout={1000}
       >
+
+
         <Switch location={location}>
           <Route
             exact
             path="/"
-            render={(props) => <Main {...props} userInSession={loggedInUser} />}
+            render={(props) => <Main {...props} userInSession={loggedInUser} getTheUser={getTheUser}/>}
           />
           <Route exact path="/404" component={ErrorPage} />
 
@@ -93,11 +96,12 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
               <StartUpFlow {...props} userInSession={loggedInUser} />
             )}
           />
-
+      
           <ProtectedRoute
             userInSession={loggedInUser}
             path="/find-my-match"
             component={SwipeBookshelfs}
+            getTheUser={getTheUser} 
           />
           <ProtectedRoute
             userInSession={loggedInUser}
@@ -109,6 +113,7 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
             userInSession={loggedInUser}
             path="/matches"
             component={Matches}
+            getTheUser={getTheUser} 
           />
         </Switch>
       </CSSTransition>
