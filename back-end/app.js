@@ -12,9 +12,8 @@ const session      = require('express-session');
 const Mongostore   = require('connect-mongo')(session);
 const cors         = require('cors')
 
-
 mongoose
-  .connect('mongodb://localhost/book-tinder-back', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
