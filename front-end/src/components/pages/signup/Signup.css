@@ -1,6 +1,6 @@
 .sign-up-page{
     background-color: var(--dark-blue-color);
-    height: 120vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
 
 .outercontainer{
     text-align: center;
-    height:100vh;
+    padding: 55px auto;
 }
 
 .outercontainer h1{
@@ -28,11 +28,11 @@
 
 .sign-up-form label{
     margin: 10px auto;
-    color: var(--paper-color);
+    color: var(--paper-color); 
 }
 
 .sign-up-form-input{
-    margin : 5px auto;
+    margin : 0 auto;
     border-radius: 25px;
     border: 1px solid var(--paper-color);
     padding: 10px; 
