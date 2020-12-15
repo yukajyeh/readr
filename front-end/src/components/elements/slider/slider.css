@@ -1,0 +1,21 @@
+
+.carousel-root {
+    padding:5px;
+}
+
+.carousel .slide {
+    background-color:var(--paper-color);
+    margin-bottom:45px !important;
+}
+
+.carousel .slide img{
+    width:28vw !important;
+    border-radius: 20px ;
+}
+
+@media screen and (max-width: 700px) {
+    .carousel .slide img{
+        width:45vw !important;
+        border-radius: 20px ;
+    }
+}
