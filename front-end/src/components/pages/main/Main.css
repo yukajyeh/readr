@@ -63,7 +63,7 @@
     padding-top:30px;
     width: 100vw; 
     text-align:center;
-    background-color: var(--paper-color);
+    background-color: rgb(240, 213, 192, 0.4);
 }
 
 .review-section h2{
@@ -78,21 +78,21 @@
 .social-icons-font1 {
     font-family: 'socialico_plusplus';
     font-size: 1.5rem;
-    color: var(--dark-blue-color);
+    color: white;
     margin-right: 25px;
 }
 
 .social-icons-font2 {
     font-family: 'socialicoregular';
     font-size: 1.5rem;
-    color: var(--dark-blue-color);
+    color: white;
     margin-right: 25px;
 }
 
 .mail {
     font-family: 'socialico_plusplus';
     font-size: 2rem;
-    color: var(--coral-color);
+    color: white;
     margin-right: 30px;
 }
 
@@ -101,8 +101,9 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    background-color: white;
+    color: white;
     padding: 20px 0;
+    background-color:var(--light-blue-color);
 }
 
 .footer p {

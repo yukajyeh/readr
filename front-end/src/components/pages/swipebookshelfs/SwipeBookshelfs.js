@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import Navbar from '../../elements/navbar/Navbar'
 import './SwipeBookshelfs.css'
 import BookService from '../../../services/auth/bookshelf-services'
@@ -96,9 +95,17 @@ export default class SwipeBookshelfs extends Component {
             <div >
                 <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                 <div className='main-container-swipe'>
+                    <div className='swipe-shelf'>
                     <BookshelfDisplay bookshelfId={this.state.randomBookshelfId} />
-                    <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
-                    <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
+                    </div>
+                    <div className='buttons'>
+                        <div className='likey-dislikey'>
+                        <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
+                        </div>
+                        <div className='likey-dislikey'>
+                        <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
