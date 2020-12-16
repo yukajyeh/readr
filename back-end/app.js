@@ -9,7 +9,7 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const session      = require('express-session');
-const Mongostore   = require('connect-mongo')(session);
+// const Mongostore   = require('connect-mongo')(session);
 const cors         = require('cors')
 
 mongoose
@@ -26,6 +26,8 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
+require('./configs/session.config')(app)
+
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -40,11 +42,20 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 
-app.use(session({
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   store: new Mongostore({
+//     mongooseConnection: mongoose.connection
+//   })
+// }))
+
+
+app.use(
+  session({
   secret: process.env.SESSION_SECRET,
-  store: new Mongostore({
-    mongooseConnection: mongoose.connection
-  })
+  resave: false,
+      saveUninitialized: true,
+      cookie: { maxAge: 600000 } 
 }))
 
 app.use(cors({
