@@ -54,7 +54,11 @@ class App extends React.Component {
           loggedInUser={this.state.loggedInUser}
           getTheUser={this.getTheUser}
         />
+        <RegularSwitch 
+          loggedInUser={this.state.loggedInUser}
+          getTheUser={this.getTheUser} />
       </div>
+
     );
   }
 }
@@ -68,7 +72,6 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
         classNames="fade"
         timeout={1000}
       >
-
 
         <Switch location={location}>
           <Route
@@ -96,8 +99,17 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
               <StartUpFlow {...props} userInSession={loggedInUser} />
             )}
           />
-      
-          <ProtectedRoute
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
+  );
+});
+
+const RegularSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
+  return (
+    
+      <Switch location={location}>
+      <ProtectedRoute
             userInSession={loggedInUser}
             path="/find-my-match"
             component={SwipeBookshelfs}
@@ -115,9 +127,8 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
             component={Matches}
             getTheUser={getTheUser} 
           />
+    
         </Switch>
-      </CSSTransition>
-    </TransitionGroup>
   );
 });
 

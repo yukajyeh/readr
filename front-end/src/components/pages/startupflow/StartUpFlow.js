@@ -213,8 +213,10 @@ export default class StartUpFlow extends Component {
         if(currentStep === 7){
             return(
                 <div className='startup-flow'>
+                    <div className='bookshelf-confirmation'>
                     <h2>Your Bookshelf!</h2>
                     <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
+                    </div>
                     <Button onClick={() =>this.stepHandler('next')} type='primary'>Meet Your Fellow Nerds</Button>
                 </div>
             )
