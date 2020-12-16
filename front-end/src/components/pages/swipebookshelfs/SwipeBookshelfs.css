@@ -29,8 +29,15 @@
     margin: auto 20px;
 }
 
+.giphy-embed{
+    width: 80vw;
+}
 
-
-
+@media screen and (min-width: 800px) {
+    .giphy-embed{
+        width: 480px;
+        height: 189px;
+    }
+}
 
 
