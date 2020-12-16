@@ -7,6 +7,7 @@ import Loader from '../../elements/loader/Loader'
 
 import IconLike from '../../../assets/icons/heart_like.png'
 import IconDislike from '../../../assets/icons/cross_dislike.png'
+import MatchGif from '../../../assets/match-gifs/match3-light-blue-color-gif'
 
 
 export default class SwipeBookshelfs extends Component {
@@ -93,13 +94,15 @@ export default class SwipeBookshelfs extends Component {
 
         if(this.state.newMatch){
             return(
-                <div >
-                    <Navbar userInSession={this.props.userInSession} getTheUser={this.props.getTheUser}/>
-                    <div className='main-container-swipe'>
-                        <iframe title='its-a-match' src="https://giphy.com/embed/Y1H70bwuxBtC1hyp77"  frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/KerastaseDE-hair-care-krastase-Y1H70bwuxBtC1hyp77"></a></p>
+                <div className='its-a-match'>
+                    {/* <Navbar userInSession={this.props.userInSession} getTheUser={this.props.getTheUser}/> */}
+                 
+                        <img src={MatchGif} alt='match gif' />
+                        <h1>It's A Match</h1>
+                        {/* <iframe title='its-a-match' src="https://giphy.com/embed/Y1H70bwuxBtC1hyp77"  frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/KerastaseDE-hair-care-krastase-Y1H70bwuxBtC1hyp77"></a></p> */}
                         {/* <iframe src="https://giphy.com/embed/h4UhLAk2c0wiLT4D12" width="480" height="280" frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/tinder-its-a-match-camp-h4UhLAk2c0wiLT4D12"> </a></p> */}
                         {this.timerMatchScreen()}
-                    </div>
+                   
                 </div>
             )
         }
