@@ -59,6 +59,14 @@
     width:8vw;
 }
 
+.bookshelf-confirmation{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
 @media screen and (min-width: 800px) {
     
 }

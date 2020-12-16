@@ -48,14 +48,17 @@
 }
 
 .about-section {
-    margin: 0 auto 50px auto;
+    margin: 0 auto;
     width: 70vw; 
+    text-align:center;
 }
 
 .about-section h2 {
     text-align: center;
     font-size: 7vw;
-    color: var(--light-blue-color)
+    color: var(--light-blue-color);
+    margin-bottom: 0;
+    margin-top:30px;
 }
 
 .review-section {

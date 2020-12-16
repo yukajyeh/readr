@@ -59,13 +59,17 @@ export default class Main extends Component {
 
                 <article className='about-section' id='about-section'>
                     <h2>About</h2>
-                    <p>Want to skip small talks and straight to business when it comes to meeting new people? 
-                    Can't find the ones who read the same type of books as you do? 
-                    Struggle to start your own bookclub?
-                    Prefer brain over faces? </p>
+                    <p>Four quick questions. </p>
                     <p>
-                    <b>Think no more</b>. With <b>Readr</b> you can find your future partner, friends, spiritual animals & many more ...
-                    based on their reading interests {'('}and of course yours!{')'}. </p>
+                    {'(1)'} Want to skip small talks and straight to business when it comes to meeting new people? <span/>
+                    {'(2)'} Can't find the ones who read the same type of books as you do? <span/>
+                    {'(3)'} Struggle to start your own bookclub? <span/>
+                    {'(4)'} Prefer brain over faces? </p>
+                    <p>
+                    <b>Think no more</b>. With <b>Readr</b> you can find your <i>future partner,  friends,  spiritual animals &  many more ... </i>
+                    based on their reading interests {'('}and of course yours!{')'}.
+                     </p>
+                    <p><b>Wait no more</b>, it's time to impress. End your lonely days with all those books you've read.</p>
                 </article>
 
                 <section className='review-section'>
