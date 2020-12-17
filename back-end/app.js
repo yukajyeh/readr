@@ -9,12 +9,11 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const session      = require('express-session');
-const Mongostore   = require('connect-mongo')(session);
+// const Mongostore   = require('connect-mongo')(session);
 const cors         = require('cors')
 
-
 mongoose
-  .connect('mongodb://localhost/book-tinder-back', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -26,6 +25,8 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+require('./configs/session.config')(app)
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -41,15 +42,24 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 
-app.use(session({
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   store: new Mongostore({
+//     mongooseConnection: mongoose.connection
+//   })
+// }))
+
+
+app.use(
+  session({
   secret: process.env.SESSION_SECRET,
-  store: new Mongostore({
-    mongooseConnection: mongoose.connection
-  })
+  resave: false,
+      saveUninitialized: true,
+      cookie: { maxAge: 600000 } 
 }))
 
 app.use(cors({
-  origin: [process.env.CORS_ORIGIN],
+  origin: process.env.CORS_ORIGIN,
   credentials: true
 }))
       
