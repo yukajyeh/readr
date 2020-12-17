@@ -1,8 +1,14 @@
-.startup-greeting {
-    margin-top:20vh;
+
+
+.startup-greeting span{
+    color:var(--coral-color);
 }
 
 .startup-flow {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items:center;
     background-color: var(--dark-blue-color);
     color: var(--paper-color);
     padding-top:15px;
