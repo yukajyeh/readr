@@ -15,18 +15,18 @@ class DemoCarousel extends Component {
      
         return (
             <Carousel autoPlay interval='4000' showThumbs={false} showStatus={false} infiniteLoop={true} showArrows={false}>
-
+           
                 <div className='tweet'>
                     <img src={Tweet1} alt='tweet-1'/>
-                    <img src={Tweet2} alt='tweet-2'/>
                     <img src={Tweet5} alt='tweet-5'/>
+                    <img src={Tweet2} alt='tweet-2'/>
                 </div>
                 <div className='tweet'>
                     <img src={Tweet3} alt='tweet-3'/>
-                    <img src={Tweet4} alt='tweet-4'/>  
                     <img src={Tweet6} alt='tweet-6'/> 
+                    <img src={Tweet4} alt='tweet-4'/>  
                 </div>
-
+           
             </Carousel>
         )
     }

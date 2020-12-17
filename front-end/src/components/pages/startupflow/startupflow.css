@@ -61,10 +61,11 @@
 
 .bookshelf-confirmation{
     display: flex;
+    flex-direction:column;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+    align-items: center;
+    margin: 10px auto;
+    color:white;
 }
 
 @media screen and (min-width: 800px) {

@@ -75,9 +75,7 @@ export default class Bookshelf extends Component {
         
         return (
             <div className='container'>
-                {/* <h2>Bookshelf</h2> */}
                 <div className='bookshelf'>
-
                     {booksArr.map((book, index) => {
                         return (
                             <div className='book' key={index}>
@@ -89,7 +87,6 @@ export default class Bookshelf extends Component {
                             </div>
                         )
                     })}
-            
                 </div>
             </div>
         )

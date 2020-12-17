@@ -74,11 +74,6 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
       >
 
         <Switch location={location}>
-          <Route
-            exact
-            path="/"
-            render={(props) => <Main {...props} userInSession={loggedInUser} getTheUser={getTheUser}/>}
-          />
           <Route exact path="/404" component={ErrorPage} />
 
           <Route
@@ -91,14 +86,8 @@ const AnimatedSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
             path="/signup"
             render={() => <Signup getTheUser={getTheUser} />}
           />
-         {/*  <ProtectedRoute userInSession={loggedInUser} path='/pick-my-books' componet={StartUpFlow} /> */}
-          <Route
-            exact
-            path="/pick-my-books"
-            render={(props) => (
-              <StartUpFlow {...props} userInSession={loggedInUser} />
-            )}
-          />
+         <ProtectedRoute userInSession={loggedInUser} path='/pick-my-books' component={StartUpFlow} /> 
+      
         </Switch>
       </CSSTransition>
     </TransitionGroup>
@@ -109,6 +98,11 @@ const RegularSwitch = withRouter(({ location, loggedInUser, getTheUser }) => {
   return (
     
       <Switch location={location}>
+       <Route
+            exact
+            path="/"
+            render={(props) => <Main {...props} userInSession={loggedInUser} getTheUser={getTheUser}/>}
+          />
       <ProtectedRoute
             userInSession={loggedInUser}
             path="/find-my-match"

@@ -85,7 +85,7 @@ export default class SwipeBookshelfs extends Component {
                 <div >
                      <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                      <div className='main-container-swipe'>
-                        <span>{this.state.errorMessage}</span>
+                        <h2>{this.state.errorMessage}</h2>
                      </div>
                 </div>
             )

@@ -216,8 +216,8 @@ export default class StartUpFlow extends Component {
                     <div className='bookshelf-confirmation'>
                     <h2>Your Bookshelf!</h2>
                     <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
-                    </div>
                     <Button onClick={() =>this.stepHandler('next')} type='primary'>Meet Your Fellow Nerds</Button>
+                    </div>
                 </div>
             )
         }
