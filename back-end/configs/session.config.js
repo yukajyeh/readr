@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
  
 module.exports = app => {
 
-  const isDevMode = process.env.ENV === 'development'
+  const isDevMode = process.env.NODE_ENV === 'development'
 
   if (!isDevMode) {
     app.set('trust proxy', 1);
