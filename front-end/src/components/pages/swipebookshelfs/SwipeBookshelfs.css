@@ -29,8 +29,49 @@
     margin: auto 20px;
 }
 
+.giphy-embed{
+    width: 80vw;
+}
+
+.its-a-match{
+    background-color: var(--coral-color);
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color: var(--paper-color)
+}
+
+.its-a-match img {
+    width: 50vw;
+}
+
+.its-a-match h1 {
+    font-size: 2rem;
+    opacity: 0;
+    animation: fadein 2s forwards;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 
+@media screen and (min-width: 800px) {
+    .giphy-embed{
+        width: 480px;
+        height: 189px;
+    }
 
+    .its-a-match img {
+        width: 600px;
+    }
+
+    .its-a-match h1 {
+        font-size: 6vw;
+    }
+}
 
 
