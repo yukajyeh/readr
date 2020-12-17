@@ -55,6 +55,14 @@ export default class Matches extends Component {
                 matches: response.matches
             }, () => this.matchedBookshelfnOwner())
         })
+        .then(response =>{
+            if(this.state.matches.length > 0){
+                this.setState({
+                    nomatch: false
+                })
+            }
+        }
+        )
         .catch(err => {
             console.log('error getting matched-bookshelfId', err)
         })
@@ -62,11 +70,12 @@ export default class Matches extends Component {
 
     displayCrush = (ownerId) => {
         this.setState({
-            nomatch: false,
             redirect: true,
             ownerId: ownerId
         })
     }
+
+
 
     render() {
     

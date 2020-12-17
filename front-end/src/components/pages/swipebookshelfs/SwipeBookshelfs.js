@@ -24,9 +24,6 @@ export default class SwipeBookshelfs extends Component {
     bookService = new BookService()
 
     componentDidMount() {
-        // this.setState({
-        //     loggedInUser: this.props.userInSession
-        // }, () => this.getRandomBookshelf())
         this.getRandomBookshelf()
     }
 
