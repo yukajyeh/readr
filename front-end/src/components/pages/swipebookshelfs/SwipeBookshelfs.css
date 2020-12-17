@@ -1,16 +1,19 @@
 .main-container-swipe{
-    padding-top: 70px;
+    padding-top: 30px;
     background-color: var(--old-pink-color);
-    height:90vh;
+    height:100vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+
 }
 
 .swipe-shelf{
+    display:flex;
+    justify-content: center;
     margin: 5px auto 10px auto ;
-    width:30vw;
+    width:400px;
     padding: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     background-color: white;
@@ -19,7 +22,8 @@
 .buttons{
     display:flex;
     flex-direction:row;
-    margin-top:5px;
+    margin-top:15px;
+    margin-bottom:10px;
 }
 
 .likey-dislikey{
@@ -28,6 +32,16 @@
     border-radius:70px;
     margin: auto 20px;
 }
+
+
+.main-container-swipe h2{
+    font-size:3rem;
+    color:white;
+   padding-bottom:100px;
+   text-align:center;
+   margin:auto 10px;
+}
+
 
 .giphy-embed{
     width: 80vw;
@@ -41,6 +55,7 @@
     justify-content:center;
     align-items:center;
     color: var(--paper-color)
+
 }
 
 .its-a-match img {
@@ -73,5 +88,27 @@
         font-size: 6vw;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .main-container-swipe{
+       overflow:scroll;
+       padding-top:90px;
+    }
+  
+    .swipe-shelf{
+        margin: 20px auto ;
+        width:90vw;
+        padding: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+        background-color: white;
+    }
+
+    .main-container-swipe h2{
+        font-size:3rem;
+        color:white;
+       padding-bottom:200px;
+       text-align:center;
+       margin:auto 10px;
+    }
 
 

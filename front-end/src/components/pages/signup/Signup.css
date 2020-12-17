@@ -50,6 +50,7 @@
 #signup-details {
     color: var(--paper-color);
     margin-bottom: 5px;
+    line-height:1.2rem;
 }
 
 .custom-select select{

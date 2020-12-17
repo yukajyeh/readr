@@ -1,5 +1,5 @@
 .container {
-    width: 90vw;
+    width:400px;
 }
 
 .container h2 {
@@ -71,9 +71,9 @@
     visibility: visible;
   }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 700px) {
     .container {
-        width: 30vw;
+        width:400px;
     }
 
 }
