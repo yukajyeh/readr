@@ -45,16 +45,13 @@ export default class Profile extends Component {
             })
             .catch(err => console.log(err))
         } else {
-            setTimeout(
-                () => this.setState({ loader: false}),
-                200
-            )
+            this.setState({ loader: false})
         }
     }
 
     render() {
 
-        console.log(this.state.loggedInUser)
+        console.log(this.props.userInSession)
 
         if(this.state.loader){
             return <Loader/>
@@ -122,7 +119,7 @@ export default class Profile extends Component {
                             </div>
                         </div>
                         <div className='second-container-profile'>
-                            <BookshelfDisplay bookshelfId={this.state.loggedInUser.bookShelf} />
+                            <BookshelfDisplay bookshelfId={this.props.userInSession.bookShelf} />
                         </div>
                      </div>
                 </div>
