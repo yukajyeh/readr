@@ -110,7 +110,8 @@ export default class StartUpFlow extends Component {
             this.state.selectedBooks.weaponBook,
             this.state.selectedBooks.pleasureBook,
             this.state.selectedBooks.showoffBook,
-            this.state.selectedBooks.nextBook
+            this.state.selectedBooks.nextBook,
+            this.props.userInSession._id
         )
         .then(response => {
             console.log(response)
@@ -145,7 +146,6 @@ export default class StartUpFlow extends Component {
     }}
     
     render() {
-
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
         const bookStep = currentStep-1
