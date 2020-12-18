@@ -18,6 +18,7 @@ export default class Profile extends Component {
         this.state = {
             loggedInUser: '',
             targetOwner:'',
+            userProfile: '',
             redirect: false,
             loader: true
         }
@@ -28,6 +29,7 @@ export default class Profile extends Component {
 
 
     componentDidMount(){
+        console.log('mounted')
         this.setState({
             loggedInUser: this.props.userInSession
         }, () => this.checkOwnerProfile(this.props.location.state && this.props.location.state.id))
@@ -45,7 +47,10 @@ export default class Profile extends Component {
             })
             .catch(err => console.log(err))
         } else {
-            this.setState({ loader: false})
+            this.setState({ 
+                userProfile: this.props.userInSession,
+                loader: false,
+            })
         }
     }
 
@@ -90,7 +95,7 @@ export default class Profile extends Component {
                     </div>
                 </div>     
             )
-        } else{ 
+        } else if(this.state.userProfile){ 
             return (
                 <div>
                      <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser} />
