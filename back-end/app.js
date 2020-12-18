@@ -55,7 +55,7 @@ app.use(
   secret: process.env.SESSION_SECRET,
   resave: false,
       saveUninitialized: true,
-      cookie: { maxAge: 600000 } 
+      cookie: { maxAge: 86400000 } 
 }))
 
 app.use(cors({

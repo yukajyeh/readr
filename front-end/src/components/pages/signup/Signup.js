@@ -61,6 +61,7 @@ export default class Signup extends Component {
             this.state.profileImage
         )
         .then(user => {
+            console.log('user in signup', user)
             this.props.getTheUser(user)
             this.setState({
                 redirect: true

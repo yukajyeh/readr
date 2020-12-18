@@ -18,9 +18,9 @@ router.get('/bookshelf/:id', (req, res) => {
 })
 
 router.post('/pick-my-books', (req , res) => {
-    const { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook, userId } = req.body
-    // const currentUser = req.session.user
-    console.log('userId',userId)
+    const { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook } = req.body
+    const currentUser = req.session.user
+    console.log('current user', currentUser)
 
     const newBookshelfModel = new Bookshelf({
         favBook: favBook, 
@@ -29,13 +29,13 @@ router.post('/pick-my-books', (req , res) => {
         pleasureBook: pleasureBook, 
         showoffBook: showoffBook, 
         nextBook: nextBook,
-        owner: userId
+        owner: currentUser._id
     })
     
     newBookshelfModel.save()
     .then(bookshelf => {
         
-        return User.findByIdAndUpdate( {_id: userId }, { bookShelf: bookshelf._id}, {new: true} )
+        return User.findByIdAndUpdate( {_id: currentUser._id }, { bookShelf: bookshelf._id}, {new: true} )
     })
     .then(response => {
         req.session.user = response

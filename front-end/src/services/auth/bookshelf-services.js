@@ -9,8 +9,8 @@ class BookShelf {
         this.service = service
     }
 
-    createShelf = (favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook, userId) => {
-        return this.service.post('/book/pick-my-books', { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook, userId })
+    createShelf = (favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook) => {
+        return this.service.post('/book/pick-my-books', { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook })
         .then(res => {
             return res.data
         })
