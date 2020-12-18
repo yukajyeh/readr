@@ -15,7 +15,8 @@ export default class Matches extends Component {
         combinedInfo:[],
         ownerId:'',
         redirect: false,
-        loggedInUser: ''
+        loggedInUser: '',
+        nomatch: true
     }
 
     bookService = new BookService()
@@ -54,6 +55,14 @@ export default class Matches extends Component {
                 matches: response.matches
             }, () => this.matchedBookshelfnOwner())
         })
+        .then(response =>{
+            if(this.state.matches.length > 0){
+                this.setState({
+                    nomatch: false
+                })
+            }
+        }
+        )
         .catch(err => {
             console.log('error getting matched-bookshelfId', err)
         })
@@ -66,22 +75,38 @@ export default class Matches extends Component {
         })
     }
 
+
+
     render() {
     
         if(this.state.redirect){
             return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
         }
 
+        if(this.state.nomatch){
+            return(   
+            <div>
+                <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
+                <div className='main-container-swipe'>
+                    <h2>Patience, Come Check Later</h2>
+                </div>
+            </div>
+            )
+        }
+
         const combinedInfo = this.state.combinedInfo
 
         return (
+
             <div className='container-matches'>
                 <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
             
                 <div className='matches'>
                     <div className='bookshelf-display'>
                         {combinedInfo.map((combination,index) => {
+                           console.log(combination)
                             return (
+                                
                                 <div key={index} className='crush-card' onClick = {() => this.displayCrush(combination.owner._id)}>
                                     <div className='owner-info'>
                                         <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>

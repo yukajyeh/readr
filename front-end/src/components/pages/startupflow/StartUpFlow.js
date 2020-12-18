@@ -34,7 +34,7 @@ export default class StartUpFlow extends Component {
         const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API
 
         Axios
-        .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchInput}&printType=books&projection=lite&maxResults=6&key=${apiKey}`)
+        .get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchInput}&printType=books&projection=lite&maxResults=12&key=${apiKey}`)
         .then(response => {
 
             if(response.data.items === undefined){
@@ -163,7 +163,7 @@ export default class StartUpFlow extends Component {
             return(
                 <div className='startup-flow'>
                     <div className='startup-greeting'>
-                        <h1>Hello {this.props.userInSession && this.props.userInSession.profileName}!
+                        <h1>Hello <span>{this.props.userInSession && this.props.userInSession.profileName}</span> !
                         Let's Start Making Your Bookshelf</h1>
                         <h3> <i>Smart is the New Sexy</i> and <i>Sapiosexual</i> , Am I right?</h3>
                         <Button onClick={() => this.stepHandler('next')} type='primary'>Start</Button>
@@ -216,8 +216,8 @@ export default class StartUpFlow extends Component {
                     <div className='bookshelf-confirmation'>
                     <h2>Your Bookshelf!</h2>
                     <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
-                    </div>
                     <Button onClick={() =>this.stepHandler('next')} type='primary'>Meet Your Fellow Nerds</Button>
+                    </div>
                 </div>
             )
         }

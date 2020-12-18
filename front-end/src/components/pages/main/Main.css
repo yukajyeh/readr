@@ -44,11 +44,11 @@
 .main-container h1 {
     font-size: 8vw;
     color: var(--paper-color);
-    line-height: 2.3rem;
+    line-height: 20px;
 }
 
 .about-section {
-    margin: 0 auto;
+    margin: 50px auto;
     width: 70vw; 
     text-align:center;
 }
@@ -81,21 +81,21 @@
 .social-icons-font1 {
     font-family: 'socialico_plusplus';
     font-size: 1.5rem;
-    color: white;
+    color: var(--coral-color);
     margin-right: 25px;
 }
 
 .social-icons-font2 {
     font-family: 'socialicoregular';
     font-size: 1.5rem;
-    color: white;
+    color: var(--coral-color);
     margin-right: 25px;
 }
 
 .mail {
     font-family: 'socialico_plusplus';
     font-size: 2rem;
-    color: white;
+    color: var(--paper-color);
     margin-right: 30px;
 }
 
@@ -137,7 +137,7 @@
 }
 
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 700px) {
     .first-container {
         width: 50vw;
         height: 98vh;
@@ -154,7 +154,7 @@
 
     .main-container h1 {
         font-size: 5vw;
-        line-height: 3.3rem;
+        line-height: 40px;
     }
 
     .main-container {
