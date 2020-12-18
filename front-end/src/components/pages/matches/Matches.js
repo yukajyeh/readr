@@ -16,7 +16,6 @@ export default class Matches extends Component {
         ownerId:'',
         redirect: false,
         loggedInUser: '',
-        nomatch: true
     }
 
     bookService = new BookService()
@@ -54,13 +53,6 @@ export default class Matches extends Component {
             this.setState({
                 matches: response.matches
             }, () => this.matchedBookshelfnOwner())
-        })
-        .then(response =>{
-            if(this.state.matches.length > 0){
-                this.setState({
-                    nomatch: false
-                })
-            }
         })
         .catch(err => {
             console.log('error getting matched-bookshelfId', err)

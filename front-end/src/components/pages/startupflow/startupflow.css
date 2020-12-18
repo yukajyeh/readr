@@ -56,6 +56,7 @@ progress[value]::-webkit-progress-value {
 
 .search-container span {
     color: var(--coral-color);
+    text-transform: capitalize;
 }
 
 .search-container h3 {

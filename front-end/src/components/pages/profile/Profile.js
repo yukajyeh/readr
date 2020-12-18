@@ -32,7 +32,7 @@ export default class Profile extends Component {
             loggedInUser: this.props.userInSession
         }, () => this.checkOwnerProfile(this.props.location.state && this.props.location.state.id))
     }
-    
+
 
     checkOwnerProfile = (targetsId) => {
         if(targetsId){
@@ -45,14 +45,16 @@ export default class Profile extends Component {
             })
             .catch(err => console.log(err))
         } else {
-            this.setState({
-                loader: false,
-                targetOwner: ''
-            })
+            setTimeout(
+                () => this.setState({ loader: false}),
+                200
+            )
         }
     }
 
     render() {
+
+        console.log(this.state.loggedInUser)
 
         if(this.state.loader){
             return <Loader/>
@@ -85,13 +87,13 @@ export default class Profile extends Component {
                         
                         <div className='second-container-profile'>
                             <div className='bookshelf'>
-                                <BookshelfDisplay bookshelfId={this.state.targetOwner.bookShelf} />
+                                {this.state.loggedInUser && <BookshelfDisplay bookshelfId={this.state.targetOwner.bookShelf} />}
                             </div>
                         </div>
                     </div>
                 </div>     
             )
-        } else { 
+        } else{ 
             return (
                 <div>
                      <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser} />

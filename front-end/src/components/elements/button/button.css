@@ -54,8 +54,44 @@
     cursor: not-allowed;
     background-color: gray;
     border-color: gray;
+    color: white;
 }
 
+.btn--primary-white {
+    color: white;
+    border-color: var(--coral-color);
+    background-color: var(--coral-color);
+}
+
+.btn--primary-white:hover {
+    background-color: transparent;
+    border-color: var(--coral-color);
+    color: var(--coral-color);
+}
+
+.btn--secondary-white:hover {
+    color: white;
+    border-color: var(--coral-color);
+    background-color: var(--coral-color);
+}
+
+.btn--secondary-white {
+    background-color: transparent;
+    border-color: var(--coral-color);
+    color: var(--coral-color);
+}
+
+.btn--default-white {
+    color: white;
+    border-color: var(--dark-blue-color);
+    background-color: var(--dark-blue-color);
+}
+
+.btn--default-white:hover {
+    background-color: transparent;
+    border-color: var(--dark-blue-color);
+    color: var(--dark-blue-color);
+}
 
 @media screen and (min-width: 800px) {
 

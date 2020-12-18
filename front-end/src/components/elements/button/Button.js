@@ -6,7 +6,10 @@ const Button = ({ children, type = 'default', onClick, disabled = false}) => {
     const classTypes = {
         primary: 'primary',
         secondary: 'secondary',
-        default: 'default'
+        default: 'default',
+        primaryWhite: 'primary-white',
+        secondaryWhite: 'secondary-white',
+        defaultWhite: 'default-white',
     }
 
     const classnames = `btn btn--${classTypes[type]}`;

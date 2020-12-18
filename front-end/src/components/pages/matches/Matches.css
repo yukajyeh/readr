@@ -21,13 +21,6 @@
     flex-wrap: wrap;
 }
 
-/* .bookshelf-display hr{
-    background-color: var(--coral-color);
-    height: 1px;
-    border: none;
-    margin: 0 30px 20px 30px;
-} */
-
 .owner-info {
     background-color: rgb(240, 213, 192, 0.4);
     display: flex;

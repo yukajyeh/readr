@@ -162,7 +162,7 @@ export default class StartUpFlow extends Component {
                         <h1>Hello <span>{this.props.userInSession && this.props.userInSession.profileName}</span> ! <br></br>
                         Let's Start Making Your Bookshelf</h1>
                         <h3> <i>Smart is the New Sexy</i> and <i>Sapiosexual</i>, Am I right?</h3>
-                        <Button onClick={() => this.stepHandler('next')} type='primary'>Start</Button>
+                        <Button onClick={() => this.stepHandler('next')} type='primaryWhite'>Start</Button>
                     </div>
                 </div>
             )
@@ -199,9 +199,9 @@ export default class StartUpFlow extends Component {
                         </div>
                         <span>{this.state.errorMessage}</span> 
                         <div className='step-buttons'>
-                            {currentStep > 0 && <Button type="secondary" onClick={this.stepHandler}>Previous</Button>}
-                            {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
-                            {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
+                            {currentStep > 0 && <Button type="secondaryWhite" onClick={this.stepHandler}>Previous</Button>}
+                            {currentStep < 6 && <Button type="defaultWhite" onClick={() => this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
+                            {currentStep === 6 && <Button type="defaultWhite" onClick={this.saveBooks}>Confirm</Button>}
                         </div>
                     </div>
                 </div>
