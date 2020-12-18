@@ -4,7 +4,7 @@ const User = require('../models/User')
 const profileImgUpload = require('../configs/cloudinary-setup')
 
 
-/* getting user info */
+/* getting user info by id user */
 router.get('/user-info/:id', (req, res) => {
     User.findById({_id: req.params.id})
     .then(response => {
@@ -16,7 +16,7 @@ router.get('/user-info/:id', (req, res) => {
     }) 
 })
 
-/* get user info by bookshelf*/
+/* get user info by id bookshelf*/
 router.get('/owner/:id', (req, res) => {
 
     User.findOne({ bookShelf: req.params.id })

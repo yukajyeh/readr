@@ -16,7 +16,6 @@ export default class Matches extends Component {
         ownerId:'',
         redirect: false,
         loggedInUser: '',
-        nomatch: true
     }
 
     bookService = new BookService()
@@ -24,7 +23,7 @@ export default class Matches extends Component {
 
     componentDidMount() {
         this.setState({
-            loggedInUser: this.props.userInSession
+            loggedInUser: this.props.userInSession,
         }, () => this.getMatches())
     }
 
@@ -62,11 +61,12 @@ export default class Matches extends Component {
 
     displayCrush = (ownerId) => {
         this.setState({
-            nomatch: false,
             redirect: true,
             ownerId: ownerId
         })
     }
+
+
 
     render() {
     
@@ -74,14 +74,14 @@ export default class Matches extends Component {
             return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
         }
 
-        if(this.state.nomatch){
+        if(this.props.userInSession.matches.length < 1 ){
             return(   
-            <div>
-                <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
-                <div className='main-container-swipe'>
-                    <h2>Patience, Come Check Later</h2>
+                <div className='container-matches'>
+                    <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
+                    <div className='main-container-swipe'>
+                        <h2>Patience, Come Check Later</h2>
+                    </div>
                 </div>
-            </div>
             )
         }
 
@@ -95,18 +95,16 @@ export default class Matches extends Component {
                 <div className='matches'>
                     <div className='bookshelf-display'>
                         {combinedInfo.map((combination,index) => {
-                           console.log(combination)
                             return (
-                                
                                 <div key={index} className='crush-card' onClick = {() => this.displayCrush(combination.owner._id)}>
                                     <div className='owner-info'>
                                         <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>
                                         <div>
-                                            <p>Bookshelf</p>
+                                            <h5>Bookshelf</h5>
                                             <h2>{combination.owner.profileName}</h2>
                                         </div>
                                     </div>
-                                    <hr></hr>
+                                    {/* <hr></hr> */}
                                     <Bookshelf bookshelfId={combination._id}/>
                                 </div>
                             )

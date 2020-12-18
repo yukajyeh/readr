@@ -40,6 +40,7 @@ class App extends React.Component {
   }
 
   getTheUser = (user) => {
+    console.log('user in app.js', user)
     this.setState({
       loggedInUser: user,
     });

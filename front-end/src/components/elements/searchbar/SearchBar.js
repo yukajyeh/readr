@@ -3,12 +3,12 @@ import './SearchBar.css'
 
 const SearchBar = ({ searchQuery, updateSearchQuery }) => {
     return (
-        <form>
+        <form className='search-form'>
             <input 
                 type="search" 
                 className="input-search-bar" 
                 name="search" 
-                placeholder="Search" 
+                placeholder="Search by book title..." 
                 value={searchQuery}
                 onChange={(e) => updateSearchQuery(e.target.value)}
                 />

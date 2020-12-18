@@ -63,7 +63,6 @@ export default class Login extends Component {
                         <Button>Log in</Button>
                     </form> 
                 </div>
-                    
                     <p>No account yet? <Link className='link-signup' to="/signup">Sign up</Link></p>
                 </div>
             </div>

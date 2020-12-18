@@ -24,9 +24,6 @@ export default class SwipeBookshelfs extends Component {
     bookService = new BookService()
 
     componentDidMount() {
-        // this.setState({
-        //     loggedInUser: this.props.userInSession
-        // }, () => this.getRandomBookshelf())
         this.getRandomBookshelf()
     }
 
@@ -94,15 +91,10 @@ export default class SwipeBookshelfs extends Component {
 
         if(this.state.newMatch){
             return(
-                <div className='its-a-match'>
-                    {/* <Navbar userInSession={this.props.userInSession} getTheUser={this.props.getTheUser}/> */}
-                 
+                <div className='its-a-match'>                 
                         <img src={MatchGif} alt='match gif' />
                         <h1>It's A Match</h1>
-                        {/* <iframe title='its-a-match' src="https://giphy.com/embed/Y1H70bwuxBtC1hyp77"  frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/KerastaseDE-hair-care-krastase-Y1H70bwuxBtC1hyp77"></a></p> */}
-                        {/* <iframe src="https://giphy.com/embed/h4UhLAk2c0wiLT4D12" width="480" height="280" frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/tinder-its-a-match-camp-h4UhLAk2c0wiLT4D12"> </a></p> */}
                         {this.timerMatchScreen()}
-                   
                 </div>
             )
         }
@@ -127,10 +119,10 @@ export default class SwipeBookshelfs extends Component {
                     </div>
                     <div className='buttons'>
                         <div className='likey-dislikey'>
-                        <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
+                            <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
                         </div>
                         <div className='likey-dislikey'>
-                        <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
+                            <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
                         </div>
                     </div>
                 </div>

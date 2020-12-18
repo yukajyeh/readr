@@ -10,13 +10,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items:center;
+    text-align:center;
 }
 
 .first-container-profile {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 100vw;
     height: 100%;
     background-color: var(--paper-color);
@@ -32,6 +34,31 @@
     margin: 100px 0 20px 0;
 }
 
+.first-container-profile p {
+    font-size:1rem;
+    font-weight:500;
+}
+
+.first-container-profile span {
+    font-size:1rem;
+    font-weight:500;
+    color: var(--coral-color);
+}
+
+.first-container-profile table {
+    text-align: start;
+    margin: 0 20px;
+}
+
+.first-container-profile td{
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.profile-button{
+     margin: 70px auto;
+ }
+
 .second-container-profile{
     display: flex;
     flex-direction: column;
@@ -45,6 +72,9 @@
 
 
 @media screen and (min-width: 800px) {
+    .profile-button{
+        padding:10px auto;
+    }
 
     .first-container-profile {
         width: 50vw;
@@ -56,21 +86,20 @@
 
     .second-container-profile {
         width: 50vw;
-        height: 98vh;
+        height: 100vh;
         align-items: center;
-        justify-content: flex-start
+        justify-content: center;
     }
+
+
 
     .main-container-profile {
         flex-direction: row;
     }
 
     .first-container-profile img {
-        margin: 150px 15px 0 15px;
+        margin: 125px 15px 20px 15px;
     }
 
-    .second-container-profile {
-        margin-top: 80px;
-    }
 
 }

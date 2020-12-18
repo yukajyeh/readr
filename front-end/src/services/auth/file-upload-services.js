@@ -14,7 +14,6 @@ class FileUpload {
     }
    
   handleUpload (theFile) {
-      console.log(theFile)
     return this.service.post('/api/upload', theFile)
         .then(res => res.data)
         .catch(this.errorHandler); 
