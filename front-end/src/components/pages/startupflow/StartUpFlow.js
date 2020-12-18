@@ -161,7 +161,7 @@ export default class StartUpFlow extends Component {
                     <div className='search-container'>
                         <h1>Hello <span>{this.props.userInSession && this.props.userInSession.profileName}</span> ! <br></br>
                         Let's Start Making Your Bookshelf</h1>
-                        <h3> <i>Smart is the New Sexy</i> and <i>Sapiosexual</i> , Am I right?</h3>
+                        <h3> <i>Smart is the New Sexy</i> and <i>Sapiosexual</i>, Am I right?</h3>
                         <Button onClick={() => this.stepHandler('next')} type='primary'>Start</Button>
                     </div>
                 </div>
@@ -173,6 +173,8 @@ export default class StartUpFlow extends Component {
                 <div className='startup-flow'>
 
                      <div className='search-container'>
+                        <h5>Step {currentStep}</h5>
+                        <progress id="file" value={currentStep} max="7"> </progress>
                         <div className='search-title'>
                             {this.displayTitle()}
                             {/* <p> Search by book title</p> */}
@@ -207,14 +209,12 @@ export default class StartUpFlow extends Component {
 
         if(currentStep === 7){
             return(
-                <div className='startup-flow'>
-                    <div className='container-bookshelf'>
-                        <div className='bookshelf-confirmation'>
+                <div className='startup-flow-end'>
                             <h1>Your Bookshelf!</h1>
-                            <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
+                            <div className='bookshelf-card'>
+                                <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
+                            </div>
                             <Button onClick={() =>this.stepHandler('next')} type='primary'>Meet Your Fellow Nerds</Button>
-                        </div>
-                    </div>
                 </div>
             )
         }

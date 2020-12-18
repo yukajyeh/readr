@@ -1,5 +1,6 @@
 .container-matches {
-    background-color:  rgb(240, 213, 192, 0.4);
+    background-color:  var(--old-pink-color);
+    height: 100vh;;
 }
 
 .matches {
@@ -8,7 +9,6 @@
 
 .crush-card{
     margin: 10px 5px;
-    padding: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     background-color: white;
 }
@@ -21,15 +21,15 @@
     flex-wrap: wrap;
 }
 
-.bookshelf-display hr{
+/* .bookshelf-display hr{
     background-color: var(--coral-color);
     height: 1px;
     border: none;
     margin: 0 30px 20px 30px;
-}
+} */
 
 .owner-info {
-    /* background-color: var(--dark-blue-color); */
+    background-color: rgb(240, 213, 192, 0.4);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -38,13 +38,14 @@
 }
 
 .owner-info h2 {
-    color: var(--coral-color);
+    color:var(--coral-color);
     margin: 0;
     text-transform: capitalize;
 }
 
-.owner-info p {
-    margin: 0;
+.owner-info h5 {
+    margin: 5px 0;
+    color: var(--light-blue-color)
 }
 
 .owner-info img {
@@ -53,7 +54,7 @@
     object-fit: cover;
     width: 75px;
     height: 75px;
-    margin: 20px;
+    margin: 10px 25px 10px 0;
     position: left;
 }
 

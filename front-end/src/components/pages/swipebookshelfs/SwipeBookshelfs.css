@@ -21,14 +21,19 @@
 .buttons{
     display:flex;
     flex-direction:row;
+    align-items: center;
     margin-top:15px;
     margin-bottom:10px;
 }
 
 .likey-dislikey{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: white;
-    padding: 15px;
-    border-radius:70px;
+    width: 60px;
+    height: 60px;
+    border-radius: 90px;
     margin: auto 20px;
 }
 

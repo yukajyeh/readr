@@ -84,7 +84,7 @@ export default class Matches extends Component {
 
         if(this.state.nomatch){
             return(   
-                <div>
+                <div className='container-matches'>
                     <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                     <div className='main-container-swipe'>
                         <h2>Patience, Come Check Later</h2>
@@ -108,11 +108,11 @@ export default class Matches extends Component {
                                     <div className='owner-info'>
                                         <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>
                                         <div>
-                                            <p>Bookshelf</p>
+                                            <h5>Bookshelf</h5>
                                             <h2>{combination.owner.profileName}</h2>
                                         </div>
                                     </div>
-                                    <hr></hr>
+                                    {/* <hr></hr> */}
                                     <Bookshelf bookshelfId={combination._id}/>
                                 </div>
                             )
