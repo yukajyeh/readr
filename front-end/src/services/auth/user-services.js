@@ -19,7 +19,6 @@ class UserService {
     }
 
     showUser = (bookshelfId) => {
-        //console.log('bookshelfID in services', bookshelfId)
         return this.service.get('/user/owner/'+ bookshelfId)
         .then(res => {
             return res.data

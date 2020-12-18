@@ -61,8 +61,7 @@ export default class Matches extends Component {
                     nomatch: false
                 })
             }
-        }
-        )
+        })
         .catch(err => {
             console.log('error getting matched-bookshelfId', err)
         })
@@ -85,12 +84,12 @@ export default class Matches extends Component {
 
         if(this.state.nomatch){
             return(   
-            <div>
-                <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
-                <div className='main-container-swipe'>
-                    <h2>Patience, Come Check Later</h2>
+                <div>
+                    <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
+                    <div className='main-container-swipe'>
+                        <h2>Patience, Come Check Later</h2>
+                    </div>
                 </div>
-            </div>
             )
         }
 
@@ -104,9 +103,7 @@ export default class Matches extends Component {
                 <div className='matches'>
                     <div className='bookshelf-display'>
                         {combinedInfo.map((combination,index) => {
-                           console.log(combination)
                             return (
-                                
                                 <div key={index} className='crush-card' onClick = {() => this.displayCrush(combination.owner._id)}>
                                     <div className='owner-info'>
                                         <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>

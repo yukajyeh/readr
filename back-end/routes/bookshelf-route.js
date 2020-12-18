@@ -3,10 +3,8 @@ const router  = express.Router()
 const Bookshelf = require('../models/Bookshelf-model')
 const User = require('../models/User')
 
-
+/* Find bookshelf by id */
 router.get('/bookshelf/:id', (req, res) => {
-    console.log(req.params.id)
-
     Bookshelf.findById({_id: req.params.id})
     .then(response => {
         res.status(200).json(response)
@@ -17,10 +15,10 @@ router.get('/bookshelf/:id', (req, res) => {
     }) 
 })
 
+/* Create bookshelf */
 router.post('/pick-my-books', (req , res) => {
     const { favBook, childBook, weaponBook, pleasureBook, showoffBook, nextBook } = req.body
     const currentUser = req.session.user
-    console.log('current user', currentUser)
 
     const newBookshelfModel = new Bookshelf({
         favBook: favBook, 
@@ -44,7 +42,7 @@ router.post('/pick-my-books', (req , res) => {
     .catch((err)=>console.log('error',err))
 })
 
-//display a random bookshelf on swipe page
+/* Fetch a random bookshelf form database */
 router.get('/random-bookshelf', (req, res) => {
     const currentUser = req.session.user
 
@@ -65,7 +63,7 @@ router.get('/random-bookshelf', (req, res) => {
 })
 
 
-//update swipe likes
+/* Update likes */
 router.post('/update-likes', (req, res) => {
     const { liked } = req.body
     const currentUser = req.session.user
@@ -102,6 +100,7 @@ router.post('/update-likes', (req, res) => {
     }) 
 })
 
+/* Update Dislikes */
 router.post('/update-dislikes', (req, res) => {
     const { disliked } = req.body
     const currentUser = req.session.user
@@ -117,7 +116,7 @@ router.post('/update-dislikes', (req, res) => {
     }) 
 })
 
-//display matched bookshelf
+/* Fetch matches */
 router.get('/matches', (req, res) => {
     const currentUser = req.session.user
 
@@ -131,6 +130,7 @@ router.get('/matches', (req, res) => {
     }) 
 })
 
+/* Fetch matched bookshelf's data (bookshelf and owner) */
 router.get('/info/:id', (req, res) => {
     Bookshelf.findById({_id: req.params.id}).populate('owner')
     .then(response => {

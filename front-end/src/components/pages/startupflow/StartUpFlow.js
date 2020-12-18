@@ -111,10 +111,8 @@ export default class StartUpFlow extends Component {
             this.state.selectedBooks.pleasureBook,
             this.state.selectedBooks.showoffBook,
             this.state.selectedBooks.nextBook,
-            // this.props.userInSession._id
         )
         .then(response => {
-            console.log(response)
             this.setState({
                 bookshelfId: response.bookShelf,
                 currentStep: this.state.currentStep+1,
@@ -146,8 +144,6 @@ export default class StartUpFlow extends Component {
     }}
     
     render() {
-        console.log(this.props.userInSession)
-
         const selectedBooksArr = Object.keys(this.state.selectedBooks)
         const currentStep = this.state.currentStep
         const bookStep = currentStep-1
@@ -159,8 +155,6 @@ export default class StartUpFlow extends Component {
             return <Redirect to='/find-my-match'/>
         }
 
-        
-    
         if (currentStep === 0){
             return(
                 <div className='startup-flow'>

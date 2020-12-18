@@ -19,7 +19,7 @@ export default class Profile extends Component {
             loggedInUser: '',
             targetOwner:'',
             redirect: false,
-            loader:true
+            loader: true
         }
     }
 
@@ -45,18 +45,16 @@ export default class Profile extends Component {
             .catch(err => console.log(err))
         } else {
             this.setState({
-                loader:false
+                loader: false
             })
         }
     }
 
- 
     render() {
 
         if(this.state.loader){
             return <Loader/>
         }   
- 
         
         if(this.state.targetOwner){
             return (
@@ -77,9 +75,7 @@ export default class Profile extends Component {
                 </div>     
             )
         } else { 
-
             return (
-                 
                 <div>
                      <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser} />
                      <div className='main-container-profile'>
