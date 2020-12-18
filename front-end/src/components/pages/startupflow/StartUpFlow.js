@@ -158,8 +158,8 @@ export default class StartUpFlow extends Component {
         if (currentStep === 0){
             return(
                 <div className='startup-flow'>
-                    <div className='startup-greeting'>
-                        <h1>Hello <span>{this.props.userInSession && this.props.userInSession.profileName}</span> !
+                    <div className='search-container'>
+                        <h1>Hello <span>{this.props.userInSession && this.props.userInSession.profileName}</span> ! <br></br>
                         Let's Start Making Your Bookshelf</h1>
                         <h3> <i>Smart is the New Sexy</i> and <i>Sapiosexual</i> , Am I right?</h3>
                         <Button onClick={() => this.stepHandler('next')} type='primary'>Start</Button>
@@ -175,7 +175,7 @@ export default class StartUpFlow extends Component {
                      <div className='search-container'>
                         <div className='search-title'>
                             {this.displayTitle()}
-                            <p> Search by book title</p>
+                            {/* <p> Search by book title</p> */}
                             <SearchBar
                                 searchQuery={this.state.searchQuery}
                                 updateSearchQuery={this.searchHandler}
@@ -195,13 +195,13 @@ export default class StartUpFlow extends Component {
                                 })}
                             </form>
                         </div>
-                            <span>{this.state.errorMessage}</span> 
-                            <div className='step-buttons'>
-                                {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
-                                {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
-                                {/* {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} >Next</Button>} */}
-                                {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
-                            </div>
+                        <span>{this.state.errorMessage}</span> 
+                        <div className='step-buttons'>
+                            {currentStep > 0 && <Button type="secondary" onClick={this.stepHandler}>Previous</Button>}
+                            {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
+                            {/* {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} >Next</Button>} */}
+                            {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
+                        </div>
                     </div>
                 </div>
         )} 
