@@ -8,7 +8,11 @@
     color: var(--dark-blue-color);
 }
 
+.search-form input {
+    color: var(--dark-blue-color) !important;
+}
+
 ::placeholder { 
     color: var(--dark-blue-color);
     opacity: 1; 
-  }
+}
