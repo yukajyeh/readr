@@ -24,7 +24,7 @@ export default class Matches extends Component {
 
     componentDidMount() {
         this.setState({
-            loggedInUser: this.props.userInSession
+            loggedInUser: this.props.userInSession,
         }, () => this.getMatches())
     }
 
@@ -82,7 +82,7 @@ export default class Matches extends Component {
             return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
         }
 
-        if(this.state.nomatch){
+        if(this.props.userInSession.matches.length < 1 ){
             return(   
                 <div className='container-matches'>
                     <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
