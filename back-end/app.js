@@ -5,16 +5,12 @@ const cookieParser = require('cookie-parser');
 const express      = require('express');
 const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
-//const mongoose     = require('mongoose');
+const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-//const session      = require('express-session');
-//const Mongostore   = require('connect-mongo')(session);
+const session      = require('express-session');
+const Mongostore   = require('connect-mongo')(session);
 const cors         = require('cors')
-
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
-const mongoose = require("mongoose");
 
 
 
@@ -61,23 +57,8 @@ app.use(require('node-sass-middleware')({
   resave: false,
       saveUninitialized: true,
       cookie: { maxAge: 600000 } 
-})) */
-
-module.exports = (app) => {
-  app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: true,
-      cookie: { maxAge: 86400000, sameSite: "strict", secure: true },
-      store: new MongoStore({
-        mongooseConnection: mongoose.connection,
-        ttl: 60 * 60 * 24,
-      }),
-    })
-  );
-};
-
+})) 
+ */
 
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
