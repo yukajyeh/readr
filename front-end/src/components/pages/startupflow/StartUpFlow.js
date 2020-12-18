@@ -128,17 +128,17 @@ export default class StartUpFlow extends Component {
     displayTitle = () => {
         switch (this.state.currentStep) {
             case 1: 
-                return <h2>What Is Your All Time Favorite Book?</h2>
+                return <h1>What Is Your All Time Favorite Book?</h1>
             case 2:
-                return <h2>What Is Your Childhood Favorite Book?</h2>
+                return <h1>What Is Your Childhood Favorite Book?</h1>
             case 3:
-                return <h2>What Book Would You Use As Your Go-To Weapon? </h2>
+                return <h1>What Book Would You Use As Your Go-To Weapon? </h1>
             case 4:
-                return <h2>Which Book Is Your Guilty Pleasure Book?</h2>  
+                return <h1>Which Book Is Your Guilty Pleasure Book?</h1>  
             case 5:
-                return <h2>Which Book Do You Name Drop To Be Cool?</h2> 
+                return <h1>Which Book Do You Name Drop To Be Cool?</h1> 
             case 6:
-                return <h2>What Is Your Next Read?</h2>
+                return <h1>What Is Your Next Read?</h1>
             default:
             return 
     }}
@@ -158,11 +158,11 @@ export default class StartUpFlow extends Component {
         if (currentStep === 0){
             return(
                 <div className='startup-flow'>
-                    <div className='startup-greeting'>
-                        <h1>Hello <span>{this.props.userInSession && this.props.userInSession.profileName}</span> !
+                    <div className='search-container'>
+                        <h1>Hello <span>{this.props.userInSession && this.props.userInSession.profileName}</span> ! <br></br>
                         Let's Start Making Your Bookshelf</h1>
-                        <h3> <i>Smart is the New Sexy</i> and <i>Sapiosexual</i> , Am I right?</h3>
-                        <Button onClick={() => this.stepHandler('next')} type='primary'>Start</Button>
+                        <h3> <i>Smart is the New Sexy</i> and <i>Sapiosexual</i>, Am I right?</h3>
+                        <Button onClick={() => this.stepHandler('next')} type='primaryWhite'>Start</Button>
                     </div>
                 </div>
             )
@@ -173,9 +173,11 @@ export default class StartUpFlow extends Component {
                 <div className='startup-flow'>
 
                      <div className='search-container'>
+                        <h5>Step {currentStep}</h5>
+                        <progress id="file" value={currentStep} max="7"> </progress>
                         <div className='search-title'>
                             {this.displayTitle()}
-                            <p> Search by book title</p>
+                            {/* <p> Search by book title</p> */}
                             <SearchBar
                                 searchQuery={this.state.searchQuery}
                                 updateSearchQuery={this.searchHandler}
@@ -186,8 +188,8 @@ export default class StartUpFlow extends Component {
                                 {this.state.searchResults.map((book, index) => {
                                     return (
                                         <div className='search-result' key={index}>
-                                                    <h3>{book.volumeInfo.title}</h3> 
-                                                    <h4><i>{book.volumeInfo.authors}</i></h4> 
+                                                    <h3 className='book-title'>{book.volumeInfo.title}</h3> 
+                                                    <p><i>{book.volumeInfo.authors}</i></p> 
                                                     {book.volumeInfo.imageLinks ? <img src={book.volumeInfo.imageLinks.thumbnail} alt='book cover' /> : <img src={DefaultBookCover} alt='default bookcover'/>}
                                                     <input type='radio' value={book.id} name={currentBookStep} onChange={(e) => this.onChangeHandler(e, book)} />
                                         </div>
@@ -195,25 +197,24 @@ export default class StartUpFlow extends Component {
                                 })}
                             </form>
                         </div>
-                            <span>{this.state.errorMessage}</span> 
-                            <div className='step-buttons'>
-                                {currentStep > 0 && <Button type="primary" onClick={this.stepHandler}>Previous</Button>}
-                                {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
-                                {/* {currentStep < 6 && <Button onClick={() => this.stepHandler('next')} >Next</Button>} */}
-                                {currentStep === 6 && <Button onClick={this.saveBooks}>Confirm</Button>}
-                            </div>
+                        <span>{this.state.errorMessage}</span> 
+                        <div className='step-buttons'>
+                            {currentStep > 0 && <Button type="secondaryWhite" onClick={this.stepHandler}>Previous</Button>}
+                            {currentStep < 6 && <Button type="defaultWhite" onClick={() => this.stepHandler('next')} disabled={proceedNextStep}>Next</Button>}
+                            {currentStep === 6 && <Button type="defaultWhite" onClick={this.saveBooks}>Confirm</Button>}
+                        </div>
                     </div>
                 </div>
         )} 
 
         if(currentStep === 7){
             return(
-                <div className='startup-flow'>
-                    <div className='bookshelf-confirmation'>
-                    <h2>Your Bookshelf!</h2>
-                    <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
-                    <Button onClick={() =>this.stepHandler('next')} type='primary'>Meet Your Fellow Nerds</Button>
-                    </div>
+                <div className='startup-flow-end'>
+                            <h1>Your Bookshelf!</h1>
+                            <div className='bookshelf-card'>
+                                <BookshelfDisplay bookshelfId={this.state.bookshelfId} /> 
+                            </div>
+                            <Button onClick={() =>this.stepHandler('next')} type='primary'>Meet Your Fellow Nerds</Button>
                 </div>
             )
         }

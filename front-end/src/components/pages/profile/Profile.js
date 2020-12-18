@@ -33,6 +33,7 @@ export default class Profile extends Component {
         }, () => this.checkOwnerProfile(this.props.location.state && this.props.location.state.id))
     }
 
+
     checkOwnerProfile = (targetsId) => {
         if(targetsId){
             this.userService.grabOwner(targetsId)
@@ -44,13 +45,16 @@ export default class Profile extends Component {
             })
             .catch(err => console.log(err))
         } else {
-            this.setState({
-                loader: false
-            })
+            setTimeout(
+                () => this.setState({ loader: false}),
+                200
+            )
         }
     }
 
     render() {
+
+        console.log(this.state.loggedInUser)
 
         if(this.state.loader){
             return <Loader/>
@@ -63,27 +67,55 @@ export default class Profile extends Component {
                     <div className='main-container-profile'>
                          <div className='first-container-profile'>
                             <img src={!this.state.targetOwner.profileImage ? DefaultAvatar : this.state.targetOwner.profileImage} alt='crush'></img>
-                            <p>Profile Name: {this.state.targetOwner.profileName}</p>
-                            <p>Match Preference: {this.state.targetOwner.matchPreference}</p>
-                            <p>Prefered Contact Method: {this.state.targetOwner.contactInfo}</p>
+                            <table>
+                                <tbody>       
+                                <tr>
+                                    <td><p>Profile Name:</p></td>
+                                    <td><span>{this.state.loggedInUser.profileName}</span></td>
+                                </tr>    
+                                <tr>
+                                    <td><p>Match Preference:</p></td>
+                                    <td><span>{this.state.loggedInUser.profileName}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Prefered Contact Method:</p></td>
+                                    <td><span>{this.state.loggedInUser.contactInfo}</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                         
                         <div className='second-container-profile'>
-                            <BookshelfDisplay bookshelfId={this.state.targetOwner.bookShelf} />
+                            <div className='bookshelf'>
+                                {this.state.loggedInUser && <BookshelfDisplay bookshelfId={this.state.targetOwner.bookShelf} />}
+                            </div>
                         </div>
                     </div>
                 </div>     
             )
-        } else { 
+        } else{ 
             return (
                 <div>
                      <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser} />
                      <div className='main-container-profile'>
                         <div className='first-container-profile'>
                             <img src={!this.state.loggedInUser.profileImage ? DefaultAvatar : this.state.loggedInUser.profileImage} alt='crush'></img>
-                            <p>Profile Name: <span>{this.state.loggedInUser.profileName}</span> </p>
-                            <p>Match Preference: <span> {this.state.loggedInUser.matchPreference}</span> </p>
-                            <p>Prefered Contact Method: <span>{this.state.loggedInUser.contactInfo}</span> </p>
+                            <table>
+                                <tbody>       
+                                <tr>
+                                    <td><p>Profile Name:</p></td>
+                                    <td><span>{this.state.loggedInUser.profileName}</span></td>
+                                </tr>    
+                                <tr>
+                                    <td><p>Match Preference:</p></td>
+                                    <td><span>{this.state.loggedInUser.profileName}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Prefered Contact Method:</p></td>
+                                    <td><span>{this.state.loggedInUser.contactInfo}</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
                             <div className='profile-button'>
                                 <Button>Edit Profile</Button>
                                 <Button type='secondary'>Delete Profile</Button>

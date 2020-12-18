@@ -1,78 +1,176 @@
-
-
-.startup-greeting span{
-    color:var(--coral-color);
-}
-
 .startup-flow {
     display:flex;
     flex-direction:column;
-    justify-content: space-between;
+    justify-content: center;
     align-items:center;
-    background-color: var(--dark-blue-color);
-    color: var(--paper-color);
-    padding-top:15px;
+    background-image: url('../../../assets/background-img-home_skew.jpg');
     height: 100vh;
     width:100vw;
     text-align:center;
-    overflow:auto;
 }
 
 .search-container{
     display:flex;
     flex-direction:column;
-    margin-top:10px;
-    margin-right: auto;
-    margin-left: auto;
-    background-color: var(--paper-color);
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    border: 0px solid;
+    border-radius: 20px;
     color:var(--dark-blue-color);
-    width:80vw;
-    height:95vh;
-    overflow:auto;
+    width: 80vw;
+    height: 80vh;
+}
+
+progress {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 0.2px solid var(--light-blue-color);
+    width: 80px;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: transparent;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px white inset;
+  }
+
+progress[value]::-webkit-progress-value {
+      border-radius: 20px; 
+      background-size: 35px 20px, 100% 100%, 100% 100%;
+      background-color: var(--light-blue-color);
+  }
+
+.search-container h5 {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    color: var(--light-blue-color)
+}
+
+.search-container h1 {
+    padding: 0 20px;
+}
+
+.search-container span {
+    color: var(--coral-color);
+    text-transform: capitalize;
+}
+
+.search-container h3 {
+    color: var(--light-blue-color);
+    margin-bottom: 10vh;
 }
 
 .search-title{
-    text-align:center;
-    margin-top:10px;
-    margin-bottom:5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: var(--coral-color)
 }
 
 .input-container {
-	margin: auto
+    overflow-x: scroll;
+    padding: 5px 0;
+    margin: 20px 0;
 }
 
+/* scroll bar */
+::-webkit-scrollbar {
+    width: 3px;
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 20px;
+  }
+  
 .input-container form{
     display:flex;
     flex-direction:row;
     flex-flow: row wrap;
     text-align:center;
     width:70vw;
+    height: 60vh;
 }
 
 .search-result{
-    width:33%;
+    width: 250px;
     display:flex;
     flex-direction:column;
     align-items:center;
-    margin:5px auto;
+    justify-content: space-between;
+    margin: 0 auto 20px auto;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
 }
 
-.search-result h3, h4{
-    margin: 2px auto;
+.book-title {
+    display: -webkit-box !important;
+    max-width: 200px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: scroll;
+    margin: 0;
+    padding: 0; 
+}
+
+.search-result h3 {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+.search-result p {
+    margin: 0;
 }
 
 .search-result img{
-    width:8vw;
+    width: 8vw;
+    margin: 15px 0 10px 0;
 }
 
-.bookshelf-confirmation{
-    display: flex;
+.step-buttons {
+    margin-bottom: 15px;
+}
+
+.startup-flow-end {
+    display:flex;
     flex-direction:column;
     justify-content: center;
-    align-items: center;
-    margin: 10px auto;
-    color:white;
+    align-items:center;
+    background-color: var(--dark-blue-color);
+    height: 100vh;
+    width:100vw;
+    text-align:center;
 }
+
+.startup-flow-end h1 {
+    color: var(--paper-color)
+}
+
+.bookshelf-card {
+    display:flex;
+    justify-content: center;
+    margin: 5px auto 10px auto ;
+    width:400px;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin-bottom: 20px;
+}
+
 
 @media screen and (min-width: 800px) {
     

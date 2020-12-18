@@ -119,10 +119,10 @@ export default class SwipeBookshelfs extends Component {
                     </div>
                     <div className='buttons'>
                         <div className='likey-dislikey'>
-                        <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
+                            <img onClick={ () => this.likeOrdislike('disliked') } style={{height: '30px'}} src={IconDislike} alt='dislike icon' />
                         </div>
                         <div className='likey-dislikey'>
-                        <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
+                            <img onClick={ () => this.likeOrdislike('liked') } style={{height: '30px'}} src={IconLike} alt='like icon'/>
                         </div>
                     </div>
                 </div>

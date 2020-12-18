@@ -16,7 +16,6 @@ export default class Matches extends Component {
         ownerId:'',
         redirect: false,
         loggedInUser: '',
-        nomatch: true
     }
 
     bookService = new BookService()
@@ -24,7 +23,7 @@ export default class Matches extends Component {
 
     componentDidMount() {
         this.setState({
-            loggedInUser: this.props.userInSession
+            loggedInUser: this.props.userInSession,
         }, () => this.getMatches())
     }
 
@@ -55,13 +54,6 @@ export default class Matches extends Component {
                 matches: response.matches
             }, () => this.matchedBookshelfnOwner())
         })
-        .then(response =>{
-            if(this.state.matches.length > 0){
-                this.setState({
-                    nomatch: false
-                })
-            }
-        })
         .catch(err => {
             console.log('error getting matched-bookshelfId', err)
         })
@@ -82,9 +74,9 @@ export default class Matches extends Component {
             return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
         }
 
-        if(this.state.nomatch){
+        if(this.props.userInSession.matches.length < 1 ){
             return(   
-                <div>
+                <div className='container-matches'>
                     <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
                     <div className='main-container-swipe'>
                         <h2>Patience, Come Check Later</h2>
@@ -108,11 +100,11 @@ export default class Matches extends Component {
                                     <div className='owner-info'>
                                         <img src={!combination.owner.profileImage ? DefaultAvatar : combination.owner.profileImage } alt='your-crush'/>
                                         <div>
-                                            <p>Bookshelf</p>
+                                            <h5>Bookshelf</h5>
                                             <h2>{combination.owner.profileName}</h2>
                                         </div>
                                     </div>
-                                    <hr></hr>
+                                    {/* <hr></hr> */}
                                     <Bookshelf bookshelfId={combination._id}/>
                                 </div>
                             )
