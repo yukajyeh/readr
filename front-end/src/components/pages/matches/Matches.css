@@ -1,6 +1,7 @@
 .container-matches {
     background-color:  var(--old-pink-color);
-    height: 100vh;;
+    height: 100vh;
+    overflow:scroll;
 }
 
 .matches {

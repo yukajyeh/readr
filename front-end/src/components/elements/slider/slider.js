@@ -8,7 +8,7 @@ import Tweet2 from '../../../assets/pictures/tweet_bruce.png'
 import Tweet3 from '../../../assets/pictures/tweet_guido.png'
 import Tweet4 from '../../../assets/pictures/tweet_michael.png'
 import Tweet5 from '../../../assets/pictures/tweet-rock.png'
-import Tweet6 from '../../../assets/pictures/tweet-granger.png'
+import Tweet6 from '../../../assets/pictures/tweet-jorg.png'
 
 class DemoCarousel extends Component {
     render() {
