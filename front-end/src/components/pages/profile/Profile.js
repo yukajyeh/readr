@@ -18,6 +18,7 @@ export default class Profile extends Component {
         this.state = {
             loggedInUser: '',
             targetOwner:'',
+            userProfile: '',
             redirect: false,
             loader: true
         }
@@ -28,6 +29,7 @@ export default class Profile extends Component {
 
 
     componentDidMount(){
+        console.log('mounted')
         this.setState({
             loggedInUser: this.props.userInSession
         }, () => this.checkOwnerProfile(this.props.location.state && this.props.location.state.id))
@@ -45,16 +47,16 @@ export default class Profile extends Component {
             })
             .catch(err => console.log(err))
         } else {
-            setTimeout(
-                () => this.setState({ loader: false}),
-                200
-            )
+            this.setState({ 
+                userProfile: this.props.userInSession,
+                loader: false,
+            })
         }
     }
 
     render() {
 
-        console.log(this.state.loggedInUser)
+        console.log(this.props.userInSession)
 
         if(this.state.loader){
             return <Loader/>
@@ -93,7 +95,7 @@ export default class Profile extends Component {
                     </div>
                 </div>     
             )
-        } else{ 
+        } else if(this.state.userProfile){ 
             return (
                 <div>
                      <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser} />
@@ -122,7 +124,7 @@ export default class Profile extends Component {
                             </div>
                         </div>
                         <div className='second-container-profile'>
-                            <BookshelfDisplay bookshelfId={this.state.loggedInUser.bookShelf} />
+                            <BookshelfDisplay bookshelfId={this.props.userInSession.bookShelf} />
                         </div>
                      </div>
                 </div>

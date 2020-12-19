@@ -113,6 +113,7 @@ export default class StartUpFlow extends Component {
             this.state.selectedBooks.nextBook,
         )
         .then(response => {
+            this.props.getTheUser(response)
             this.setState({
                 bookshelfId: response.bookShelf,
                 currentStep: this.state.currentStep+1,
