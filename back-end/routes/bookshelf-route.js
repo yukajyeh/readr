@@ -42,6 +42,7 @@ router.post('/pick-my-books', (req , res) => {
     .catch((err)=>console.log('error',err))
 })
 
+
 /* Fetch a random bookshelf form database */
 router.get('/random-bookshelf', (req, res) => {
     const currentUser = req.session.user
@@ -95,7 +96,6 @@ router.post('/update-likes', (req, res) => {
         .catch(err => console.log(err))
     })
     .catch(err => {
-        console.log(err)
         res.status(500).json({message:"Something went wrong "})
     }) 
 })
@@ -111,7 +111,6 @@ router.post('/update-dislikes', (req, res) => {
         res.status(200).json(response)
     })
     .catch(err => {
-        console.log(err)
         res.status(500).json({message:"Something went wrong "})
     }) 
 })
@@ -125,7 +124,6 @@ router.get('/matches', (req, res) => {
         res.status(200).json(response)
     })
     .catch(err => {
-        console.log(err)
         res.status(500).json({message:"Something went wrong "})
     }) 
 })
@@ -137,7 +135,6 @@ router.get('/info/:id', (req, res) => {
         res.status(200).json(response)
     })
     .catch(err => {
-        console.log(err)
         res.status(500).json({message:"Something went wrong "})
     }) 
 })

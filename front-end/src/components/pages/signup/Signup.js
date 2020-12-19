@@ -130,9 +130,6 @@ export default class Signup extends Component {
                             
                             <Button type='primary'>Create my account</Button>
                         </form>
-                        
-                        
-
                     </div>
                 </div>
             </div>

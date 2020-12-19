@@ -28,7 +28,7 @@ export default class Matches extends Component {
     }
 
     componentDidUpdate() {
-        console.log('component-match-did-update');
+        console.log('update');
     }
 
     matchedBookshelfnOwner = () => {

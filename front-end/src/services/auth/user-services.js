@@ -25,9 +25,6 @@ class UserService {
         })
         .catch(err => console.log(err))
     }
-
-  
- 
     
 }
 

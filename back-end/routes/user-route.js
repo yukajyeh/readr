@@ -30,6 +30,4 @@ router.get('/owner/:id', (req, res) => {
 })
   
 
-
-
 module.exports = router;

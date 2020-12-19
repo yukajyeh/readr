@@ -29,7 +29,7 @@ export default class Profile extends Component {
 
 
     componentDidMount(){
-        console.log('mounted')
+        console.log('mount')
         this.setState({
             loggedInUser: this.props.userInSession
         }, () => this.checkOwnerProfile(this.props.location.state && this.props.location.state.id))
@@ -55,8 +55,6 @@ export default class Profile extends Component {
     }
 
     render() {
-
-        console.log(this.props.userInSession)
 
         if(this.state.loader){
             return <Loader/>
@@ -131,7 +129,5 @@ export default class Profile extends Component {
             )
 
         }
-
-
     }
 }
