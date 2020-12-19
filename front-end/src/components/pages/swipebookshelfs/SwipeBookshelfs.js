@@ -28,7 +28,7 @@ export default class SwipeBookshelfs extends Component {
     }
 
     componentDidUpdate() {
-        console.log('component-did-update');
+        console.log('update');
     }
 
     //load random bookshelfs ready for swipe//
@@ -38,7 +38,7 @@ export default class SwipeBookshelfs extends Component {
                 response ? this.setState({randomBookshelfId: response._id, loader: false}) : this.setState({ errorMessage: 'Sorry, This Is All For Now.', loader: false, randomBookshelfId: ''})
             })
             .catch(err => {
-                console.log('error in get random bookshelf', err)
+                console.log(err)
             })
     }
 
@@ -53,7 +53,7 @@ export default class SwipeBookshelfs extends Component {
                 this.getRandomBookshelf()
             })
             .catch(err => {
-                console.log('error in saveLike', err)
+                console.log(err)
             })
         } 
         
@@ -64,7 +64,7 @@ export default class SwipeBookshelfs extends Component {
                 this.getRandomBookshelf()
             })
             .catch(err => {
-                console.log('error in saveDislike', err)
+                console.log(err)
             })
         }
     }

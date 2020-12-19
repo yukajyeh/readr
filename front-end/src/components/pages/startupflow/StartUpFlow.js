@@ -172,13 +172,11 @@ export default class StartUpFlow extends Component {
         if(currentStep > 0 && currentStep < 7) {
             return (
                 <div className='startup-flow'>
-
                      <div className='search-container'>
                         <h5>Step {currentStep}</h5>
                         <progress id="file" value={currentStep} max="7"> </progress>
                         <div className='search-title'>
                             {this.displayTitle()}
-                            {/* <p> Search by book title</p> */}
                             <SearchBar
                                 searchQuery={this.state.searchQuery}
                                 updateSearchQuery={this.searchHandler}
