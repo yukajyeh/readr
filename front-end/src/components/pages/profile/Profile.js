@@ -77,7 +77,7 @@ export default class Profile extends Component {
                                 </tr>    
                                 <tr>
                                     <td><p>Match Preference:</p></td>
-                                    <td><span>{this.state.loggedInUser.profileName}</span></td>
+                                    <td><span>{this.state.loggedInUser.matchPreference}</span></td>
                                 </tr>
                                 <tr>
                                     <td><p>Prefered Contact Method:</p></td>
@@ -110,7 +110,7 @@ export default class Profile extends Component {
                                 </tr>    
                                 <tr>
                                     <td><p>Match Preference:</p></td>
-                                    <td><span>{this.state.loggedInUser.profileName}</span></td>
+                                    <td><span>{this.state.loggedInUser.matchPreference}</span></td>
                                 </tr>
                                 <tr>
                                     <td><p>Prefered Contact Method:</p></td>
