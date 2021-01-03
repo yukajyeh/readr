@@ -22,14 +22,24 @@ export default class Matches extends Component {
     userService = new UserService()
 
     componentDidMount() {
+        console.log('component did mount is called')
         this.setState({
             loggedInUser: this.props.userInSession,
         }, () => this.getMatches())
     }
 
-    componentDidUpdate() {
-        console.log('update');
-    }
+    // componentDidUpdate(prevProps) {
+    //     console.log('update');
+    //     console.log('prevprops', prevProps)
+    //     console.log(this.props.userInSession.matches.length)
+    //     console.log(prevProps.userInSession.matches.length)
+    //     if(this.props.userInSession.matches.length !== prevProps.userInSession.matches.length){
+    //         console.log('user was updated so state is set and get matches called')
+    //         this.setState({
+    //             loggedInUser: this.props.userInSession,
+    //     }, () => this.getMatches())
+    // }
+    // }
 
     matchedBookshelfnOwner = () => {
         const matchesIdsArray = this.state.matches
