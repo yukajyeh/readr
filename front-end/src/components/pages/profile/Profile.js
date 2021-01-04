@@ -101,7 +101,6 @@ export default class Profile extends Component {
         } 
         
         else { 
-            console.log('in else if 133')
             return (
                 <div>
                      <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser} />
