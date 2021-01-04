@@ -61,7 +61,7 @@ export default class Matches extends Component {
         this.bookService.getMatches()
         .then(response => {
             this.setState({
-                matches: response.matches
+                matches: [...this.state.matches, response.matches] 
             }, () => this.matchedBookshelfnOwner())
         })
         .catch(err => {
@@ -84,7 +84,7 @@ export default class Matches extends Component {
             return <Redirect to={{pathname: '/profile', state: { id: this.state.ownerId}}}/>
         }
 
-        if(this.props.userInSession.matches.length < 1 ){
+        if(this.state.matches.length === 0 ){
             return(   
                 <div className='container-matches'>
                     <Navbar userInSession={this.state.loggedInUser} getTheUser={this.props.getTheUser}/>
