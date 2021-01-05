@@ -82,6 +82,7 @@ router.post('/update-likes', (req, res) => {
                 .then(targetBookshelfUpdated => {
                     User.findByIdAndUpdate({ _id: currentUser._id}, {$push: {matches: targetBookshelfUpdated.bookShelf}}, {new: true})
                     .then(activeUser => {
+                        console.log('active user back', activeUser)
                         req.session.user = activeUser
                         res.status(200).json(activeUser)
                     })
