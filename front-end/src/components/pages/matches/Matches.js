@@ -28,19 +28,6 @@ export default class Matches extends Component {
         }, () => this.getMatches())
     }
 
-    // componentDidUpdate(prevProps) {
-    //     console.log('update');
-    //     console.log('prevprops', prevProps)
-    //     console.log(this.props.userInSession.matches.length)
-    //     console.log(prevProps.userInSession.matches.length)
-    //     if(this.props.userInSession.matches.length !== prevProps.userInSession.matches.length){
-    //         console.log('user was updated so state is set and get matches called')
-    //         this.setState({
-    //             loggedInUser: this.props.userInSession,
-    //     }, () => this.getMatches())
-    // }
-    // }
-
     matchedBookshelfnOwner = () => {
         const matchesIdsArray = this.state.matches
 
@@ -61,7 +48,7 @@ export default class Matches extends Component {
         this.bookService.getMatches()
         .then(response => {
             this.setState({
-                matches: [...this.state.matches, response.matches] 
+                matches: response.matches
             }, () => this.matchedBookshelfnOwner())
         })
         .catch(err => {
@@ -114,7 +101,6 @@ export default class Matches extends Component {
                                             <h2>{combination.owner.profileName}</h2>
                                         </div>
                                     </div>
-                                    {/* <hr></hr> */}
                                     <Bookshelf bookshelfId={combination._id}/>
                                 </div>
                             )
