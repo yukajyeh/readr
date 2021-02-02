@@ -1,3 +1,2 @@
 # readr
-📚Book Your Next Date
-readr-readr.netlify.app
+📚Book Your Next Date via https://readr-readr.netlify.app
